@@ -1,0 +1,141 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f7f3ec;
+    color: #2d2925;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 7%;
+    background: #2d2925;
+    color: white;
+}
+
+.logo {
+    font-size: 28px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+}
+
+.hero {
+    padding: 90px 7%;
+    background: #ded0b9;
+}
+
+.hero h1 {
+    font-size: 56px;
+    max-width: 700px;
+    margin: 0 0 20px;
+}
+
+.hero p {
+    font-size: 20px;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 24px;
+    background: #2d2925;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.container {
+    width: 86%;
+    max-width: 1200px;
+    margin: 50px auto;
+}
+
+.section-title {
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.craft-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
+}
+
+.craft-card {
+    background: white;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.craft-card img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+}
+
+.craft-content {
+    padding: 22px;
+}
+
+.craft-content h3 {
+    margin-top: 0;
+    font-size: 22px;
+}
+
+.price {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.detail {
+    width: 86%;
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+.detail-image {
+    width: 100%;
+    max-height: 550px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.story {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    margin-top: 30px;
+    line-height: 1.7;
+}
+
+.action {
+    margin-top: 30px;
+    padding: 30px;
+    background: #ded0b9;
+    border-radius: 14px;
+}
+
+@media (max-width: 700px) {
+    .hero h1 {
+        font-size: 40px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+}

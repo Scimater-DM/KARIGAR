@@ -1,0 +1,159 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KARIGAR | Crafts With A Story</title>
+
+    <link rel="stylesheet"
+          href="{% static 'marketplace/style.css' %}">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            KARIGAR
+        </div>
+
+        <div>
+            <a href="/">Discover</a>
+            <a href="/artisan/add/">Share Your Craft</a>
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <h1>
+            Crafts that carry a story.
+        </h1>
+
+        <p>
+            Discover handmade traditions, meet the artisans
+            behind them, and bring a piece of their story home.
+        </p>
+
+        <a href="#crafts" class="button">
+            Explore Crafts →
+        </a>
+
+    </section>
+
+
+    <!-- CRAFTS -->
+
+    <main class="container" id="crafts">
+
+        <h2 class="section-title">
+            Discover Crafts
+        </h2>
+
+        {% if crafts %}
+
+            <div class="craft-grid">
+
+                {% for craft in crafts %}
+
+                    <div class="craft-card">
+
+                        {% if craft.image %}
+
+                            <img
+                                src="{{ craft.image.url }}"
+                                alt="{{ craft.name }}"
+                            >
+
+                        {% endif %}
+
+
+                        <div class="craft-content">
+
+                            <h3>
+                                {{ craft.name }}
+                            </h3>
+
+                            <p>
+                                {{ craft.category }}
+                            </p>
+
+                            <p>
+                                {{ craft.description }}
+                            </p>
+
+                            <p>
+                                Crafted by
+                                <strong>
+                                    {{ craft.artisan.name }}
+                                </strong>
+                            </p>
+
+                            <p>
+                                {{ craft.artisan.location }}
+                            </p>
+
+                            <p class="price">
+                                ₹{{ craft.price }}
+                            </p>
+
+                            <a
+                                href="{% url 'craft_detail' craft.id %}"
+                                class="button"
+                            >
+                                Discover this craft →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <p>
+                No crafts have been published yet.
+            </p>
+
+        {% endif %}
+
+    </main>
+
+
+    <!-- ARTISAN CTA -->
+
+    <section class="hero">
+
+        <div class="container">
+
+            <h2>
+                Are you a Karigar?
+            </h2>
+
+            <p>
+                Share your craft, your story and your tradition
+                with customers around the world.
+            </p>
+
+            <a href="/artisan/add/" class="button">
+                Share Your Craft →
+            </a>
+
+        </div>
+
+    </section>
+
+
+</body>
+</html>

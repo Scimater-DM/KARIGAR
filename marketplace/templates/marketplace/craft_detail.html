@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ craft.name }} | KARIGAR</title>
+
+    <link rel="stylesheet"
+          href="{% static 'marketplace/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        KARIGAR
+    </div>
+
+    <div>
+        <a href="/">Discover</a>
+        <a href="/artisan/add/">Share Your Craft</a>
+    </div>
+
+</nav>
+
+
+<main class="detail">
+
+    <a href="/">
+        ← Back to Crafts
+    </a>
+
+
+    <!-- PRODUCT -->
+
+    <h1>
+        {{ craft.name }}
+    </h1>
+
+    {% if craft.image %}
+
+        <img
+            class="detail-image"
+            src="{{ craft.image.url }}"
+            alt="{{ craft.name }}"
+        >
+
+    {% endif %}
+
+
+    <h2>
+        {{ craft.category }}
+    </h2>
+
+    <p>
+        {{ craft.description }}
+    </p>
+
+    <p class="price">
+        ₹{{ craft.price }}
+    </p>
+
+
+    <!-- ARTISAN -->
+
+    <section class="story">
+
+        <h2>
+            Meet the Artisan
+        </h2>
+
+        <h3>
+            {{ craft.artisan.name }}
+        </h3>
+
+        <p>
+            📍 {{ craft.artisan.location }}
+        </p>
+
+        <p>
+            {{ craft.artisan.story }}
+        </p>
+
+    </section>
+
+
+    <!-- MAKING PROCESS -->
+
+    <section class="story">
+
+        <h2>
+            🧵 The Making
+        </h2>
+
+        <p>
+            Every KARIGAR craft is made by hand using
+            traditional knowledge passed through generations.
+        </p>
+
+        <p>
+            🎥 A video of the artisan's making process can
+            be linked here.
+        </p>
+
+        {% if craft.making_video %}
+    <a href="{{ craft.making_video }}"
+       target="_blank"
+       class="button">
+        🎥 Watch the Making Process →
+    </a>
+{% else %}
+    <p>
+        🎥 Making-process video coming soon.
+    </p>
+{% endif %}
+
+    </section>
+
+
+    <!-- CULTURAL VALUE -->
+
+    <section class="story">
+
+        <h2>
+            🌏 More Than A Product
+        </h2>
+
+        <p>
+            By purchasing this craft, customers help keep
+            traditional skills, local knowledge and artisan
+            communities alive.
+        </p>
+
+        <p>
+            KARIGAR connects these stories with customers
+            in India and around the world.
+        </p>
+
+    </section>
+
+
+    <!-- PURCHASE -->
+
+    <section class="action">
+
+        <h2>
+            🛍️ Available for Purchase
+        </h2>
+
+        <p>
+            <strong>Price:</strong>
+            ₹{{ craft.price }}
+        </p>
+
+        <button class="button">
+            Buy This Craft
+        </button>
+
+    </section>
+
+</main>
+
+</body>
+</html>

@@ -1,0 +1,105 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Share Your Craft | KARIGAR</title>
+
+    <link rel="stylesheet"
+          href="{% static 'marketplace/style.css' %}">
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        KARIGAR
+    </div>
+
+    <div>
+        <a href="/">Discover</a>
+    </div>
+
+</nav>
+
+
+<main class="container">
+
+    <div class="hero">
+    <p style="letter-spacing: 2px; text-transform: uppercase;">
+        For Artisans
+    </p>
+
+    <h1>
+        Share what your hands create.
+    </h1>
+
+    <p>
+        Your craft is more than an object.
+        Tell the story, tradition and skill behind it.
+    </p>
+</div>
+
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+
+        <!-- ABOUT ARTISAN -->
+
+        <section class="story">
+
+            <h2>01 — About You</h2>
+
+            <p>
+                Help customers meet the person behind the craft.
+            </p>
+
+            {{ artisan_form.as_p }}
+
+        </section>
+
+
+        <!-- ABOUT CRAFT -->
+
+        <section class="story">
+
+            <h2>02 — About Your Craft</h2>
+
+            <p>
+                Tell customers what you create and how you create it.
+            </p>
+
+            {{ craft_form.as_p }}
+
+        </section>
+
+
+        <!-- SUBMIT -->
+
+        <section class="action">
+
+            <h2>Ready to share your craft?</h2>
+
+            <p>
+                Your craft will become part of the KARIGAR
+                marketplace.
+            </p>
+
+            <button type="submit" class="button">
+                Create Listing →
+            </button>
+
+        </section>
+
+    </form>
+
+</main>
+
+</body>
+</html>
