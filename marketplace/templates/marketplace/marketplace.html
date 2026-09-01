@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>KARIGAR | Crafts With A Story</title>
+    <title>KARIGAR — Living Craft, Shared Worldwide</title>
 
     <link rel="stylesheet"
           href="{% static 'marketplace/style.css' %}">
@@ -14,146 +14,334 @@
 
 <body>
 
-    <!-- NAVBAR -->
+<nav class="navbar">
 
-    <nav class="navbar">
+    <div class="logo">KARIGAR</div>
 
-        <div class="logo">
-            KARIGAR
+    <div class="nav-links">
+        <a href="/">Discover</a>
+        <a href="/artisan/add/">For Artisans</a>
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="eyebrow">
+            Living craft • Human stories • Global connection
         </div>
-
-        <div>
-            <a href="/">Discover</a>
-            <a href="/artisan/add/">Share Your Craft</a>
-        </div>
-
-    </nav>
-
-
-    <!-- HERO -->
-
-    <section class="hero">
 
         <h1>
-            Crafts that carry a story.
+            Meet the hands behind the heritage.
         </h1>
 
         <p>
-            Discover handmade traditions, meet the artisans
-            behind them, and bring a piece of their story home.
+            Discover handmade crafts, the people who create them,
+            and the traditions that travel with every piece.
         </p>
 
-        <a href="#crafts" class="button">
-            Explore Crafts →
-        </a>
+        <div class="hero-actions">
 
-    </section>
+            <a href="#crafts" class="button">
+                Explore Crafts →
+            </a>
 
-
-    <!-- CRAFTS -->
-
-    <main class="container" id="crafts">
-
-        <h2 class="section-title">
-            Discover Crafts
-        </h2>
-
-        {% if crafts %}
-
-            <div class="craft-grid">
-
-                {% for craft in crafts %}
-
-                    <div class="craft-card">
-
-                        {% if craft.image %}
-
-                            <img
-                                src="{{ craft.image.url }}"
-                                alt="{{ craft.name }}"
-                            >
-
-                        {% endif %}
-
-
-                        <div class="craft-content">
-
-                            <h3>
-                                {{ craft.name }}
-                            </h3>
-
-                            <p>
-                                {{ craft.category }}
-                            </p>
-
-                            <p>
-                                {{ craft.description }}
-                            </p>
-
-                            <p>
-                                Crafted by
-                                <strong>
-                                    {{ craft.artisan.name }}
-                                </strong>
-                            </p>
-
-                            <p>
-                                {{ craft.artisan.location }}
-                            </p>
-
-                            <p class="price">
-                                ₹{{ craft.price }}
-                            </p>
-
-                            <a
-                                href="{% url 'craft_detail' craft.id %}"
-                                class="button"
-                            >
-                                Discover this craft →
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-        {% else %}
-
-            <p>
-                No crafts have been published yet.
-            </p>
-
-        {% endif %}
-
-    </main>
-
-
-    <!-- ARTISAN CTA -->
-
-    <section class="hero">
-
-        <div class="container">
-
-            <h2>
-                Are you a Karigar?
-            </h2>
-
-            <p>
-                Share your craft, your story and your tradition
-                with customers around the world.
-            </p>
-
-            <a href="/artisan/add/" class="button">
-                Share Your Craft →
+            <a href="/artisan/add/"
+               class="button button-outline">
+                I'm an Artisan
             </a>
 
         </div>
 
-    </section>
+    </div>
 
+</section>
+
+
+<!-- WHY KARIGAR -->
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Why KARIGAR?
+            </div>
+
+            <h2>
+                More than a marketplace.
+            </h2>
+
+            <p>
+                KARIGAR connects customers with the people,
+                stories and traditions behind handmade craft.
+            </p>
+
+        </div>
+
+
+        <div class="value-grid">
+
+            <div class="value-card">
+                <div class="value-number">01</div>
+                <h3>Meet the Artisan</h3>
+                <p>
+                    Know the person behind the object,
+                    not just the product.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-number">02</div>
+                <h3>Hear the Story</h3>
+                <p>
+                    Discover the history, identity and
+                    meaning behind every craft.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-number">03</div>
+                <h3>See the Process</h3>
+                <p>
+                    Watch how traditional skills transform
+                    raw materials into handmade pieces.
+                </p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-number">04</div>
+                <h3>Reach the World</h3>
+                <p>
+                    Help artisans connect with customers
+                    beyond geographical boundaries.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TRADITIONS -->
+
+<section class="section">
+
+    <div class="section-inner">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Explore
+            </div>
+
+            <h2>
+                Living traditions.
+            </h2>
+
+            <p>
+                From textiles to bamboo, pottery to woodcraft —
+                discover the diversity of handmade traditions.
+            </p>
+
+        </div>
+
+
+        <div class="tradition-grid">
+
+            <a href="#crafts" class="tradition-card">
+                <span>01</span>
+                <h3>Textiles & Weaving</h3>
+            </a>
+
+            <a href="#crafts" class="tradition-card">
+                <span>02</span>
+                <h3>Bamboo & Cane</h3>
+            </a>
+
+            <a href="#crafts" class="tradition-card">
+                <span>03</span>
+                <h3>Pottery & Ceramics</h3>
+            </a>
+
+            <a href="#crafts" class="tradition-card">
+                <span>04</span>
+                <h3>Woodcraft</h3>
+            </a>
+
+            <a href="#crafts" class="tradition-card">
+                <span>05</span>
+                <h3>Metalcraft</h3>
+            </a>
+
+            <a href="#crafts" class="tradition-card">
+                <span>06</span>
+                <h3>Embroidery</h3>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CRAFT MARKETPLACE -->
+
+<section class="section" id="crafts">
+
+    <div class="section-inner">
+
+        <div class="section-heading">
+
+            <div class="eyebrow">
+                Discover
+            </div>
+
+            <h2>
+                Crafts with a story.
+            </h2>
+
+            <p>
+                Explore pieces created by artisans and
+                discover what makes each one unique.
+            </p>
+
+        </div>
+
+
+        {% if crafts %}
+
+        <div class="craft-grid">
+
+            {% for craft in crafts %}
+
+            <article class="craft-card">
+
+                {% if craft.image %}
+
+                <img
+                    src="{{ craft.image.url }}"
+                    alt="{{ craft.name }}"
+                >
+
+                {% endif %}
+
+                <div class="craft-content">
+
+                    <div class="craft-tag">
+                        {{ craft.category }}
+                    </div>
+
+                    <h3>
+                        {{ craft.name }}
+                    </h3>
+
+                    <div class="craft-location">
+                        📍 {{ craft.artisan.location }}
+                    </div>
+
+                    <p class="craft-story">
+                        Crafted by
+                        <strong>
+                            {{ craft.artisan.name }}
+                        </strong>
+                    </p>
+
+                    <p class="price">
+                        ₹{{ craft.price }}
+                    </p>
+
+                    <a
+                        href="{% url 'craft_detail' craft.id %}"
+                        class="button"
+                    >
+                        Discover the Story →
+                    </a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+        {% else %}
+
+        <div class="story">
+            <h2>No crafts yet.</h2>
+            <p>
+                Be the first artisan to share your craft with KARIGAR.
+            </p>
+
+            <a href="/artisan/add/"
+               class="button">
+                Share Your Craft →
+            </a>
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+<!-- ARTISAN CTA -->
+
+<section class="hero">
+
+    <div class="hero-inner">
+
+        <div class="eyebrow">
+            For Artisans
+        </div>
+
+        <h1>
+            Your hands carry a story.
+        </h1>
+
+        <p>
+            Tell the world about your skill, your tradition
+            and the craft you have carried forward.
+        </p>
+
+        <a href="/artisan/add/"
+           class="button button-light">
+            Share Your Craft →
+        </a>
+
+    </div>
+
+</section>
+
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <div>
+            <h2>KARIGAR</h2>
+        </div>
+
+        <p>
+            A platform connecting traditional artisans,
+            cultural stories and customers across the world.
+        </p>
+
+    </div>
+
+</footer>
 
 </body>
 </html>

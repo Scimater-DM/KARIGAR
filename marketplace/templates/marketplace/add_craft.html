@@ -3,16 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Share Your Craft | KARIGAR</title>
 
     <link rel="stylesheet"
           href="{% static 'marketplace/style.css' %}">
+
 </head>
 
 <body>
+
 
 <nav class="navbar">
 
@@ -20,45 +24,65 @@
         KARIGAR
     </div>
 
-    <div>
+    <div class="nav-links">
         <a href="/">Discover</a>
     </div>
 
 </nav>
 
 
-<main class="container">
-
-    <div class="hero">
-    <p style="letter-spacing: 2px; text-transform: uppercase;">
-        For Artisans
-    </p>
-
-    <h1>
-        Share what your hands create.
-    </h1>
-
-    <p>
-        Your craft is more than an object.
-        Tell the story, tradition and skill behind it.
-    </p>
-</div>
+<main class="form-page">
 
 
-    <form method="POST" enctype="multipart/form-data">
+    <!-- INTRO -->
+
+    <div class="form-intro">
+
+        <div class="eyebrow">
+            For Artisans
+        </div>
+
+        <h1>
+            Your hands carry a story.
+        </h1>
+
+        <p>
+            Tell the world about your craft, your journey
+            and the tradition behind what you create.
+        </p>
+
+    </div>
+
+
+    <form method="POST"
+          enctype="multipart/form-data">
 
         {% csrf_token %}
 
 
-        <!-- ABOUT ARTISAN -->
+        <!-- ABOUT YOU -->
 
-        <section class="story">
+        <section class="form-section">
 
-            <h2>01 — About You</h2>
+            <div class="form-section-header">
 
-            <p>
-                Help customers meet the person behind the craft.
-            </p>
+                <div class="form-number">
+                    01
+                </div>
+
+                <div>
+
+                    <h2>
+                        About You
+                    </h2>
+
+                    <p class="form-section-description">
+                        Help customers meet the person behind the craft.
+                    </p>
+
+                </div>
+
+            </div>
 
             {{ artisan_form.as_p }}
 
@@ -67,13 +91,27 @@
 
         <!-- ABOUT CRAFT -->
 
-        <section class="story">
+        <section class="form-section">
 
-            <h2>02 — About Your Craft</h2>
+            <div class="form-section-header">
 
-            <p>
-                Tell customers what you create and how you create it.
-            </p>
+                <div class="form-number">
+                    02
+                </div>
+
+                <div>
+
+                    <h2>
+                        About Your Craft
+                    </h2>
+
+                    <p class="form-section-description">
+                        Tell customers what you create and what makes it special.
+                    </p>
+
+                </div>
+
+            </div>
 
             {{ craft_form.as_p }}
 
@@ -82,24 +120,49 @@
 
         <!-- SUBMIT -->
 
-        <section class="action">
+        <section class="form-submit">
 
-            <h2>Ready to share your craft?</h2>
+            <div class="eyebrow">
+                Ready?
+            </div>
+
+            <h2>
+                Let your craft travel further.
+            </h2>
 
             <p>
-                Your craft will become part of the KARIGAR
-                marketplace.
+                Your listing will help customers discover
+                the craft and the person behind it.
             </p>
 
-            <button type="submit" class="button">
-                Create Listing →
+            <button type="submit"
+                    class="button">
+                Create My Listing →
             </button>
 
         </section>
 
+
     </form>
 
 </main>
+
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <h2>KARIGAR</h2>
+
+        <p>
+            Made by people. Rooted in culture.
+            Shared with the world.
+        </p>
+
+    </div>
+
+</footer>
+
 
 </body>
 </html>

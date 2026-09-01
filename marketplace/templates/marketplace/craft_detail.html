@@ -2,17 +2,24 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>{{ craft.name }} | KARIGAR</title>
 
     <link rel="stylesheet"
           href="{% static 'marketplace/style.css' %}">
+
 </head>
 
+
 <body>
+
 
 <nav class="navbar">
 
@@ -20,9 +27,16 @@
         KARIGAR
     </div>
 
-    <div>
-        <a href="/">Discover</a>
-        <a href="/artisan/add/">Share Your Craft</a>
+    <div class="nav-links">
+
+        <a href="/">
+            Discover
+        </a>
+
+        <a href="/artisan/add/">
+            For Artisans
+        </a>
+
     </div>
 
 </nav>
@@ -30,16 +44,29 @@
 
 <main class="detail">
 
-    <a href="/">
-        ← Back to Crafts
+
+    <a href="/"
+       class="back-link">
+        ← Back to crafts
     </a>
 
 
-    <!-- PRODUCT -->
+    <!-- HEADER -->
 
-    <h1>
-        {{ craft.name }}
-    </h1>
+    <div class="detail-header">
+
+        <div class="detail-category">
+            {{ craft.category }}
+        </div>
+
+        <h1>
+            {{ craft.name }}
+        </h1>
+
+    </div>
+
+
+    <!-- IMAGE -->
 
     {% if craft.image %}
 
@@ -52,30 +79,66 @@
     {% endif %}
 
 
-    <h2>
-        {{ craft.category }}
-    </h2>
+    <!-- PRODUCT INTRO -->
 
-    <p>
-        {{ craft.description }}
-    </p>
+    <div class="detail-intro">
 
-    <p class="price">
-        ₹{{ craft.price }}
-    </p>
+        <div>
+
+            <p class="detail-description">
+                {{ craft.description }}
+            </p>
+
+            <p>
+                📍
+                <strong>
+                    {{ craft.artisan.location }}
+                </strong>
+            </p>
+
+        </div>
+
+
+        <div class="purchase-card">
+
+            <div class="eyebrow">
+                Handmade
+            </div>
+
+            <div class="purchase-price">
+                ₹{{ craft.price }}
+            </div>
+
+            <button class="button"
+                    onclick="showPurchaseMessage()">
+                Buy This Craft
+            </button>
+
+            <button class="button button-outline"
+                    onclick="showOfferMessage()">
+                Make an Offer
+            </button>
+
+        </div>
+
+    </div>
 
 
     <!-- ARTISAN -->
 
     <section class="story">
 
+        <div class="story-label">
+            The person behind the craft
+        </div>
+
         <h2>
             Meet the Artisan
         </h2>
 
-        <h3>
+        <div class="artisan-name">
             {{ craft.artisan.name }}
-        </h3>
+        </div>
 
         <p>
             📍 {{ craft.artisan.location }}
@@ -88,81 +151,193 @@
     </section>
 
 
-    <!-- MAKING PROCESS -->
+    <!-- PROCESS -->
+
+    <section class="process-box">
+
+        <div class="process-content">
+
+            <div class="story-label">
+                Behind the making
+            </div>
+
+            <h2>
+                From material to masterpiece.
+            </h2>
+
+            <p>
+                See the skill, patience and traditional
+                knowledge that goes into creating this craft.
+            </p>
+
+            {% if craft.making_video %}
+
+                <a href="{{ craft.making_video }}"
+                   target="_blank"
+                   class="video-button">
+
+                    ▶ Watch the making process
+
+                </a>
+
+            {% else %}
+
+                <p>
+                    Making-process video coming soon.
+                </p>
+
+            {% endif %}
+
+        </div>
+
+
+        <div class="process-video">
+
+            <div>
+                🧵
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- TRADITION -->
 
     <section class="story">
 
+        <div class="story-label">
+            Beyond the product
+        </div>
+
         <h2>
-            🧵 The Making
+            The tradition behind it.
         </h2>
 
         <p>
-            Every KARIGAR craft is made by hand using
-            traditional knowledge passed through generations.
+            Every handmade craft carries knowledge,
+            techniques and stories that can travel
+            across generations.
         </p>
 
         <p>
-            🎥 A video of the artisan's making process can
-            be linked here.
-        </p>
-
-        {% if craft.making_video %}
-    <a href="{{ craft.making_video }}"
-       target="_blank"
-       class="button">
-        🎥 Watch the Making Process →
-    </a>
-{% else %}
-    <p>
-        🎥 Making-process video coming soon.
-    </p>
-{% endif %}
-
-    </section>
-
-
-    <!-- CULTURAL VALUE -->
-
-    <section class="story">
-
-        <h2>
-            🌏 More Than A Product
-        </h2>
-
-        <p>
-            By purchasing this craft, customers help keep
-            traditional skills, local knowledge and artisan
-            communities alive.
-        </p>
-
-        <p>
-            KARIGAR connects these stories with customers
-            in India and around the world.
+            KARIGAR gives customers the opportunity to
+            discover that cultural context alongside
+            the product itself.
         </p>
 
     </section>
 
 
-    <!-- PURCHASE -->
+    <!-- IMPACT -->
 
-    <section class="action">
+    <section class="section"
+             style="padding-left:0;padding-right:0;">
 
-        <h2>
-            🛍️ Available for Purchase
-        </h2>
+        <div class="section-heading">
 
-        <p>
-            <strong>Price:</strong>
-            ₹{{ craft.price }}
-        </p>
+            <div class="eyebrow">
+                Your purchase matters
+            </div>
 
-        <button class="button">
-            Buy This Craft
-        </button>
+            <h2>
+                More than something you own.
+            </h2>
+
+        </div>
+
+
+        <div class="impact-grid">
+
+            <div class="impact-card">
+
+                <h3>
+                    👤 Support the Artisan
+                </h3>
+
+                <p>
+                    Help create opportunities for the
+                    person behind the craft.
+                </p>
+
+            </div>
+
+
+            <div class="impact-card">
+
+                <h3>
+                    🧵 Sustain Skills
+                </h3>
+
+                <p>
+                    Keep traditional knowledge visible
+                    and valued.
+                </p>
+
+            </div>
+
+
+            <div class="impact-card">
+
+                <h3>
+                    🌍 Share Culture
+                </h3>
+
+                <p>
+                    Help cultural stories reach people
+                    beyond their place of origin.
+                </p>
+
+            </div>
+
+        </div>
 
     </section>
+
 
 </main>
+
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <h2>KARIGAR</h2>
+
+        <p>
+            Made by people. Rooted in culture.
+            Shared with the world.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function showPurchaseMessage() {
+
+    alert(
+        "Purchase request received! " +
+        "In the full KARIGAR platform, " +
+        "this would connect the customer with the artisan."
+    );
+
+}
+
+
+function showOfferMessage() {
+
+    alert(
+        "Offer feature — in the full platform, " +
+        "customers could propose a price to the artisan."
+    );
+
+}
+
+</script>
+
 
 </body>
 </html>

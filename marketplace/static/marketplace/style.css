@@ -1,6 +1,7 @@
-/* =========================================
-   KARIGAR — GLOBAL DESIGN
-   ========================================= */
+/* =====================================================
+   KARIGAR
+   A global marketplace for traditional craft
+   ===================================================== */
 
 * {
     box-sizing: border-box;
@@ -18,19 +19,35 @@ body {
     line-height: 1.6;
 }
 
-/* =========================================
+a {
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+/* =====================================================
    NAVIGATION
-   ========================================= */
+   ===================================================== */
 
 .navbar {
     min-height: 76px;
     padding: 0 7%;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     background: #292621;
     color: #fff;
+
+    position: relative;
+    z-index: 10;
 }
 
 .logo {
@@ -40,136 +57,285 @@ body {
     letter-spacing: 5px;
 }
 
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
 .navbar a {
     color: #fff;
     text-decoration: none;
-    margin-left: 28px;
     font-size: 14px;
-    letter-spacing: 0.5px;
 }
 
 .navbar a:hover {
-    opacity: 0.7;
+    opacity: .7;
 }
 
-/* =========================================
+
+/* =====================================================
    HERO
-   ========================================= */
+   ===================================================== */
 
 .hero {
-    padding: 90px 7%;
+    padding: 105px 7% 100px;
     background: #ded0b9;
 }
 
+.hero-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+
+    color: #755b47;
+}
+
 .hero h1 {
+    max-width: 900px;
     margin: 0;
-    max-width: 850px;
 
     font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(44px, 7vw, 76px);
-    line-height: 1.05;
+    font-size: clamp(46px, 7vw, 82px);
     font-weight: 500;
-    letter-spacing: -2px;
+    line-height: 1.03;
+    letter-spacing: -3px;
 }
 
 .hero p {
     max-width: 650px;
-    margin-top: 25px;
+    margin: 28px 0 0;
 
-    font-size: 18px;
+    font-size: 19px;
     line-height: 1.8;
+    color: #514a42;
 }
 
-/* =========================================
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+}
+
+
+/* =====================================================
    BUTTONS
-   ========================================= */
+   ===================================================== */
 
 .button {
     display: inline-block;
 
-    margin-top: 18px;
     padding: 13px 23px;
 
     border: 0;
     border-radius: 7px;
 
     background: #292621;
-    color: white;
+    color: #fff;
 
-    font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     font-weight: bold;
 
     text-decoration: none;
     cursor: pointer;
 
-    transition: transform 0.2s ease,
-                box-shadow 0.2s ease;
+    transition: .2s ease;
 }
 
 .button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 18px rgba(0,0,0,.14);
 }
 
-/* =========================================
-   CONTAINERS
-   ========================================= */
+.button-outline {
+    background: transparent;
+    color: #292621;
+    border: 1px solid #292621;
+}
+
+.button-light {
+    background: #fffdf9;
+    color: #292621;
+}
+
+
+/* =====================================================
+   GENERAL CONTAINERS
+   ===================================================== */
 
 .container {
     width: 86%;
     max-width: 1200px;
-    margin: 65px auto;
+    margin: 70px auto;
 }
 
-.section-title {
-    margin-bottom: 35px;
+.section {
+    padding: 80px 7%;
+}
+
+.section-inner {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.section-heading {
+    max-width: 700px;
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    margin: 0;
 
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 40px;
+    font-size: clamp(34px, 5vw, 52px);
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.section-heading p {
+    margin-top: 14px;
+    color: #70685f;
+}
+
+
+/* =====================================================
+   WHY KARIGAR
+   ===================================================== */
+
+.value-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.value-card {
+    padding: 28px;
+
+    background: #fffdf9;
+    border: 1px solid #e3dbd0;
+    border-radius: 14px;
+
+    min-height: 190px;
+}
+
+.value-number {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 34px;
+    color: #a65d43;
+}
+
+.value-card h3 {
+    margin: 14px 0 7px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 22px;
     font-weight: 500;
 }
 
-/* =========================================
+.value-card p {
+    margin: 0;
+    color: #716960;
+    font-size: 14px;
+}
+
+
+/* =====================================================
+   TRADITIONS
+   ===================================================== */
+
+.tradition-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.tradition-card {
+    min-height: 150px;
+
+    padding: 25px;
+
+    border-radius: 14px;
+
+    background: #292621;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    text-decoration: none;
+
+    transition: .2s ease;
+}
+
+.tradition-card:hover {
+    transform: translateY(-4px);
+}
+
+.tradition-card span {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: .65;
+}
+
+.tradition-card h3 {
+    margin: 5px 0 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+
+/* =====================================================
    CRAFT GRID
-   ========================================= */
+   ===================================================== */
 
 .craft-grid {
     display: grid;
     grid-template-columns:
         repeat(auto-fit, minmax(270px, 1fr));
-
     gap: 30px;
 }
 
 .craft-card {
     overflow: hidden;
 
-    background: #fff;
+    background: #fffdf9;
 
-    border: 1px solid #e5ded3;
+    border: 1px solid #e3dbd0;
     border-radius: 16px;
 
     box-shadow:
-        0 8px 25px rgba(42, 36, 29, 0.07);
+        0 8px 25px rgba(42,36,29,.06);
 
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
+    transition: .25s ease;
 }
 
 .craft-card:hover {
     transform: translateY(-6px);
 
     box-shadow:
-        0 16px 35px rgba(42, 36, 29, 0.12);
+        0 16px 35px rgba(42,36,29,.12);
 }
 
 .craft-card img {
     display: block;
 
     width: 100%;
-    height: 260px;
+    height: 270px;
 
     object-fit: cover;
 }
@@ -178,155 +344,323 @@ body {
     padding: 25px;
 }
 
+.craft-tag {
+    color: #a65d43;
+
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
 .craft-content h3 {
-    margin: 0 0 8px;
+    margin: 8px 0;
 
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 25px;
+    font-size: 26px;
     font-weight: 500;
 }
 
-.craft-content p {
-    color: #665f56;
+.craft-location {
+    color: #766e65;
+    font-size: 13px;
+}
+
+.craft-story {
+    color: #615a52;
+    font-size: 14px;
 }
 
 .price {
     margin-top: 18px;
 
-    color: #292621 !important;
-
     font-size: 22px;
     font-weight: bold;
 }
 
-/* =========================================
-   CRAFT DETAIL
-   ========================================= */
+
+/* =====================================================
+   DETAIL PAGE
+   ===================================================== */
 
 .detail {
     width: 86%;
     max-width: 1100px;
-
     margin: 55px auto;
 }
 
-.detail > h1 {
-    margin-top: 25px;
-
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: clamp(40px, 6vw, 65px);
-    line-height: 1.1;
-    font-weight: 500;
+.back-link {
+    text-decoration: none;
+    font-size: 14px;
+    color: #6e6257;
 }
 
-.detail > h2 {
+.detail-header {
+    margin: 25px 0;
+}
+
+.detail-header h1 {
+    margin: 0;
+
     font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 6vw, 68px);
     font-weight: 500;
+    line-height: 1.05;
+}
+
+.detail-category {
+    margin-top: 12px;
+
+    color: #a65d43;
+
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .detail-image {
     display: block;
 
     width: 100%;
-    max-height: 600px;
+    max-height: 620px;
 
     object-fit: cover;
 
     border-radius: 18px;
 
     box-shadow:
-        0 15px 40px rgba(42, 36, 29, 0.12);
+        0 15px 40px rgba(42,36,29,.12);
 }
+
+.detail-intro {
+    padding: 35px 0;
+
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 50px;
+}
+
+.detail-description {
+    font-size: 18px;
+    color: #5d574f;
+}
+
+.purchase-card {
+    padding: 28px;
+
+    background: #fffdf9;
+    border: 1px solid #ddd4c7;
+    border-radius: 15px;
+
+    height: fit-content;
+}
+
+.purchase-price {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 36px;
+}
+
+.purchase-card .button {
+    width: 100%;
+    text-align: center;
+    margin-top: 12px;
+}
+
+
+/* =====================================================
+   STORY / INFORMATION CARDS
+   ===================================================== */
 
 .story {
     margin-top: 30px;
-    padding: 35px;
+    padding: 38px;
 
-    background: #fff;
+    background: #fffdf9;
 
-    border: 1px solid #e5ded3;
+    border: 1px solid #e2d9ce;
     border-radius: 16px;
 
     box-shadow:
-        0 7px 25px rgba(42, 36, 29, 0.05);
+        0 7px 25px rgba(42,36,29,.05);
+}
+
+.story-label {
+    margin-bottom: 10px;
+
+    color: #a65d43;
+
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }
 
 .story h2 {
     margin-top: 0;
 
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 500;
 }
 
-.story h3 {
+.artisan-name {
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 24px;
+    font-size: 25px;
 }
 
-.action {
+
+/* =====================================================
+   MAKING PROCESS
+   ===================================================== */
+
+.process-box {
     margin-top: 30px;
-    padding: 35px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background: #292621;
+    color: white;
+
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.process-content {
+    padding: 42px;
+}
+
+.process-content h2 {
+    margin-top: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 34px;
+    font-weight: 500;
+}
+
+.process-video {
+    min-height: 280px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #3a3530;
+}
+
+.video-button {
+    padding: 17px 25px;
+
+    border-radius: 50px;
+
+    background: #fffdf9;
+    color: #292621;
+
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+/* =====================================================
+   IMPACT
+   ===================================================== */
+
+.impact-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 20px;
+}
+
+.impact-card {
+    padding: 30px;
 
     background: #ded0b9;
 
-    border-radius: 16px;
+    border-radius: 14px;
 }
 
-/* =========================================
+.impact-card h3 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 23px;
+    font-weight: 500;
+}
+
+
+/* =====================================================
    ARTISAN FORM
-   ========================================= */
+   ===================================================== */
 
-form {
-    margin-top: 40px;
+.form-page {
+    max-width: 950px;
+    margin: 65px auto;
+    width: 86%;
 }
 
-/* The two major sections */
+.form-intro {
+    margin-bottom: 45px;
+}
 
-form .story {
-    position: relative;
+.form-intro h1 {
+    margin: 0;
 
-    margin-bottom: 30px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(45px, 7vw, 72px);
+    font-weight: 500;
+    line-height: 1.05;
+}
+
+.form-intro p {
+    max-width: 650px;
+    color: #6d665e;
+    font-size: 18px;
+}
+
+.form-section {
+    margin-bottom: 28px;
     padding: 42px;
 
     background: #fffdf9;
 
-    border: 1px solid #ddd4c7;
+    border: 1px solid #ded5ca;
     border-radius: 18px;
 
     box-shadow:
-        0 10px 30px rgba(42, 36, 29, 0.07);
+        0 10px 30px rgba(42,36,29,.06);
 }
 
-/* Section heading */
+.form-section-header {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
 
-form .story h2 {
-    margin-bottom: 8px;
+    margin-bottom: 35px;
+}
+
+.form-number {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 30px;
+    color: #a65d43;
+}
+
+.form-section h2 {
+    margin: 0;
 
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 32px;
+    font-size: 31px;
     font-weight: 500;
-
-    color: #292621;
 }
 
-/* Section introduction */
-
-form .story > p {
-    margin-top: 0;
-    margin-bottom: 32px;
-
+.form-section-description {
+    margin: 5px 0 0;
     color: #777067;
-    font-size: 15px;
+    font-size: 14px;
 }
 
-/* Django form paragraphs */
-
-form .story p {
-    margin-bottom: 22px;
+.form-section p {
+    margin-bottom: 20px;
 }
-
-/* Labels */
 
 form label {
     display: block;
@@ -335,11 +669,9 @@ form label {
 
     color: #49433c;
 
-    font-size: 14px;
+    font-size: 13px;
     font-weight: bold;
 }
-
-/* Text inputs */
 
 form input[type="text"],
 form input[type="number"],
@@ -358,14 +690,9 @@ form select {
 
     color: #292621;
 
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 15px;
-
     outline: none;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: .2s ease;
 }
 
 form textarea {
@@ -376,59 +703,101 @@ form textarea {
 form input:focus,
 form textarea:focus,
 form select:focus {
-    border-color: #8d6e55;
+    border-color: #a65d43;
 
     box-shadow:
-        0 0 0 3px rgba(141, 110, 85, 0.12);
+        0 0 0 3px rgba(166,93,67,.10);
 }
-
-/* File upload */
 
 form input[type="file"] {
     padding: 10px;
 }
-
-/* Radio buttons */
 
 form input[type="radio"] {
     width: auto;
     margin-right: 7px;
 }
 
-/* Submit area */
+.form-submit {
+    padding: 35px;
 
-form .action {
-    margin-top: 30px;
+    background: #ded0b9;
 
-    border: 1px solid #d4c4af;
+    border-radius: 16px;
+
+    margin-bottom: 70px;
 }
 
-form .action h2 {
+.form-submit h2 {
     margin-top: 0;
 
     font-family: Georgia, "Times New Roman", serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight: 500;
 }
 
-/* =========================================
-   LINKS
-   ========================================= */
 
-a {
-    color: #66513e;
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.footer {
+    padding: 55px 7%;
+
+    background: #292621;
+    color: #fff;
 }
 
-.detail > a {
-    text-decoration: none;
-    font-size: 14px;
+.footer-inner {
+    max-width: 1200px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
 }
 
-/* =========================================
-   MOBILE
-   ========================================= */
+.footer h2 {
+    margin: 0;
 
-@media (max-width: 700px) {
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+}
+
+.footer p {
+    max-width: 450px;
+    color: #bbb3a9;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 850px) {
+
+    .value-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tradition-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-intro {
+        grid-template-columns: 1fr;
+    }
+
+    .process-box {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 650px) {
 
     .navbar {
         padding: 18px 6%;
@@ -436,30 +805,37 @@ a {
         gap: 12px;
     }
 
-    .navbar a {
-        margin-left: 12px;
-        margin-right: 12px;
+    .nav-links {
+        gap: 15px;
     }
 
     .hero {
-        padding: 65px 6%;
+        padding: 70px 6%;
+    }
+
+    .section {
+        padding: 60px 6%;
     }
 
     .container,
-    .detail {
+    .detail,
+    .form-page {
         width: 88%;
-        margin: 45px auto;
     }
 
-    form .story {
+    .value-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-section {
         padding: 27px;
     }
 
-    .story {
-        padding: 27px;
+    .form-section-header {
+        gap: 10px;
     }
 
-    .hero h1 {
-        letter-spacing: -1px;
+    .footer-inner {
+        flex-direction: column;
     }
 }
