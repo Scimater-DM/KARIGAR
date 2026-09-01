@@ -17,9 +17,10 @@
 
 </head>
 
-
 <body>
 
+
+<!-- NAVBAR -->
 
 <nav class="navbar">
 
@@ -45,19 +46,30 @@
 <main class="detail">
 
 
+    <!-- BACK -->
+
     <a href="/"
        class="back-link">
+
         ← Back to crafts
+
     </a>
 
 
-    <!-- HEADER -->
+    <!-- TITLE -->
 
     <div class="detail-header">
 
         <div class="detail-category">
+
             {{ craft.category }}
+
+            {% if craft.artisan.location %}
+                • {{ craft.artisan.location }}
+            {% endif %}
+
         </div>
+
 
         <h1>
             {{ craft.name }}
@@ -71,82 +83,103 @@
     {% if craft.image %}
 
         <img
-            class="detail-image"
             src="{{ craft.image.url }}"
             alt="{{ craft.name }}"
+            class="detail-image"
         >
 
     {% endif %}
 
 
-    <!-- PRODUCT INTRO -->
+    <!-- INTRO + PURCHASE -->
 
-    <div class="detail-intro">
+    <section class="detail-intro">
 
-        <div>
 
-            <p class="detail-description">
+        <div class="detail-description">
+
+            <div class="story-label">
+                The Craft
+            </div>
+
+            <p>
                 {{ craft.description }}
             </p>
 
             <p>
-                📍
-                <strong>
-                    {{ craft.artisan.location }}
-                </strong>
+                Every handmade object carries more than
+                material and form. It carries time, knowledge
+                and the hands of the person who created it.
             </p>
 
         </div>
 
 
-        <div class="purchase-card">
+        <aside class="purchase-card">
 
-            <div class="eyebrow">
-                Handmade
+            <div class="story-label">
+                Support the Artisan
             </div>
 
             <div class="purchase-price">
                 ₹{{ craft.price }}
             </div>
 
-            <button class="button"
-                    onclick="showPurchaseMessage()">
-                Buy This Craft
-            </button>
+            <p>
+                Handmade by
+                <strong>
+                    {{ craft.artisan.name }}
+                </strong>
+            </p>
 
-            <button class="button button-outline"
-                    onclick="showOfferMessage()">
-                Make an Offer
-            </button>
+            <a href="#artisan"
+               class="button">
 
-        </div>
+                Meet the Artisan →
 
-    </div>
+            </a>
+
+        </aside>
+
+
+    </section>
 
 
     <!-- ARTISAN -->
 
-    <section class="story">
+    <section class="story"
+             id="artisan">
 
         <div class="story-label">
-            The person behind the craft
+            The Maker
         </div>
 
         <h2>
-            Meet the Artisan
+            Meet {{ craft.artisan.name }}
         </h2>
 
         <div class="artisan-name">
-            {{ craft.artisan.name }}
+
+            {{ craft.artisan.location }}
+
         </div>
 
-        <p>
-            📍 {{ craft.artisan.location }}
-        </p>
 
-        <p>
-            {{ craft.artisan.story }}
-        </p>
+        {% if craft.artisan.story %}
+
+            <p>
+                {{ craft.artisan.story }}
+            </p>
+
+        {% else %}
+
+            <p>
+                This craft has been created by an artisan
+                whose knowledge and skills form an important
+                part of the tradition behind this work.
+            </p>
+
+        {% endif %}
 
     </section>
 
@@ -155,36 +188,33 @@
 
     <section class="process-box">
 
+
         <div class="process-content">
 
             <div class="story-label">
-                Behind the making
+                Behind the Craft
             </div>
 
             <h2>
-                From material to masterpiece.
+                See the hands behind the work.
             </h2>
 
             <p>
-                See the skill, patience and traditional
-                knowledge that goes into creating this craft.
+                Handmade crafts are the result of knowledge,
+                patience and techniques often passed from
+                one generation to another.
             </p>
 
-            {% if craft.making_video %}
 
-                <a href="{{ craft.making_video }}"
-                   target="_blank"
-                   class="video-button">
+            {% if craft.process_video %}
 
-                    ▶ Watch the making process
-
+                <a
+                    href="{{ craft.process_video.url }}"
+                    target="_blank"
+                    class="video-button"
+                >
+                    ▶ Watch the Process
                 </a>
-
-            {% else %}
-
-                <p>
-                    Making-process video coming soon.
-                </p>
 
             {% endif %}
 
@@ -193,71 +223,61 @@
 
         <div class="process-video">
 
-            <div>
+            {% if craft.process_video %}
+
+                ▶
+
+            {% else %}
+
                 🧵
-            </div>
+
+            {% endif %}
 
         </div>
+
 
     </section>
 
 
-    <!-- TRADITION -->
-
-    <section class="story">
-
-        <div class="story-label">
-            Beyond the product
-        </div>
-
-        <h2>
-            The tradition behind it.
-        </h2>
-
-        <p>
-            Every handmade craft carries knowledge,
-            techniques and stories that can travel
-            across generations.
-        </p>
-
-        <p>
-            KARIGAR gives customers the opportunity to
-            discover that cultural context alongside
-            the product itself.
-        </p>
-
-    </section>
-
-
-    <!-- IMPACT -->
+    <!-- CRAFT PASSPORT -->
 
     <section class="section"
-             style="padding-left:0;padding-right:0;">
+             style="padding-left:0; padding-right:0;">
 
         <div class="section-heading">
 
             <div class="eyebrow">
-                Your purchase matters
+                Craft Passport
             </div>
 
             <h2>
-                More than something you own.
+                Know what you're supporting.
             </h2>
+
+            <p>
+                A craft is more than a finished object.
+                Its identity comes from the people, materials,
+                place and techniques behind it.
+            </p>
 
         </div>
 
 
         <div class="impact-grid">
 
+
             <div class="impact-card">
 
+                <div class="story-label">
+                    ARTISAN
+                </div>
+
                 <h3>
-                    👤 Support the Artisan
+                    {{ craft.artisan.name }}
                 </h3>
 
                 <p>
-                    Help create opportunities for the
-                    person behind the craft.
+                    The person behind this handmade work.
                 </p>
 
             </div>
@@ -265,13 +285,16 @@
 
             <div class="impact-card">
 
+                <div class="story-label">
+                    ORIGIN
+                </div>
+
                 <h3>
-                    🧵 Sustain Skills
+                    {{ craft.artisan.location }}
                 </h3>
 
                 <p>
-                    Keep traditional knowledge visible
-                    and valued.
+                    The place connected with this craft.
                 </p>
 
             </div>
@@ -279,18 +302,51 @@
 
             <div class="impact-card">
 
+                <div class="story-label">
+                    CATEGORY
+                </div>
+
                 <h3>
-                    🌍 Share Culture
+                    {{ craft.category }}
                 </h3>
 
                 <p>
-                    Help cultural stories reach people
-                    beyond their place of origin.
+                    Part of India's diverse craft traditions.
                 </p>
 
             </div>
+
 
         </div>
+
+    </section>
+
+
+    <!-- FINAL CTA -->
+
+    <section class="story">
+
+        <div class="story-label">
+            Support Living Traditions
+        </div>
+
+        <h2>
+            When you support the maker,
+            you support the tradition.
+        </h2>
+
+        <p>
+            KARIGAR aims to make the people and stories
+            behind traditional crafts visible to the world.
+        </p>
+
+
+        <a href="/"
+           class="button">
+
+            Discover More Crafts →
+
+        </a>
 
     </section>
 
@@ -298,11 +354,15 @@
 </main>
 
 
+<!-- FOOTER -->
+
 <footer class="footer">
 
     <div class="footer-inner">
 
-        <h2>KARIGAR</h2>
+        <h2>
+            KARIGAR
+        </h2>
 
         <p>
             Made by people. Rooted in culture.
@@ -314,30 +374,6 @@
 </footer>
 
 
-<script>
-
-function showPurchaseMessage() {
-
-    alert(
-        "Purchase request received! " +
-        "In the full KARIGAR platform, " +
-        "this would connect the customer with the artisan."
-    );
-
-}
-
-
-function showOfferMessage() {
-
-    alert(
-        "Offer feature — in the full platform, " +
-        "customers could propose a price to the artisan."
-    );
-
-}
-
-</script>
-
-
 </body>
+
 </html>

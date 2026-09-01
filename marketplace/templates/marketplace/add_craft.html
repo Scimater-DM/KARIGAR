@@ -1,10 +1,11 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en">
 
+<head>
     <meta charset="UTF-8">
+
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
@@ -12,11 +13,9 @@
 
     <link rel="stylesheet"
           href="{% static 'marketplace/style.css' %}">
-
 </head>
 
 <body>
-
 
 <nav class="navbar">
 
@@ -26,6 +25,7 @@
 
     <div class="nav-links">
         <a href="/">Discover</a>
+        <a href="/">Stories</a>
     </div>
 
 </nav>
@@ -33,26 +33,59 @@
 
 <main class="form-page">
 
-
     <!-- INTRO -->
 
     <div class="form-intro">
 
         <div class="eyebrow">
-            For Artisans
+            FOR ARTISANS
         </div>
 
         <h1>
-            Your hands carry a story.
+            Your hands<br>
+            carry a story.
         </h1>
 
         <p>
-            Tell the world about your craft, your journey
-            and the tradition behind what you create.
+            KARIGAR helps artisans share their work,
+            their skills and the stories behind their crafts
+            with people who value handmade traditions.
         </p>
 
     </div>
 
+
+    <!-- WHY KARIGAR -->
+
+    <div class="artisan-message">
+
+        <div class="artisan-message-icon">
+            ✦
+        </div>
+
+        <div>
+
+            <div class="eyebrow">
+                WHY KARIGAR?
+            </div>
+
+            <h2>
+                Your craft deserves to be discovered.
+            </h2>
+
+            <p>
+                Share what you make, where you come from and
+                the story behind your work. Your craft can reach
+                people beyond your local market while keeping
+                the artisan at the heart of the story.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- FORM -->
 
     <form method="POST"
           enctype="multipart/form-data">
@@ -60,7 +93,7 @@
         {% csrf_token %}
 
 
-        <!-- ABOUT YOU -->
+        <!-- STEP 01 -->
 
         <section class="form-section">
 
@@ -71,25 +104,95 @@
                 </div>
 
                 <div>
-
                     <h2>
                         About You
                     </h2>
 
                     <p class="form-section-description">
-                        Help customers meet the person behind the craft.
+                        Start with the person behind the craft.
                     </p>
+                </div>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="name">
+                    Your name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="What should customers call you?"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="location">
+                    Where are you from?
+                </label>
+
+                <input
+                    type="text"
+                    id="location"
+                    name="location"
+                    placeholder="Village, town or region"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="story">
+                    Your story
+                </label>
+
+                <textarea
+                    id="story"
+                    name="story"
+                    placeholder="Tell customers about yourself, your family or how you learned your craft..."
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="profile_image">
+                    Your photograph
+                </label>
+
+                <div class="upload-box">
+
+                    <input
+                        type="file"
+                        id="profile_image"
+                        name="profile_image"
+                        accept="image/*"
+                    >
+
+                    <span>
+                        Add a photograph of yourself
+                    </span>
 
                 </div>
 
             </div>
 
-            {{ artisan_form.as_p }}
-
         </section>
 
 
-        <!-- ABOUT CRAFT -->
+        <!-- STEP 02 -->
 
         <section class="form-section">
 
@@ -100,48 +203,324 @@
                 </div>
 
                 <div>
-
                     <h2>
-                        About Your Craft
+                        Your Craft
                     </h2>
 
                     <p class="form-section-description">
-                        Tell customers what you create and what makes it special.
+                        Show people what your hands create.
                     </p>
+                </div>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="craft_name">
+                    Name of your craft
+                </label>
+
+                <input
+                    type="text"
+                    id="craft_name"
+                    name="craft_name"
+                    placeholder="For example: Handwoven Bamboo Basket"
+                    required
+                >
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="category">
+                    Category
+                </label>
+
+                <select
+                    id="category"
+                    name="category"
+                    required
+                >
+
+                    <option value="">
+                        Choose a category
+                    </option>
+
+                    <option value="Textiles">
+                        Textiles & Weaving
+                    </option>
+
+                    <option value="Bamboo">
+                        Bamboo & Cane
+                    </option>
+
+                    <option value="Pottery">
+                        Pottery & Ceramics
+                    </option>
+
+                    <option value="Wood">
+                        Woodcraft
+                    </option>
+
+                    <option value="Metal">
+                        Metalcraft
+                    </option>
+
+                    <option value="Embroidery">
+                        Embroidery
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="description">
+                    Tell us about your craft
+                </label>
+
+                <textarea
+                    id="description"
+                    name="description"
+                    placeholder="What do you make? What materials or techniques do you use?"
+                    required
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="image">
+                    Photograph of your craft
+                </label>
+
+                <div class="upload-box">
+
+                    <input
+                        type="file"
+                        id="image"
+                        name="image"
+                        accept="image/*"
+                        required
+                    >
+
+                    <span>
+                        Add a clear photograph of your craft
+                    </span>
 
                 </div>
 
             </div>
 
-            {{ craft_form.as_p }}
+
+            <div class="form-field">
+
+                <label for="process_video">
+                    Show your process
+                </label>
+
+                <div class="upload-box">
+
+                    <input
+                        type="file"
+                        id="process_video"
+                        name="process_video"
+                        accept="video/*"
+                    >
+
+                    <span>
+                        Optional — show how your craft is made
+                    </span>
+
+                </div>
+
+            </div>
 
         </section>
 
 
-        <!-- SUBMIT -->
+        <!-- STEP 03 -->
+
+        <section class="form-section">
+
+            <div class="form-section-header">
+
+                <div class="form-number">
+                    03
+                </div>
+
+                <div>
+                    <h2>
+                        The Story Behind It
+                    </h2>
+
+                    <p class="form-section-description">
+                        Give your craft the context it deserves.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="story-prompt">
+
+                <span>
+                    ✦
+                </span>
+
+                <p>
+                    Customers don't just want to know what they
+                    are buying. They want to understand the hands,
+                    place and tradition behind it.
+                </p>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="tradition">
+                    What makes this craft special?
+                </label>
+
+                <textarea
+                    id="tradition"
+                    name="tradition"
+                    placeholder="Was this technique passed down through your family? What makes it meaningful?"
+                ></textarea>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="materials">
+                    Materials & techniques
+                </label>
+
+                <textarea
+                    id="materials"
+                    name="materials"
+                    placeholder="Tell customers about the materials and techniques used..."
+                ></textarea>
+
+            </div>
+
+        </section>
+
+
+        <!-- STEP 04 -->
+
+        <section class="form-section">
+
+            <div class="form-section-header">
+
+                <div class="form-number">
+                    04
+                </div>
+
+                <div>
+                    <h2>
+                        Your Terms
+                    </h2>
+
+                    <p class="form-section-description">
+                        Choose how you would like to sell your work.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="price">
+                    Price
+                </label>
+
+                <div class="price-input">
+
+                    <span>₹</span>
+
+                    <input
+                        type="number"
+                        id="price"
+                        name="price"
+                        placeholder="Enter your price"
+                        min="0"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <div class="form-field">
+
+                <label for="selling_method">
+                    Selling method
+                </label>
+
+                <select
+                    id="selling_method"
+                    name="selling_method"
+                >
+
+                    <option value="fixed">
+                        Fixed Price
+                    </option>
+
+                    <option value="offers">
+                        Accept Offers
+                    </option>
+
+                    <option value="auction">
+                        Auction
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- PUBLISH -->
 
         <section class="form-submit">
 
             <div class="eyebrow">
-                Ready?
+                READY TO BE DISCOVERED?
             </div>
 
             <h2>
-                Let your craft travel further.
+                Share your craft with the world.
             </h2>
 
             <p>
-                Your listing will help customers discover
-                the craft and the person behind it.
+                Your craft is more than a product.
+                It represents your skill, your story
+                and a tradition worth discovering.
             </p>
 
-            <button type="submit"
-                    class="button">
-                Create My Listing →
+            <button
+                type="submit"
+                class="button"
+            >
+                Create Listing →
             </button>
 
         </section>
-
 
     </form>
 
@@ -152,7 +531,9 @@
 
     <div class="footer-inner">
 
-        <h2>KARIGAR</h2>
+        <h2>
+            KARIGAR
+        </h2>
 
         <p>
             Made by people. Rooted in culture.
@@ -165,4 +546,5 @@
 
 
 </body>
+
 </html>
