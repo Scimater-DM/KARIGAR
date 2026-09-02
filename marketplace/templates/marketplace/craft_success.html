@@ -1,18 +1,114 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>KARIGAR</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Craft Created | KARIGAR</title>
+
+    <link rel="stylesheet"
+          href="{% static 'marketplace/style.css' %}">
+
 </head>
 
 <body>
 
-<h1>✓ Craft Created!</h1>
+<nav class="navbar">
 
-<p>Your craft has been successfully saved to KARIGAR.</p>
+    <a href="/" class="brand">
 
-<a href="/artisan/add/">
-    Add Another Craft
-</a>
+        <img
+            src="{% static 'marketplace/images/karigar.png' %}"
+            alt="KARIGAR"
+            class="brand-logo"
+        >
+
+        <span class="brand-text">
+            <strong>KARIGAR</strong>
+            <small>Hands · Stories · Heritage · Future</small>
+        </span>
+
+    </a>
+
+    <div class="nav-links">
+
+        <a href="/">
+            Discover
+        </a>
+
+        <a href="/artisan/add/">
+            For Artisans
+        </a>
+
+    </div>
+
+</nav>
+
+
+<main class="success-page">
+
+    <div class="success-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <div class="eyebrow">
+            CRAFT CREATED
+        </div>
+
+        <h1>
+            Your craft is now part of KARIGAR.
+        </h1>
+
+        <p>
+            Your craft has been successfully saved.
+            Your story can now be discovered by people
+            who value handmade traditions.
+        </p>
+
+        <div class="success-actions">
+
+            <a href="/" class="button">
+                Discover Crafts →
+            </a>
+
+            <a href="/artisan/add/" class="back-link">
+                Add Another Craft
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="footer">
+
+    <div class="footer-inner">
+
+        <img
+            src="{% static 'marketplace/images/karigar.png' %}"
+            alt="KARIGAR"
+            class="footer-logo"
+        >
+
+        <p>
+            Made by people. Rooted in culture.
+            Shared with the world.
+        </p>
+
+    </div>
+
+</footer>
 
 </body>
+
 </html>
