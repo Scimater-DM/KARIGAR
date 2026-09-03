@@ -4,36 +4,62 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Share Your Craft | KARIGAR</title>
+    <title>
+        Add Your Craft | KARIGAR
+    </title>
 
     <link rel="stylesheet"
           href="{% static 'marketplace/style.css' %}">
+
 </head>
 
 <body>
 
+
+<!-- NAVBAR -->
+
 <nav class="navbar">
 
     <a href="/" class="brand">
-    <img
-        src="{% static 'marketplace/images/karigar.png' %}"
-        alt="KARIGAR"
-        class="brand-logo"
-    >
-    <span class="brand-text">
-        <strong>KARIGAR</strong>
-        <small>Hands · Stories · Heritage · Future</small>
-    </span>
-</a>
+
+        <img
+            src="{% static 'marketplace/images/karigar.png' %}"
+            alt="KARIGAR"
+            class="brand-logo"
+        >
+
+        <span class="brand-text">
+
+            <strong>
+                KARIGAR
+            </strong>
+
+            <small>
+                Hands · Stories · Heritage · Future
+            </small>
+
+        </span>
+
+    </a>
+
 
     <div class="nav-links">
-        <a href="/">Discover</a>
-        <a href="/">Stories</a>
+
+        <a href="/">
+            Discover
+        </a>
+
+        <a href="/"
+           class="nav-artisan">
+            Back to KARIGAR
+        </a>
+
     </div>
 
 </nav>
@@ -41,29 +67,33 @@
 
 <main class="form-page">
 
+
     <!-- INTRO -->
 
-    <div class="form-intro">
+    <section class="form-intro">
 
         <div class="eyebrow">
             FOR ARTISANS
         </div>
 
         <h1>
-            Your hands<br>
+            Your hands
+            <br>
             carry a story.
         </h1>
 
         <p>
-            KARIGAR helps artisans share their work,
-            their skills and the stories behind their crafts
-            with people who value handmade traditions.
+
+            Tell us about yourself, your craft and the
+            knowledge behind your work. KARIGAR will help
+            you turn your story into a digital craft identity.
+
         </p>
 
-    </div>
+    </section>
 
 
-    <!-- WHY KARIGAR -->
+    <!-- ARTISAN MESSAGE -->
 
     <div class="artisan-message">
 
@@ -82,10 +112,10 @@
             </h2>
 
             <p>
-                Share what you make, where you come from and
-                the story behind your work. Your craft can reach
-                people beyond your local market while keeping
-                the artisan at the heart of the story.
+
+                Share what you make, where you come from
+                and the story behind your work.
+
             </p>
 
         </div>
@@ -93,15 +123,15 @@
     </div>
 
 
-    <!-- FORM -->
-
     <form method="POST"
           enctype="multipart/form-data">
 
         {% csrf_token %}
 
 
-        <!-- STEP 01 -->
+        <!-- =================================================
+             SECTION 01
+             ================================================= -->
 
         <section class="form-section">
 
@@ -112,6 +142,7 @@
                 </div>
 
                 <div>
+
                     <h2>
                         About You
                     </h2>
@@ -119,6 +150,7 @@
                     <p class="form-section-description">
                         Start with the person behind the craft.
                     </p>
+
                 </div>
 
             </div>
@@ -126,14 +158,14 @@
 
             <div class="form-field">
 
-                <label for="name">
+                <label for="artisan_name">
                     Your name
                 </label>
 
                 <input
                     type="text"
-                    id="name"
-                    name="name"
+                    id="artisan_name"
+                    name="artisan_name"
                     placeholder="What should customers call you?"
                     required
                 >
@@ -160,15 +192,28 @@
 
             <div class="form-field">
 
-                <label for="story">
+                <label for="artisan_story">
                     Your story
                 </label>
 
+                <div class="story-prompt">
+
+                    <span>
+                        ✦
+                    </span>
+
+                    <p>
+                        Tell customers about yourself,
+                        your family, your community or
+                        how you learned your craft.
+                    </p>
+
+                </div>
+
                 <textarea
-                    id="story"
-                    name="story"
-                    placeholder="Tell customers about yourself, your family or how you learned your craft..."
-                    required
+                    id="artisan_story"
+                    name="artisan_story"
+                    placeholder="Tell us about yourself..."
                 ></textarea>
 
             </div>
@@ -176,22 +221,23 @@
 
             <div class="form-field">
 
-                <label for="profile_image">
+                <label>
                     Your photograph
                 </label>
 
                 <div class="upload-box">
 
-                    <input
-                        type="file"
-                        id="profile_image"
-                        name="profile_image"
-                        accept="image/*"
-                    >
-
                     <span>
+                        📷
+                        <br>
                         Add a photograph of yourself
                     </span>
+
+                    <input
+                        type="file"
+                        name="artisan_photo"
+                        accept="image/*"
+                    >
 
                 </div>
 
@@ -200,7 +246,9 @@
         </section>
 
 
-        <!-- STEP 02 -->
+        <!-- =================================================
+             SECTION 02
+             ================================================= -->
 
         <section class="form-section">
 
@@ -211,13 +259,15 @@
                 </div>
 
                 <div>
+
                     <h2>
                         Your Craft
                     </h2>
 
                     <p class="form-section-description">
-                        Show people what your hands create.
+                        Tell us what your hands create.
                     </p>
+
                 </div>
 
             </div>
@@ -226,7 +276,7 @@
             <div class="form-field">
 
                 <label for="craft_name">
-                    Name of your craft
+                    What do you make?
                 </label>
 
                 <input
@@ -243,48 +293,16 @@
             <div class="form-field">
 
                 <label for="category">
-                    Category
+                    Craft category
                 </label>
 
-                <select
+                <input
+                    type="text"
                     id="category"
                     name="category"
+                    placeholder="For example: Bamboo & Cane"
                     required
                 >
-
-                    <option value="">
-                        Choose a category
-                    </option>
-
-                    <option value="Textiles">
-                        Textiles & Weaving
-                    </option>
-
-                    <option value="Bamboo">
-                        Bamboo & Cane
-                    </option>
-
-                    <option value="Pottery">
-                        Pottery & Ceramics
-                    </option>
-
-                    <option value="Wood">
-                        Woodcraft
-                    </option>
-
-                    <option value="Metal">
-                        Metalcraft
-                    </option>
-
-                    <option value="Embroidery">
-                        Embroidery
-                    </option>
-
-                    <option value="Other">
-                        Other
-                    </option>
-
-                </select>
 
             </div>
 
@@ -292,13 +310,13 @@
             <div class="form-field">
 
                 <label for="description">
-                    Tell us about your craft
+                    Tell us about the craft
                 </label>
 
                 <textarea
                     id="description"
                     name="description"
-                    placeholder="What do you make? What materials or techniques do you use?"
+                    placeholder="What is it made from? What makes it special?"
                     required
                 ></textarea>
 
@@ -307,47 +325,24 @@
 
             <div class="form-field">
 
-                <label for="image">
+                <label>
                     Photograph of your craft
                 </label>
 
                 <div class="upload-box">
 
-                    <input
-                        type="file"
-                        id="image"
-                        name="image"
-                        accept="image/*"
-                        required
-                    >
-
                     <span>
+                        🧵
+                        <br>
                         Add a clear photograph of your craft
                     </span>
 
-                </div>
-
-            </div>
-
-
-            <div class="form-field">
-
-                <label for="process_video">
-                    Show your process
-                </label>
-
-                <div class="upload-box">
-
                     <input
                         type="file"
-                        id="process_video"
-                        name="process_video"
-                        accept="video/*"
+                        name="craft_image"
+                        accept="image/*"
+                        required
                     >
-
-                    <span>
-                        Optional — show how your craft is made
-                    </span>
 
                 </div>
 
@@ -356,7 +351,9 @@
         </section>
 
 
-        <!-- STEP 03 -->
+        <!-- =================================================
+             SECTION 03
+             ================================================= -->
 
         <section class="form-section">
 
@@ -367,13 +364,15 @@
                 </div>
 
                 <div>
+
                     <h2>
                         The Story Behind It
                     </h2>
 
                     <p class="form-section-description">
-                        Give your craft the context it deserves.
+                        Help people understand the work behind the object.
                     </p>
+
                 </div>
 
             </div>
@@ -386,9 +385,12 @@
                 </span>
 
                 <p>
-                    Customers don't just want to know what they
-                    are buying. They want to understand the hands,
-                    place and tradition behind it.
+
+                    What inspired you?
+                    Who taught you?
+                    How long does it take?
+                    What knowledge goes into making it?
+
                 </p>
 
             </div>
@@ -396,14 +398,14 @@
 
             <div class="form-field">
 
-                <label for="tradition">
-                    What makes this craft special?
+                <label for="craft_story">
+                    Your craft story
                 </label>
 
                 <textarea
-                    id="tradition"
-                    name="tradition"
-                    placeholder="Was this technique passed down through your family? What makes it meaningful?"
+                    id="craft_story"
+                    name="craft_story"
+                    placeholder="Tell the story behind your craft..."
                 ></textarea>
 
             </div>
@@ -411,22 +413,34 @@
 
             <div class="form-field">
 
-                <label for="materials">
-                    Materials & techniques
+                <label>
+                    Show the process
                 </label>
 
-                <textarea
-                    id="materials"
-                    name="materials"
-                    placeholder="Tell customers about the materials and techniques used..."
-                ></textarea>
+                <div class="upload-box">
+
+                    <span>
+                        ▶
+                        <br>
+                        Add a short process video
+                    </span>
+
+                    <input
+                        type="file"
+                        name="process_video"
+                        accept="video/*"
+                    >
+
+                </div>
 
             </div>
 
         </section>
 
 
-        <!-- STEP 04 -->
+        <!-- =================================================
+             SECTION 04
+             ================================================= -->
 
         <section class="form-section">
 
@@ -437,13 +451,15 @@
                 </div>
 
                 <div>
+
                     <h2>
                         Your Terms
                     </h2>
 
                     <p class="form-section-description">
-                        Choose how you would like to sell your work.
+                        You decide what your work is worth.
                     </p>
+
                 </div>
 
             </div>
@@ -452,12 +468,14 @@
             <div class="form-field">
 
                 <label for="price">
-                    Price
+                    Your price
                 </label>
 
                 <div class="price-input">
 
-                    <span>₹</span>
+                    <span>
+                        ₹
+                    </span>
 
                     <input
                         type="number"
@@ -473,81 +491,92 @@
             </div>
 
 
-            <div class="form-field">
+            <div class="story-prompt">
 
-                <label for="selling_method">
-                    Selling method
-                </label>
+                <span>
+                    ₹
+                </span>
 
-                <select
-                    id="selling_method"
-                    name="selling_method"
-                >
+                <p>
 
-                    <option value="fixed">
-                        Fixed Price
-                    </option>
+                    KARIGAR can help you think through
+                    materials, labour, packaging and
+                    transport — but the final price is yours.
 
-                    <option value="offers">
-                        Accept Offers
-                    </option>
-
-                    <option value="auction">
-                        Auction
-                    </option>
-
-                </select>
+                </p>
 
             </div>
 
         </section>
 
 
-        <!-- PUBLISH -->
+        <!-- SUBMIT -->
 
         <section class="form-submit">
 
             <div class="eyebrow">
-                READY TO BE DISCOVERED?
+                YOUR STORY · YOUR CRAFT · YOUR DECISION
             </div>
 
             <h2>
-                Share your craft with the world.
+                Ready to put your craft on the map?
             </h2>
 
             <p>
-                Your craft is more than a product.
-                It represents your skill, your story
-                and a tradition worth discovering.
+
+                Your information will become part of
+                your KARIGAR craft identity.
+
             </p>
+
 
             <button
                 type="submit"
-                class="button"
+                class="button button-light"
             >
-                Create Listing →
+
+                Create My Craft Story →
+
             </button>
 
         </section>
+
 
     </form>
 
 </main>
 
 
+<!-- FOOTER -->
+
 <footer class="footer">
 
-    <div class="footer-inner">
+    <div class="footer-main">
 
-        <img
-    src="{% static 'marketplace/images/karigar.png' %}"
-    alt="KARIGAR"
-    class="footer-logo"
->
+        <div class="footer-brand">
+
+            <img
+                src="{% static 'marketplace/images/karigar.png' %}"
+                alt="KARIGAR"
+                class="footer-logo"
+            >
+
+            <div>
+
+                <strong>
+                    KARIGAR
+                </strong>
+
+                <span>
+                    Hands · Stories · Heritage · Future
+                </span>
+
+            </div>
+
+        </div>
 
         <p>
-            Made by people. Rooted in culture.
-            Shared with the world.
+            Rooted in heritage. Built by hands. Moving forward.
         </p>
 
     </div>
@@ -556,5 +585,4 @@
 
 
 </body>
-
 </html>

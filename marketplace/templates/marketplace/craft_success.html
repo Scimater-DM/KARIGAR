@@ -10,7 +10,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Craft Created | KARIGAR</title>
+    <title>
+        Craft Created | KARIGAR
+    </title>
 
     <link rel="stylesheet"
           href="{% static 'marketplace/style.css' %}">
@@ -18,6 +20,7 @@
 </head>
 
 <body>
+
 
 <nav class="navbar">
 
@@ -30,11 +33,19 @@
         >
 
         <span class="brand-text">
-            <strong>KARIGAR</strong>
-            <small>Hands · Stories · Heritage · Future</small>
+
+            <strong>
+                KARIGAR
+            </strong>
+
+            <small>
+                Hands · Stories · Heritage · Future
+            </small>
+
         </span>
 
     </a>
+
 
     <div class="nav-links">
 
@@ -42,8 +53,11 @@
             Discover
         </a>
 
-        <a href="/artisan/add/">
-            For Artisans
+        <a href="/artisan/add/"
+           class="nav-artisan">
+
+            Add Another Craft
+
         </a>
 
     </div>
@@ -55,35 +69,51 @@
 
     <div class="success-card">
 
+
         <div class="success-icon">
             ✓
         </div>
+
 
         <div class="eyebrow">
             CRAFT CREATED
         </div>
 
+
         <h1>
             Your craft is now part of KARIGAR.
         </h1>
 
+
         <p>
+
             Your craft has been successfully saved.
+
             Your story can now be discovered by people
             who value handmade traditions.
+
         </p>
+
 
         <div class="success-actions">
 
-            <a href="/" class="button">
+            <a href="/"
+               class="button button-primary">
+
                 Discover Crafts →
+
             </a>
 
-            <a href="/artisan/add/" class="back-link">
+
+            <a href="/artisan/add/"
+               class="back-link">
+
                 Add Another Craft
+
             </a>
 
         </div>
+
 
     </div>
 
@@ -92,23 +122,54 @@
 
 <footer class="footer">
 
-    <div class="footer-inner">
+    <div class="footer-main">
 
-        <img
-            src="{% static 'marketplace/images/karigar.png' %}"
-            alt="KARIGAR"
-            class="footer-logo"
-        >
+        <div class="footer-brand">
+
+            <img
+                src="{% static 'marketplace/images/karigar.png' %}"
+                alt="KARIGAR"
+                class="footer-logo"
+            >
+
+            <div>
+
+                <strong>
+                    KARIGAR
+                </strong>
+
+                <span>
+                    Hands · Stories · Heritage · Future
+                </span>
+
+            </div>
+
+        </div>
+
 
         <p>
-            Made by people. Rooted in culture.
+            Made by people.
+            Rooted in culture.
             Shared with the world.
         </p>
 
     </div>
 
+
+    <div class="footer-bottom">
+
+        <span>
+            Rooted in heritage. Built by hands. Moving forward.
+        </span>
+
+        <span>
+            KARIGAR · Prototype
+        </span>
+
+    </div>
+
 </footer>
 
-</body>
 
+</body>
 </html>

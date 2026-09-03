@@ -1,7 +1,7 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 
@@ -10,7 +10,9 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>{{ craft.name }} | KARIGAR</title>
+    <title>
+        {{ craft.name }} | KARIGAR
+    </title>
 
     <link rel="stylesheet"
           href="{% static 'marketplace/style.css' %}">
@@ -25,16 +27,27 @@
 <nav class="navbar">
 
     <a href="/" class="brand">
-    <img
-        src="{% static 'marketplace/images/karigar.png' %}"
-        alt="KARIGAR"
-        class="brand-logo"
-    >
-    <span class="brand-text">
-        <strong>KARIGAR</strong>
-        <small>Hands · Stories · Heritage · Future</small>
-    </span>
-</a>
+
+        <img
+            src="{% static 'marketplace/images/karigar.png' %}"
+            alt="KARIGAR"
+            class="brand-logo"
+        >
+
+        <span class="brand-text">
+
+            <strong>
+                KARIGAR
+            </strong>
+
+            <small>
+                Hands · Stories · Heritage · Future
+            </small>
+
+        </span>
+
+    </a>
+
 
     <div class="nav-links">
 
@@ -42,8 +55,11 @@
             Discover
         </a>
 
-        <a href="/artisan/add/">
+        <a href="/artisan/add/"
+           class="nav-artisan">
+
             For Artisans
+
         </a>
 
     </div>
@@ -54,8 +70,6 @@
 <main class="detail">
 
 
-    <!-- BACK -->
-
     <a href="/"
        class="back-link">
 
@@ -64,7 +78,7 @@
     </a>
 
 
-    <!-- TITLE -->
+    <!-- HEADER -->
 
     <div class="detail-header">
 
@@ -73,7 +87,9 @@
             {{ craft.category }}
 
             {% if craft.artisan.location %}
+
                 • {{ craft.artisan.location }}
+
             {% endif %}
 
         </div>
@@ -99,15 +115,14 @@
     {% endif %}
 
 
-    <!-- INTRO + PURCHASE -->
+    <!-- CRAFT -->
 
     <section class="detail-intro">
-
 
         <div class="detail-description">
 
             <div class="story-label">
-                The Craft
+                THE CRAFT
             </div>
 
             <p>
@@ -115,9 +130,11 @@
             </p>
 
             <p>
+
                 Every handmade object carries more than
                 material and form. It carries time, knowledge
                 and the hands of the person who created it.
+
             </p>
 
         </div>
@@ -126,7 +143,7 @@
         <aside class="purchase-card">
 
             <div class="story-label">
-                Support the Artisan
+                SUPPORT THE ARTISAN
             </div>
 
             <div class="purchase-price">
@@ -134,14 +151,16 @@
             </div>
 
             <p>
+
                 Handmade by
                 <strong>
                     {{ craft.artisan.name }}
                 </strong>
+
             </p>
 
             <a href="#artisan"
-               class="button">
+               class="button button-light">
 
                 Meet the Artisan →
 
@@ -149,17 +168,16 @@
 
         </aside>
 
-
     </section>
 
 
-    <!-- ARTISAN -->
+    <!-- MAKER -->
 
     <section class="story"
              id="artisan">
 
         <div class="story-label">
-            The Maker
+            THE MAKER
         </div>
 
         <h2>
@@ -182,9 +200,11 @@
         {% else %}
 
             <p>
+
                 This craft has been created by an artisan
                 whose knowledge and skills form an important
                 part of the tradition behind this work.
+
             </p>
 
         {% endif %}
@@ -196,11 +216,10 @@
 
     <section class="process-box">
 
-
         <div class="process-content">
 
             <div class="story-label">
-                Behind the Craft
+                BEHIND THE CRAFT
             </div>
 
             <h2>
@@ -208,9 +227,11 @@
             </h2>
 
             <p>
+
                 Handmade crafts are the result of knowledge,
                 patience and techniques often passed from
                 one generation to another.
+
             </p>
 
 
@@ -221,7 +242,9 @@
                     target="_blank"
                     class="video-button"
                 >
+
                     ▶ Watch the Process
+
                 </a>
 
             {% endif %}
@@ -243,7 +266,6 @@
 
         </div>
 
-
     </section>
 
 
@@ -255,7 +277,7 @@
         <div class="section-heading">
 
             <div class="eyebrow">
-                Craft Passport
+                CRAFT PASSPORT
             </div>
 
             <h2>
@@ -263,9 +285,11 @@
             </h2>
 
             <p>
+
                 A craft is more than a finished object.
                 Its identity comes from the people, materials,
                 place and techniques behind it.
+
             </p>
 
         </div>
@@ -335,22 +359,26 @@
     <section class="story">
 
         <div class="story-label">
-            Support Living Traditions
+            SUPPORT LIVING TRADITIONS
         </div>
 
         <h2>
+
             When you support the maker,
             you support the tradition.
+
         </h2>
 
         <p>
+
             KARIGAR aims to make the people and stories
             behind traditional crafts visible to the world.
+
         </p>
 
 
         <a href="/"
-           class="button">
+           class="button button-primary">
 
             Discover More Crafts →
 
@@ -366,18 +394,51 @@
 
 <footer class="footer">
 
-    <div class="footer-inner">
+    <div class="footer-main">
 
-        <img
-    src="{% static 'marketplace/images/karigar.png' %}"
-    alt="KARIGAR"
-    class="footer-logo"
->
+        <div class="footer-brand">
+
+            <img
+                src="{% static 'marketplace/images/karigar.png' %}"
+                alt="KARIGAR"
+                class="footer-logo"
+            >
+
+            <div>
+
+                <strong>
+                    KARIGAR
+                </strong>
+
+                <span>
+                    Hands · Stories · Heritage · Future
+                </span>
+
+            </div>
+
+        </div>
+
 
         <p>
-            Made by people. Rooted in culture.
+
+            Made by people.
+            Rooted in culture.
             Shared with the world.
+
         </p>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <span>
+            Rooted in heritage. Built by hands. Moving forward.
+        </span>
+
+        <span>
+            KARIGAR · Prototype
+        </span>
 
     </div>
 
@@ -385,5 +446,4 @@
 
 
 </body>
-
 </html>
