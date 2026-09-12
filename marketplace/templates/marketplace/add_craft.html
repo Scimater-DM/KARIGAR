@@ -1,271 +1,207 @@
-{% load static %}
+{% extends "marketplace/base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>
-        Add Your Craft | KARIGAR
-    </title>
-
-    <link rel="stylesheet"
-          href="{% static 'marketplace/style.css' %}">
-
-</head>
-
-<body>
+{% block title %}
+    Share Your Craft — KARIGAR
+{% endblock %}
 
 
-<!-- NAVBAR -->
+{% block content %}
 
-<nav class="navbar">
+<div class="form-page">
 
-    <a href="/" class="brand">
 
-        <img
-            src="{% static 'marketplace/images/karigar.png' %}"
-            alt="KARIGAR"
-            class="brand-logo"
-        >
+    <section class="form-hero">
 
-        <span class="brand-text">
-
-            <strong>
-                KARIGAR
-            </strong>
-
-            <small>
-                Hands · Stories · Heritage · Future
-            </small>
-
+        <span class="eyebrow">
+            FOR ARTISANS
         </span>
 
-    </a>
-
-
-    <div class="nav-links">
-
-        <a href="/">
-            Discover
-        </a>
-
-        <a href="/"
-           class="nav-artisan">
-            Back to KARIGAR
-        </a>
-
-    </div>
-
-</nav>
-
-
-<main class="form-page">
-
-
-    <!-- INTRO -->
-
-    <section class="form-intro">
-
-        <div class="eyebrow">
-            FOR ARTISANS
-        </div>
 
         <h1>
-            Your hands
+            Your hands made it.
             <br>
-            carry a story.
+            <em>Let's tell its story.</em>
         </h1>
 
+
         <p>
-
-            Tell us about yourself, your craft and the
-            knowledge behind your work. KARIGAR will help
-            you turn your story into a digital craft identity.
-
+            Start with what you know.
+            You don't need the perfect words.
         </p>
 
     </section>
 
 
-    <!-- ARTISAN MESSAGE -->
 
-    <div class="artisan-message">
+    <section class="artisan-form-section section">
 
-        <div class="artisan-message-icon">
-            ✦
-        </div>
 
-        <div>
+        <div class="form-progress">
 
-            <div class="eyebrow">
-                WHY KARIGAR?
-            </div>
+            <span class="is-active">
+                01 You
+            </span>
 
-            <h2>
-                Your craft deserves to be discovered.
-            </h2>
+            <span>
+                02 Your craft
+            </span>
 
-            <p>
+            <span>
+                03 How you sell
+            </span>
 
-                Share what you make, where you come from
-                and the story behind your work.
-
-            </p>
+            <span>
+                04 Publish
+            </span>
 
         </div>
 
-    </div>
+
+        <form
+            method="post"
+            enctype="multipart/form-data"
+            class="artisan-form"
+        >
+
+            {% csrf_token %}
 
 
-    <form method="POST"
-          enctype="multipart/form-data">
+            <div class="form-step">
 
-        {% csrf_token %}
-
-
-        <!-- =================================================
-             SECTION 01
-             ================================================= -->
-
-        <section class="form-section">
-
-            <div class="form-section-header">
-
-                <div class="form-number">
+                <div class="form-step__index">
                     01
                 </div>
 
-                <div>
+
+                <div class="form-step__content">
+
+                    <span class="eyebrow">
+                        THE MAKER
+                    </span>
+
 
                     <h2>
-                        About You
+                        Start with <em>you.</em>
                     </h2>
 
-                    <p class="form-section-description">
-                        Start with the person behind the craft.
+
+                    <p class="form-step__intro">
+                        This becomes part of your KARIGAR identity.
                     </p>
 
-                </div>
 
-            </div>
+                    {% for field in artisan_form %}
 
+                        <div class="form-field">
 
-            <div class="form-field">
+                            {{ field.label_tag }}
 
-                <label for="artisan_name">
-                    Your name
-                </label>
+                            {{ field }}
 
-                <input
-                    type="text"
-                    id="artisan_name"
-                    name="artisan_name"
-                    placeholder="What should customers call you?"
-                    required
-                >
+                            {% if field.help_text %}
 
-            </div>
+                                <small>
+                                    {{ field.help_text }}
+                                </small>
+
+                            {% endif %}
 
 
-            <div class="form-field">
+                            {% for error in field.errors %}
 
-                <label for="location">
-                    Where are you from?
-                </label>
+                                <small class="field-error">
+                                    {{ error }}
+                                </small>
 
-                <input
-                    type="text"
-                    id="location"
-                    name="location"
-                    placeholder="Village, town or region"
-                    required
-                >
+                            {% endfor %}
 
-            </div>
+                        </div>
 
-
-            <div class="form-field">
-
-                <label for="artisan_story">
-                    Your story
-                </label>
-
-                <div class="story-prompt">
-
-                    <span>
-                        ✦
-                    </span>
-
-                    <p>
-                        Tell customers about yourself,
-                        your family, your community or
-                        how you learned your craft.
-                    </p>
-
-                </div>
-
-                <textarea
-                    id="artisan_story"
-                    name="artisan_story"
-                    placeholder="Tell us about yourself..."
-                ></textarea>
-
-            </div>
-
-
-            <div class="form-field">
-
-                <label>
-                    Your photograph
-                </label>
-
-                <div class="upload-box">
-
-                    <span>
-                        📷
-                        <br>
-                        Add a photograph of yourself
-                    </span>
-
-                    <input
-                        type="file"
-                        name="artisan_photo"
-                        accept="image/*"
-                    >
+                    {% endfor %}
 
                 </div>
 
             </div>
 
-        </section>
 
 
-        <!-- =================================================
-             SECTION 02
-             ================================================= -->
+            <div class="form-step">
 
-        <section class="form-section">
-
-            <div class="form-section-header">
-
-                <div class="form-number">
+                <div class="form-step__index">
                     02
                 </div>
 
-                <div>
+
+                <div class="form-step__content">
+
+                    <span class="eyebrow">
+                        YOUR CRAFT
+                    </span>
+
 
                     <h2>
-                        Your Craft
+                        Now show us
+                        <em>what you made.</em>
                     </h2>
 
-                    <p class="form-section-description">
-                        Tell us what your hands create.
+
+                    <p class="form-step__intro">
+                        A photograph and your own words are enough.
+                    </p>
+
+
+                    {% for field in craft_form %}
+
+                        <div class="form-field">
+
+                            {{ field.label_tag }}
+
+                            {{ field }}
+
+                            {% if field.help_text %}
+
+                                <small>
+                                    {{ field.help_text }}
+                                </small>
+
+                            {% endif %}
+
+
+                            {% for error in field.errors %}
+
+                                <small class="field-error">
+                                    {{ error }}
+                                </small>
+
+                            {% endfor %}
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-note">
+
+                <div class="form-note__mark">
+                    🎙
+                </div>
+
+
+                <div>
+
+                    <strong>
+                        Saathi will make this easier.
+                    </strong>
+
+
+                    <p>
+                        In the full artisan app, you can speak about
+                        your work instead of filling out a long form.
                     </p>
 
                 </div>
@@ -273,316 +209,30 @@
             </div>
 
 
-            <div class="form-field">
 
-                <label for="craft_name">
-                    What do you make?
-                </label>
+            <div class="form-actions">
 
-                <input
-                    type="text"
-                    id="craft_name"
-                    name="craft_name"
-                    placeholder="For example: Handwoven Bamboo Basket"
-                    required
+                <a
+                    href="{% url 'marketplace' %}"
+                    class="button button--outline"
                 >
+                    ← Back
+                </a>
 
-            </div>
 
-
-            <div class="form-field">
-
-                <label for="category">
-                    Craft category
-                </label>
-
-                <input
-                    type="text"
-                    id="category"
-                    name="category"
-                    placeholder="For example: Bamboo & Cane"
-                    required
+                <button
+                    type="submit"
+                    class="button button--primary"
                 >
+                    Put my craft on KARIGAR →
+                </button>
 
             </div>
 
+        </form>
 
-            <div class="form-field">
+    </section>
 
-                <label for="description">
-                    Tell us about the craft
-                </label>
+</div>
 
-                <textarea
-                    id="description"
-                    name="description"
-                    placeholder="What is it made from? What makes it special?"
-                    required
-                ></textarea>
-
-            </div>
-
-
-            <div class="form-field">
-
-                <label>
-                    Photograph of your craft
-                </label>
-
-                <div class="upload-box">
-
-                    <span>
-                        🧵
-                        <br>
-                        Add a clear photograph of your craft
-                    </span>
-
-                    <input
-                        type="file"
-                        name="craft_image"
-                        accept="image/*"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             SECTION 03
-             ================================================= -->
-
-        <section class="form-section">
-
-            <div class="form-section-header">
-
-                <div class="form-number">
-                    03
-                </div>
-
-                <div>
-
-                    <h2>
-                        The Story Behind It
-                    </h2>
-
-                    <p class="form-section-description">
-                        Help people understand the work behind the object.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="story-prompt">
-
-                <span>
-                    ✦
-                </span>
-
-                <p>
-
-                    What inspired you?
-                    Who taught you?
-                    How long does it take?
-                    What knowledge goes into making it?
-
-                </p>
-
-            </div>
-
-
-            <div class="form-field">
-
-                <label for="craft_story">
-                    Your craft story
-                </label>
-
-                <textarea
-                    id="craft_story"
-                    name="craft_story"
-                    placeholder="Tell the story behind your craft..."
-                ></textarea>
-
-            </div>
-
-
-            <div class="form-field">
-
-                <label>
-                    Show the process
-                </label>
-
-                <div class="upload-box">
-
-                    <span>
-                        ▶
-                        <br>
-                        Add a short process video
-                    </span>
-
-                    <input
-                        type="file"
-                        name="process_video"
-                        accept="video/*"
-                    >
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             SECTION 04
-             ================================================= -->
-
-        <section class="form-section">
-
-            <div class="form-section-header">
-
-                <div class="form-number">
-                    04
-                </div>
-
-                <div>
-
-                    <h2>
-                        Your Terms
-                    </h2>
-
-                    <p class="form-section-description">
-                        You decide what your work is worth.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="form-field">
-
-                <label for="price">
-                    Your price
-                </label>
-
-                <div class="price-input">
-
-                    <span>
-                        ₹
-                    </span>
-
-                    <input
-                        type="number"
-                        id="price"
-                        name="price"
-                        placeholder="Enter your price"
-                        min="0"
-                        required
-                    >
-
-                </div>
-
-            </div>
-
-
-            <div class="story-prompt">
-
-                <span>
-                    ₹
-                </span>
-
-                <p>
-
-                    KARIGAR can help you think through
-                    materials, labour, packaging and
-                    transport — but the final price is yours.
-
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- SUBMIT -->
-
-        <section class="form-submit">
-
-            <div class="eyebrow">
-                YOUR STORY · YOUR CRAFT · YOUR DECISION
-            </div>
-
-            <h2>
-                Ready to put your craft on the map?
-            </h2>
-
-            <p>
-
-                Your information will become part of
-                your KARIGAR craft identity.
-
-            </p>
-
-
-            <button
-                type="submit"
-                class="button button-light"
-            >
-
-                Create My Craft Story →
-
-            </button>
-
-        </section>
-
-
-    </form>
-
-</main>
-
-
-<!-- FOOTER -->
-
-<footer class="footer">
-
-    <div class="footer-main">
-
-        <div class="footer-brand">
-
-            <img
-                src="{% static 'marketplace/images/karigar.png' %}"
-                alt="KARIGAR"
-                class="footer-logo"
-            >
-
-            <div>
-
-                <strong>
-                    KARIGAR
-                </strong>
-
-                <span>
-                    Hands · Stories · Heritage · Future
-                </span>
-
-            </div>
-
-        </div>
-
-        <p>
-            Rooted in heritage. Built by hands. Moving forward.
-        </p>
-
-    </div>
-
-</footer>
-
-
-</body>
-</html>
+{% endblock %}

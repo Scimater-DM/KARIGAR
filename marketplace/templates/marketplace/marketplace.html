@@ -1,983 +1,434 @@
+{% extends "marketplace/base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}
+    KARIGAR — Every hand leaves a story
+{% endblock %}
 
-<head>
+{% block content %}
 
-    <meta charset="UTF-8">
+<div class="home">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <!-- HERO -->
+    <section class="home-hero">
 
-    <title>KARIGAR — Every Craft Has a Story</title>
+        <div class="home-hero__image">
 
-    <link rel="stylesheet"
-          href="{% static 'marketplace/style.css' %}">
+            {% if featured and featured.image %}
 
-</head>
+                <img
+                    src="{{ featured.image.url }}"
+                    alt="{{ featured.name }}"
+                >
 
+            {% elif crafts %}
 
-<body>
+                {% with craft=crafts.0 %}
 
+                    {% if craft.image %}
+                        <img
+                            src="{{ craft.image.url }}"
+                            alt="{{ craft.name }}"
+                        >
+                    {% endif %}
 
-<!-- =========================================================
-     NAVBAR
-     ========================================================= -->
+                {% endwith %}
 
-<nav class="navbar">
+            {% endif %}
 
-    <a href="/" class="brand">
-
-        <img
-            src="{% static 'marketplace/images/karigar.png' %}"
-            alt="KARIGAR"
-            class="brand-logo"
-        >
-
-        <span class="brand-text">
-
-            <strong>KARIGAR</strong>
-
-            <small>
-                Hands · Stories · Heritage · Future
-            </small>
-
-        </span>
-
-    </a>
-
-
-    <div class="nav-links">
-
-        <a href="#discover">
-            Discover
-        </a>
-
-        <a href="#stories">
-            Stories
-        </a>
-
-        <a href="#saathi">
-            KARIGAR Saathi
-        </a>
-
-        <a
-            href="/artisan/add/"
-            class="nav-artisan"
-        >
-            For Artisans
-        </a>
-
-    </div>
-
-</nav>
-
-
-
-<!-- =========================================================
-     HERO
-     ========================================================= -->
-
-<section class="hero">
-
-
-    <div class="hero-copy">
-
-        <div class="eyebrow">
-            ARTISAN-FIRST · STORY-DRIVEN · HUMAN-CENTRED
         </div>
 
+        <div class="home-hero__shade"></div>
 
-        <h1>
+        <div class="home-hero__pattern"></div>
 
-            Every craft has a story.
+        <div class="home-hero__content">
 
-            <span>
-                Every artisan deserves to be seen.
+            <span class="eyebrow eyebrow--light">
+                INDIA'S LIVING TRADITIONS
             </span>
 
-        </h1>
+            <h1>
+                Real people.
+                <em>Extraordinary crafts.</em>
+            </h1>
 
+            <p>
+                Discover the people, places and practices
+                behind India's living crafts — straight
+                from the source.
+            </p>
 
-        <p class="hero-description">
+            <div class="hero-actions">
 
-            KARIGAR helps artisans build their digital identity,
-            share the stories behind their work and reach people
-            who value handmade traditions.
+                <a
+                    href="{% url 'discover' %}"
+                    class="button button--gold"
+                >
+                    Explore crafts
+                    <span>→</span>
+                </a>
 
-        </p>
-
-
-        <div class="hero-actions">
-
-            <a
-                href="#discover"
-                class="button button-primary"
-            >
-                Discover Crafts →
-            </a>
-
-
-            <a
-                href="/artisan/add/"
-                class="button button-secondary"
-            >
-                I'm an Artisan
-            </a>
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         HERO LOGO
-         ===================================================== -->
-
-    <div class="hero-art">
-
-        <div class="hero-logo-card">
-
-            <div class="hero-logo-glow"></div>
-
-
-            <img
-                src="{% static 'marketplace/images/karigar.png' %}"
-                alt="KARIGAR — Hands, Stories, Heritage, Future"
-                class="hero-logo"
-            >
-
-
-            <div class="hero-logo-caption">
-
-                <span>HANDS</span>
-
-                <i>•</i>
-
-                <span>STORIES</span>
-
-                <i>•</i>
-
-                <span>HERITAGE</span>
-
-                <i>•</i>
-
-                <span>FUTURE</span>
+                <button
+                    type="button"
+                    class="button button--ghost-light"
+                    onclick="openSaathi()"
+                >
+                    Talk to Saathi
+                </button>
 
             </div>
 
         </div>
 
-    </div>
+        <div class="home-hero__maker">
 
+            {% if featured %}
 
-</section>
+                <span>FEATURED MAKER</span>
 
+                <strong>
+                    {{ featured.artisan.name }}
+                </strong>
 
+                <small>
+                    {{ featured.artisan.location }}
+                </small>
 
-<!-- =========================================================
-     VALUE STRIP
-     ========================================================= -->
-
-<section class="value-strip">
-
-    <div class="value-strip-inner">
-
-
-        <div>
-
-            <span>01</span>
-
-            <strong>
-                Digital Identity
-            </strong>
-
-            <small>
-                Make your craft discoverable.
-            </small>
+            {% endif %}
 
         </div>
 
-
-        <div>
-
-            <span>02</span>
-
-            <strong>
-                Craft Stories
-            </strong>
-
-            <small>
-                Let people meet the maker.
-            </small>
-
+        <div class="home-hero__scroll">
+            Scroll to discover
+            <span></span>
         </div>
 
-
-        <div>
-
-            <span>03</span>
-
-            <strong>
-                Fairer Decisions
-            </strong>
-
-            <small>
-                Understand your craft's value.
-            </small>
-
-        </div>
+    </section>
 
 
-        <div>
+    <!-- FEATURED / DISCOVER -->
+    <section class="home-section home-discover">
 
-            <span>04</span>
+        <div class="section-intro">
 
-            <strong>
-                Market Access
-            </strong>
-
-            <small>
-                Reach beyond your local market.
-            </small>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     MEET THE MAKER
-     ========================================================= -->
-
-<section
-    class="maker-section"
-    id="stories"
->
-
-    <div class="maker-inner">
-
-
-        <div class="video-placeholder">
-
-            <div class="play-circle">
-                ▶
-            </div>
-
-            <div class="video-label">
-                MEET THE MAKER
-            </div>
-
-        </div>
-
-
-        <div class="maker-content">
-
-            <div class="eyebrow">
-                BEHIND EVERY OBJECT
-            </div>
-
-
-            <h2>
-
-                See the skill.
-
-                <span>
-                    Understand the value.
+            <div>
+                <span class="eyebrow">
+                    HANDPICKED FOR YOU
                 </span>
 
-            </h2>
-
-
-            <p>
-
-                A handmade object is never just an object.
-                It carries the time, knowledge and experience
-                of the person who made it.
-
-            </p>
-
-
-            <p>
-
-                KARIGAR brings that person back into the story.
-
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     KARIGAR SAATHI
-     ========================================================= -->
-
-<section
-    class="saathi-section"
-    id="saathi"
->
-
-    <div class="saathi-inner">
-
-
-        <div class="saathi-content">
-
-            <div class="eyebrow">
-                KARIGAR SAATHI
+                <h2>
+                    Explore our
+                    <em>crafts.</em>
+                </h2>
             </div>
 
-
-            <h2>
-
-                Technology should
-
-                <span>
-                    adapt to the artisan.
-                </span>
-
-            </h2>
-
-
-            <p>
-
-                Tell KARIGAR about your craft in your own words.
-                Saathi helps turn your knowledge into a professional
-                listing — but you remain in control.
-
-            </p>
-
-
             <a
-                href="/artisan/add/"
-                class="button button-light"
+                href="{% url 'discover' %}"
+                class="text-link"
             >
-                Create My Craft Listing →
+                View all crafts →
             </a>
 
         </div>
 
+        <div class="discover-layout">
 
+            {% if featured %}
 
-        <div class="saathi-card">
+                <a
+                    href="{{ featured.get_absolute_url }}"
+                    class="featured-maker-card"
+                >
 
+                    {% if featured.artisan.profile_image %}
 
-            <div class="saathi-card-label">
-                YOUR CRAFT
-            </div>
+                        <img
+                            src="{{ featured.artisan.profile_image.url }}"
+                            alt="{{ featured.artisan.name }}"
+                        >
 
+                    {% elif featured.image %}
 
-            <div class="saathi-message">
+                        <img
+                            src="{{ featured.image.url }}"
+                            alt="{{ featured.name }}"
+                        >
 
-                "I make bamboo baskets.
-                My mother taught me how to weave them."
+                    {% endif %}
 
-            </div>
+                    <div class="featured-maker-card__overlay">
 
+                        <span>
+                            Featured artisan
+                        </span>
 
-            <div class="saathi-flow">
+                        <strong>
+                            {{ featured.artisan.name }}
+                        </strong>
 
+                        <small>
+                            {{ featured.artisan.location }}
+                        </small>
 
-                <div class="flow-step active">
+                        <b>
+                            Meet the maker →
+                        </b>
 
-                    <span>01</span>
+                    </div>
 
-                    <strong>
-                        Tell
-                    </strong>
+                </a>
 
-                    <small>
-                        Share your story.
-                    </small>
+            {% endif %}
 
-                </div>
 
+            <div class="craft-strip">
 
-                <div class="flow-line"></div>
+                {% for craft in crafts|slice:":5" %}
 
+                    <a
+                        href="{{ craft.get_absolute_url }}"
+                        class="mini-craft"
+                    >
 
-                <div class="flow-step">
+                        <div class="mini-craft__image">
 
-                    <span>02</span>
+                            {% if craft.image %}
 
-                    <strong>
-                        Assist
-                    </strong>
+                                <img
+                                    src="{{ craft.image.url }}"
+                                    alt="{{ craft.name }}"
+                                    loading="lazy"
+                                >
 
-                    <small>
-                        KARIGAR drafts it.
-                    </small>
+                            {% endif %}
 
-                </div>
+                        </div>
 
-
-                <div class="flow-line"></div>
-
-
-                <div class="flow-step">
-
-                    <span>03</span>
-
-                    <strong>
-                        Approve
-                    </strong>
-
-                    <small>
-                        You decide.
-                    </small>
-
-                </div>
-
-
-            </div>
-
-
-            <div class="saathi-note">
-
-                AI drafts. Artisan decides.
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     FAIR PRICE ASSISTANT
-     ========================================================= -->
-
-<section class="pricing-section">
-
-    <div class="pricing-inner">
-
-
-        <div class="pricing-copy">
-
-
-            <div class="eyebrow">
-                FAIR PRICE ASSISTANT
-            </div>
-
-
-            <h2>
-
-                Know the value
-
-                <span>
-                    behind the price.
-                </span>
-
-            </h2>
-
-
-            <p>
-
-                KARIGAR helps artisans think through
-                material costs, labour, packaging and
-                transport before deciding their price.
-
-            </p>
-
-
-            <p class="small-note">
-
-                KARIGAR suggests.
-                You decide.
-
-            </p>
-
-
-        </div>
-
-
-
-        <div class="pricing-card">
-
-
-            <div class="pricing-row">
-
-                <span>
-                    Materials
-                </span>
-
-                <strong>
-                    ₹300
-                </strong>
-
-            </div>
-
-
-            <div class="pricing-row">
-
-                <span>
-                    Time & Labour
-                </span>
-
-                <strong>
-                    ₹400
-                </strong>
-
-            </div>
-
-
-            <div class="pricing-row">
-
-                <span>
-                    Packaging
-                </span>
-
-                <strong>
-                    ₹50
-                </strong>
-
-            </div>
-
-
-            <div class="pricing-row">
-
-                <span>
-                    Transport
-                </span>
-
-                <strong>
-                    ₹80
-                </strong>
-
-            </div>
-
-
-            <div class="pricing-divider"></div>
-
-
-            <div class="pricing-result">
-
-                <span>
-                    Suggested range
-                </span>
-
-                <strong>
-                    ₹850 – ₹1,050
-                </strong>
-
-            </div>
-
-
-            <button class="price-button">
-                Use my own price
-            </button>
-
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     DISCOVER CRAFTS
-     ========================================================= -->
-
-<section
-    class="section"
-    id="discover"
->
-
-
-    <div class="section-heading">
-
-
-        <div class="eyebrow">
-            DISCOVER
-        </div>
-
-
-        <h2>
-
-            Meet the people
-            behind the craft.
-
-        </h2>
-
-
-        <p>
-
-            Discover handmade work through the stories,
-            skills and traditions of the people who create it.
-
-        </p>
-
-
-    </div>
-
-
-
-    {% if crafts %}
-
-
-        <div class="craft-grid">
-
-
-            {% for craft in crafts %}
-
-
-                <article class="craft-card">
-
-
-                    <div class="craft-image-wrap">
-
-
-                        {% if craft.image %}
-
-
-                            <img
-                                src="{{ craft.image.url }}"
-                                alt="{{ craft.name }}"
-                            >
-
-
-                        {% else %}
-
-
-                            <div class="craft-placeholder">
-                                KARIGAR
-                            </div>
-
-
-                        {% endif %}
-
-
-                        <span class="craft-category">
+                        <span>
                             {{ craft.category }}
                         </span>
 
-
-                    </div>
-
-
-
-                    <div class="craft-content">
-
-
-                        <div class="maker-line">
-
-                            Made by
-
-                            <strong>
-                                {{ craft.artisan.name }}
-                            </strong>
-
-                        </div>
-
-
-                        <h3>
+                        <strong>
                             {{ craft.name }}
-                        </h3>
+                        </strong>
+
+                    </a>
+
+                {% empty %}
+
+                    <p>
+                        The first craft story is waiting.
+                    </p>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+    </section>
 
 
-                        <div class="craft-meta">
+    <!-- CULTURAL MAP / PRACTICES -->
+    <section class="home-region">
 
+        <div class="region-pattern"></div>
 
-                            <span>
-                                📍 {{ craft.artisan.location }}
-                            </span>
+        <div class="region-copy">
 
+            <span class="eyebrow eyebrow--light">
+                EXPLORE INDIA'S CRAFT REGIONS
+            </span>
 
-                            <strong>
-                                ₹{{ craft.price }}
-                            </strong>
+            <h2>
+                A land of
+                <em>many traditions.</em>
+            </h2>
 
+            <p>
+                From regional techniques to family practices,
+                explore the cultural worlds behind the things
+                people make.
+            </p>
 
-                        </div>
+            <a
+                href="{% url 'atlas' %}"
+                class="button button--outline-light"
+            >
+                Explore the Atlas →
+            </a>
 
+        </div>
 
-                        <a
-                            href="{% url 'craft_detail' craft.id %}"
-                            class="story-link"
-                        >
-                            Discover the story →
-                        </a>
+        <div class="region-map">
 
+            <div class="india-mark">
+                INDIA
+            </div>
 
-                    </div>
+            {% for practice in practices|slice:":6" %}
 
-
-                </article>
-
+                <a
+                    href="{{ practice.get_absolute_url }}"
+                    class="region-label"
+                >
+                    <span></span>
+                    {{ practice.name }}
+                </a>
 
             {% endfor %}
 
-
         </div>
 
-
-    {% else %}
-
-
-        <div class="empty-state">
+    </section>
 
 
-            <h3>
-                The first stories are being woven.
-            </h3>
+    <!-- THREE EXPERIENCES -->
+    <section class="home-section home-stories">
 
-
-            <p>
-                Be among the first artisans to add your craft.
-            </p>
-
+        <div class="story-grid">
 
             <a
-                href="/artisan/add/"
-                class="button button-primary"
+                href="{% url 'stories' %}"
+                class="story-tile story-tile--large"
             >
-                Add a Craft →
+
+                <div class="story-tile__image">
+
+                    {% if artisans.0.profile_image %}
+
+                        <img
+                            src="{{ artisans.0.profile_image.url }}"
+                            alt="{{ artisans.0.name }}"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+                <div class="story-tile__content">
+
+                    <span>THE PEOPLE</span>
+
+                    <h3>
+                        More than
+                        <em>just crafts.</em>
+                    </h3>
+
+                    <p>
+                        Meet the people, journeys and
+                        traditions behind every piece.
+                    </p>
+
+                    <b>Read their stories →</b>
+
+                </div>
+
             </a>
 
 
-        </div>
+            <div class="story-tile story-tile--light">
 
+                <span>THE MAKING</span>
 
-    {% endif %}
+                <h3>
+                    From raw material
+                    <em>to masterpiece.</em>
+                </h3>
 
+                <p>
+                    See the skill, patience and process
+                    behind handmade work.
+                </p>
 
-</section>
+                {% if crafts.0.process_video %}
 
+                    <a
+                        href="{{ crafts.0.process_video }}"
+                        target="_blank"
+                        rel="noopener"
+                        class="text-link"
+                    >
+                        Watch the process →
+                    </a>
 
+                {% else %}
 
-<!-- =========================================================
-     JOURNEY
-     ========================================================= -->
+                    <span class="coming-note">
+                        Making stories coming soon
+                    </span>
 
-<section class="journey-section">
-
-
-    <div class="section-heading">
-
-
-        <div class="eyebrow">
-            THE KARIGAR JOURNEY
-        </div>
-
-
-        <h2>
-
-            From identity
-            to opportunity.
-
-        </h2>
-
-
-    </div>
-
-
-
-    <div class="journey">
-
-
-        <div class="journey-step">
-
-            <span>01</span>
-
-            <h3>
-                Identity
-            </h3>
-
-            <p>
-                Create a digital identity
-                around the artisan.
-            </p>
-
-        </div>
-
-
-        <div class="journey-step">
-
-            <span>02</span>
-
-            <h3>
-                Story
-            </h3>
-
-            <p>
-                Preserve and share the
-                story behind the craft.
-            </p>
-
-        </div>
-
-
-        <div class="journey-step">
-
-            <span>03</span>
-
-            <h3>
-                Market
-            </h3>
-
-            <p>
-                Reach people beyond
-                the local market.
-            </p>
-
-        </div>
-
-
-        <div class="journey-step">
-
-            <span>04</span>
-
-            <h3>
-                Growth
-            </h3>
-
-            <p>
-                Learn from demand and
-                make better decisions.
-            </p>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     FINAL CTA
-     ========================================================= -->
-
-<section class="final-cta">
-
-
-    <div class="final-cta-inner">
-
-
-        <div class="eyebrow">
-            YOUR HANDS CARRY A STORY
-        </div>
-
-
-        <h2>
-
-            Ready to put your
-            craft on the map?
-
-        </h2>
-
-
-        <p>
-
-            Start with your story.
-            KARIGAR will help you take it further.
-
-        </p>
-
-
-        <a
-            href="/artisan/add/"
-            class="button button-light"
-        >
-            Start with KARIGAR →
-        </a>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- =========================================================
-     FOOTER
-     ========================================================= -->
-
-<footer class="footer">
-
-
-    <div class="footer-main">
-
-
-        <div class="footer-brand">
-
-
-            <img
-                src="{% static 'marketplace/images/karigar.png' %}"
-                alt="KARIGAR"
-                class="footer-logo"
-            >
-
-
-            <div>
-
-                <strong>
-                    KARIGAR
-                </strong>
-
-                <span>
-                    Hands · Stories · Heritage · Future
-                </span>
+                {% endif %}
 
             </div>
 
 
+            <div class="story-tile story-tile--dark">
+
+                <div class="saathi-orbit">
+                    <span>◌</span>
+                </div>
+
+                <span>YOUR COMPANION</span>
+
+                <h3>
+                    Meet
+                    <em>Saathi.</em>
+                </h3>
+
+                <p>
+                    Tell your story, understand your craft
+                    and get help without needing to type everything.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="openSaathi()"
+                    class="button button--gold"
+                >
+                    Talk to Saathi →
+                </button>
+
+            </div>
+
         </div>
 
+    </section>
 
 
-        <p>
+    <!-- ARTISAN CTA -->
+    <section class="home-cta">
 
-            KARIGAR doesn't just help artisans sell
-            what they make. It helps them build the
-            identity, confidence and market knowledge
-            to decide how they sell it.
+        <div class="home-cta__image"></div>
 
-        </p>
+        <div class="home-cta__content">
 
+            <span class="eyebrow eyebrow--light">
+                FOR THE MAKERS
+            </span>
 
-    </div>
+            <h2>
+                Every craft has a story.
+                <em>Be part of it.</em>
+            </h2>
 
+            <p>
+                Build your digital identity.
+                Share your work. Let the world meet the maker.
+            </p>
 
+            <a
+                href="{% url 'add_craft' %}"
+                class="button button--gold"
+            >
+                Start with KARIGAR →
+            </a>
 
-    <div class="footer-bottom">
+        </div>
 
+    </section>
 
-        <span>
-            Rooted in heritage. Built by hands. Moving forward.
-        </span>
+</div>
 
-
-        <span>
-            KARIGAR · Prototype
-        </span>
-
-
-    </div>
-
-
-</footer>
-
-
-</body>
-
-</html>
+{% endblock %}

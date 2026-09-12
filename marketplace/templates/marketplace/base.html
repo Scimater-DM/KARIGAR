@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#F4EBDD">
+    <meta
+        name="description"
+        content="KARIGAR — Discover the people, practices and stories behind India's living crafts."
+    >
+
+    <title>
+        {% block title %}KARIGAR — Every hand leaves a story{% endblock %}
+    </title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="{% static 'marketplace/style.css' %}"
+    >
+
+    {% block page_css %}{% endblock %}
+</head>
+
+<body>
+
+    <a class="skip-link" href="#main-content">
+        Skip to content
+    </a>
+
+    {% include "marketplace/components/navbar.html" %}
+
+    <main id="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <button
+    type="button"
+    class="saathi-float"
+    onclick="openSaathi()"
+    aria-label="Open Saathi"
+>
+    <span class="saathi-float__pulse"></span>
+
+    <span class="saathi-float__icon" aria-hidden="true">
+        ◌
+    </span>
+
+    <span class="saathi-float__text">
+        Talk to Saathi
+    </span>
+
+    <span class="saathi-float__arrow" aria-hidden="true">
+        ↗
+    </span>
+</button>
+
+{% include "marketplace/components/saathi.html" %}
+
+    {% include "marketplace/components/saathi.html" %}
+
+    {% include "marketplace/components/footer.html" %}
+
+    {% block page_js %}{% endblock %}
+
+</body>
+</html>

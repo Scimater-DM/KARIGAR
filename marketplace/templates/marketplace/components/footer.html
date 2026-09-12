@@ -1,0 +1,87 @@
+{% load static %}
+
+<footer class="site-footer">
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <a
+                href="{% url 'marketplace' %}"
+                aria-label="KARIGAR home"
+            >
+                <img
+                    src="{% static 'marketplace/images/karigar.png' %}"
+                    alt="KARIGAR"
+                >
+            </a>
+
+            <p>
+                A digital companion for the people
+                keeping India's living traditions alive.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <span>
+                Discover
+            </span>
+
+            <a href="{% url 'discover' %}">
+                Crafts
+            </a>
+
+            <a href="{% url 'stories' %}">
+                Makers &amp; stories
+            </a>
+
+            <a href="{% url 'practices' %}">
+                Practices
+            </a>
+
+            <a href="{% url 'atlas' %}">
+                Craft Atlas
+            </a>
+        </div>
+
+        <div class="footer-links">
+            <span>
+                For artisans
+            </span>
+
+            <a href="{% url 'add_craft' %}">
+                Share your craft
+            </a>
+
+            <a
+                href="#"
+                onclick="openSaathi(); return false;"
+            >
+                Talk to Saathi
+            </a>
+        </div>
+
+        <div class="footer-stamp">
+            <span>
+                ✦
+            </span>
+
+            <small>
+                HANDS
+                <br>
+                STORIES
+                <br>
+                FUTURE
+            </small>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <span>
+            © 2026 KARIGAR
+        </span>
+
+        <span>
+            Made by people · Rooted in culture · Shared with the world
+        </span>
+    </div>
+</footer>

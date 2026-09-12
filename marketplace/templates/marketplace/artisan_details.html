@@ -1,0 +1,160 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}
+    {{ artisan.name }} — KARIGAR
+{% endblock %}
+
+
+{% block content %}
+
+<section class="artisan-profile section">
+
+    <div class="artisan-profile__portrait">
+
+        {% if artisan.profile_image %}
+
+            <img
+                src="{{ artisan.profile_image.url }}"
+                alt="{{ artisan.name }}"
+            >
+
+        {% else %}
+
+            <span>
+                {{ artisan.name|first|upper }}
+            </span>
+
+        {% endif %}
+
+    </div>
+
+
+    <div class="artisan-profile__intro">
+
+        <span class="eyebrow">
+            KARIGAR MAKER
+        </span>
+
+
+        <h1>
+            {{ artisan.name }}
+        </h1>
+
+
+        <p class="artisan-profile__location">
+            {{ artisan.location }}
+        </p>
+
+
+        {% if artisan.short_bio %}
+
+            <p>
+                {{ artisan.short_bio }}
+            </p>
+
+        {% endif %}
+
+
+        {% if artisan.practices.all %}
+
+            <div class="profile-practices">
+
+                <span>
+                    Practices & styles
+                </span>
+
+
+                {% for practice in artisan.practices.all %}
+
+                    <a
+                        href="{% url 'practice_detail' practice.slug %}"
+                    >
+                        {{ practice.name }}
+                    </a>
+
+                {% endfor %}
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+
+<section class="artisan-story section">
+
+    <span class="eyebrow">
+        THE STORY
+    </span>
+
+
+    <h2>
+        In their own
+        <br>
+        <em>words.</em>
+    </h2>
+
+
+    {% if artisan.story %}
+
+        <p>
+            {{ artisan.story }}
+        </p>
+
+    {% else %}
+
+        <p>
+            This artisan's story is still being written.
+        </p>
+
+    {% endif %}
+
+</section>
+
+
+
+{% if crafts %}
+
+<section class="discover section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                THEIR WORK
+            </span>
+
+
+            <h2>
+                Made by
+                <em>{{ artisan.name }}.</em>
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="craft-gallery">
+
+        {% for craft in crafts %}
+
+            <div class="craft-gallery__item">
+
+                {% include "marketplace/components/craft_card.html" %}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+{% endblock %}

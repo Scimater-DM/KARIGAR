@@ -1,0 +1,62 @@
+{% load static %}
+
+<header class="site-header">
+    <div class="site-header__inner">
+
+        <a
+            href="{% url 'marketplace' %}"
+            class="brand"
+            aria-label="KARIGAR home"
+        >
+            <img
+                src="{% static 'marketplace/images/karigar.png' %}"
+                alt="KARIGAR"
+                class="brand__logo"
+            >
+        </a>
+
+        <nav
+            class="desktop-nav"
+            aria-label="Main navigation"
+        >
+            <a href="{% url 'discover' %}">
+                Discover
+            </a>
+
+            <a href="{% url 'stories' %}">
+                Stories
+            </a>
+
+            <a href="{% url 'practices' %}">
+                Practices
+            </a>
+
+            <a href="{% url 'atlas' %}">
+                Atlas
+            </a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <button
+                type="button"
+                class="nav-saathi"
+                onclick="openSaathi()"
+                aria-label="Open Saathi"
+            >
+                <span class="status-dot"></span>
+                Saathi
+            </button>
+
+            <a
+                href="{% url 'add_craft' %}"
+                class="nav-artisan"
+            >
+                I'm an artisan
+                <span aria-hidden="true">↗</span>
+            </a>
+
+        </div>
+
+    </div>
+</header>

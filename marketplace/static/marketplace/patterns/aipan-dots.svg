@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="90" viewBox="0 0 180 90">
+    <g fill="currentColor">
+        <circle cx="10" cy="45" r="2"/>
+        <circle cx="35" cy="45" r="2"/>
+
+        <circle cx="60" cy="20" r="2"/>
+        <circle cx="60" cy="45" r="2"/>
+        <circle cx="60" cy="70" r="2"/>
+
+        <circle cx="85" cy="45" r="2"/>
+
+        <circle cx="110" cy="20" r="2"/>
+        <circle cx="110" cy="45" r="2"/>
+        <circle cx="110" cy="70" r="2"/>
+
+        <circle cx="135" cy="45" r="2"/>
+        <circle cx="160" cy="45" r="2"/>
+    </g>
+
+    <path
+        d="M35 45 L60 20 L85 45 L60 70 Z
+           M85 45 L110 20 L135 45 L110 70 Z"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1"
+    />
+</svg>

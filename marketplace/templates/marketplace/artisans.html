@@ -1,0 +1,100 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}
+    Meet the Artisans — KARIGAR
+{% endblock %}
+
+
+{% block content %}
+
+<section class="section directory-page">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                THE MAKERS
+            </span>
+
+
+            <h1>
+                Meet the people
+                <br>
+                <em>behind the work.</em>
+            </h1>
+
+        </div>
+
+
+        <p>
+            Explore artisans through their stories,
+            places, practices and work.
+        </p>
+
+    </div>
+
+
+    <div class="artisan-directory">
+
+        {% for artisan in artisans %}
+
+            <a
+                href="{% url 'artisan_detail' artisan.slug %}"
+                class="artisan-directory-card"
+            >
+
+                <div class="artisan-directory-card__image">
+
+                    {% if artisan.profile_image %}
+
+                        <img
+                            src="{{ artisan.profile_image.url }}"
+                            alt="{{ artisan.name }}"
+                            loading="lazy"
+                        >
+
+                    {% else %}
+
+                        <span>
+                            {{ artisan.name|first|upper }}
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <span class="eyebrow">
+                        {{ artisan.location }}
+                    </span>
+
+
+                    <h2>
+                        {{ artisan.name }}
+                    </h2>
+
+
+                    <p>
+                        {{ artisan.short_bio }}
+                    </p>
+
+                </div>
+
+            </a>
+
+        {% empty %}
+
+            <p>
+                Our maker directory is growing.
+            </p>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

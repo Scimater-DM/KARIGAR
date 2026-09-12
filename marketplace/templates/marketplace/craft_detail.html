@@ -1,449 +1,374 @@
-{% load static %}
+{% extends "marketplace/base.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>
-        {{ craft.name }} | KARIGAR
-    </title>
-
-    <link rel="stylesheet"
-          href="{% static 'marketplace/style.css' %}">
-
-</head>
-
-<body>
+{% block title %}
+    {{ craft.name }} — KARIGAR
+{% endblock %}
 
 
-<!-- NAVBAR -->
+{% block content %}
 
-<nav class="navbar">
-
-    <a href="/" class="brand">
-
-        <img
-            src="{% static 'marketplace/images/karigar.png' %}"
-            alt="KARIGAR"
-            class="brand-logo"
-        >
-
-        <span class="brand-text">
-
-            <strong>
-                KARIGAR
-            </strong>
-
-            <small>
-                Hands · Stories · Heritage · Future
-            </small>
-
-        </span>
-
-    </a>
+<div class="detail-page">
 
 
-    <div class="nav-links">
+    <section class="detail-hero">
 
-        <a href="/">
-            Discover
-        </a>
+        <div class="detail-hero__image">
 
-        <a href="/artisan/add/"
-           class="nav-artisan">
+            {% if craft.image %}
 
-            For Artisans
+                <img
+                    src="{{ craft.image.url }}"
+                    alt="{{ craft.name }}"
+                >
 
-        </a>
+            {% else %}
 
-    </div>
-
-</nav>
-
-
-<main class="detail">
-
-
-    <a href="/"
-       class="back-link">
-
-        ← Back to crafts
-
-    </a>
-
-
-    <!-- HEADER -->
-
-    <div class="detail-header">
-
-        <div class="detail-category">
-
-            {{ craft.category }}
-
-            {% if craft.artisan.location %}
-
-                • {{ craft.artisan.location }}
+                <div class="detail-placeholder">
+                    {{ craft.name }}
+                </div>
 
             {% endif %}
 
         </div>
 
 
-        <h1>
-            {{ craft.name }}
-        </h1>
+        <div class="detail-hero__copy">
 
-    </div>
-
-
-    <!-- IMAGE -->
-
-    {% if craft.image %}
-
-        <img
-            src="{{ craft.image.url }}"
-            alt="{{ craft.name }}"
-            class="detail-image"
-        >
-
-    {% endif %}
+            <span class="eyebrow">
+                {{ craft.category }}
+            </span>
 
 
-    <!-- CRAFT -->
+            <h1>
+                {{ craft.name }}
+            </h1>
 
-    <section class="detail-intro">
 
-        <div class="detail-description">
+            <a
+                href="{% url 'artisan_detail' craft.artisan.slug %}"
+                class="detail-maker"
+            >
 
-            <div class="story-label">
-                THE CRAFT
+                {% if craft.artisan.profile_image %}
+
+                    <img
+                        src="{{ craft.artisan.profile_image.url }}"
+                        alt="{{ craft.artisan.name }}"
+                    >
+
+                {% else %}
+
+                    <span>
+                        {{ craft.artisan.name|first|upper }}
+                    </span>
+
+                {% endif %}
+
+
+                <span>
+
+                    <small>
+                        Made by
+                    </small>
+
+                    <strong>
+                        {{ craft.artisan.name }}
+                    </strong>
+
+                </span>
+
+            </a>
+
+
+            <p class="detail-place">
+                {{ craft.artisan.location }}
+            </p>
+
+
+            {% if craft.practices.all %}
+
+                <div class="detail-practice-list">
+
+                    {% for practice in craft.practices.all %}
+
+                        <a
+                            href="{% url 'practice_detail' practice.slug %}"
+                        >
+                            {{ practice.name }}
+                        </a>
+
+                    {% endfor %}
+
+                </div>
+
+            {% endif %}
+
+
+            <div class="detail-price">
+
+                <span>
+                    {{ craft.get_selling_method_display }}
+                </span>
+
+                <strong>
+                    ₹{{ craft.price }}
+                </strong>
+
             </div>
+
+
+            <a
+                href="#story"
+                class="button button--primary"
+            >
+                Discover the story →
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <section
+        id="story"
+        class="detail-story section"
+    >
+
+        <div>
+
+            <span class="eyebrow">
+                THE STORY
+            </span>
+
+
+            <h2>
+                More than an object.
+                <br>
+                <em>A piece of a place.</em>
+            </h2>
+
 
             <p>
                 {{ craft.description }}
             </p>
 
-            <p>
-
-                Every handmade object carries more than
-                material and form. It carries time, knowledge
-                and the hands of the person who created it.
-
-            </p>
-
         </div>
 
 
-        <aside class="purchase-card">
+        <div class="detail-facts">
 
-            <div class="story-label">
-                SUPPORT THE ARTISAN
-            </div>
+            <div>
 
-            <div class="purchase-price">
-                ₹{{ craft.price }}
-            </div>
+                <span>
+                    MAKER
+                </span>
 
-            <p>
-
-                Handmade by
                 <strong>
                     {{ craft.artisan.name }}
                 </strong>
 
-            </p>
-
-            <a href="#artisan"
-               class="button button-light">
-
-                Meet the Artisan →
-
-            </a>
-
-        </aside>
-
-    </section>
-
-
-    <!-- MAKER -->
-
-    <section class="story"
-             id="artisan">
-
-        <div class="story-label">
-            THE MAKER
-        </div>
-
-        <h2>
-            Meet {{ craft.artisan.name }}
-        </h2>
-
-        <div class="artisan-name">
-
-            {{ craft.artisan.location }}
-
-        </div>
-
-
-        {% if craft.artisan.story %}
-
-            <p>
-                {{ craft.artisan.story }}
-            </p>
-
-        {% else %}
-
-            <p>
-
-                This craft has been created by an artisan
-                whose knowledge and skills form an important
-                part of the tradition behind this work.
-
-            </p>
-
-        {% endif %}
-
-    </section>
-
-
-    <!-- PROCESS -->
-
-    <section class="process-box">
-
-        <div class="process-content">
-
-            <div class="story-label">
-                BEHIND THE CRAFT
             </div>
 
-            <h2>
-                See the hands behind the work.
-            </h2>
 
-            <p>
+            <div>
 
-                Handmade crafts are the result of knowledge,
-                patience and techniques often passed from
-                one generation to another.
+                <span>
+                    PLACE
+                </span>
 
-            </p>
+                <strong>
+                    {{ craft.artisan.location }}
+                </strong>
+
+            </div>
 
 
-            {% if craft.process_video %}
+            <div>
 
-                <a
-                    href="{{ craft.process_video.url }}"
-                    target="_blank"
-                    class="video-button"
-                >
+                <span>
+                    CATEGORY
+                </span>
 
-                    ▶ Watch the Process
+                <strong>
+                    {{ craft.category }}
+                </strong>
 
-                </a>
+            </div>
 
-            {% endif %}
+
+            <div>
+
+                <span>
+                    AVAILABILITY
+                </span>
+
+                <strong>
+                    {{ craft.quantity }}
+                </strong>
+
+            </div>
 
         </div>
 
+    </section>
 
-        <div class="process-video">
 
-            {% if craft.process_video %}
 
-                ▶
+    {% if craft.process_video or craft.making_video %}
+
+        <section class="detail-about section">
+
+            <div>
+
+                <span class="eyebrow">
+                    THE MAKING
+                </span>
+
+
+                <h2>
+                    See how the
+                    <br>
+                    <em>work comes alive.</em>
+                </h2>
+
+            </div>
+
+
+            <div class="detail-about__text">
+
+                {% if craft.process_video %}
+
+                    <a
+                        href="{{ craft.process_video }}"
+                        target="_blank"
+                        rel="noopener"
+                        class="button button--primary"
+                    >
+                        Watch process →
+                    </a>
+
+                {% endif %}
+
+
+                {% if craft.making_video %}
+
+                    <a
+                        href="{{ craft.making_video }}"
+                        target="_blank"
+                        rel="noopener"
+                        class="process-link"
+                    >
+                        Watch making video →
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </section>
+
+    {% endif %}
+
+
+
+    <section
+        id="maker"
+        class="maker-panel"
+    >
+
+        <div class="maker-panel__portrait">
+
+            {% if craft.artisan.profile_image %}
+
+                <img
+                    src="{{ craft.artisan.profile_image.url }}"
+                    alt="{{ craft.artisan.name }}"
+                >
 
             {% else %}
 
-                🧵
+                {{ craft.artisan.name|first|upper }}
 
             {% endif %}
 
         </div>
 
-    </section>
 
+        <div>
 
-    <!-- CRAFT PASSPORT -->
+            <span class="eyebrow">
+                MEET THE MAKER
+            </span>
 
-    <section class="section"
-             style="padding-left:0; padding-right:0;">
-
-        <div class="section-heading">
-
-            <div class="eyebrow">
-                CRAFT PASSPORT
-            </div>
 
             <h2>
-                Know what you're supporting.
+                {{ craft.artisan.name }}
             </h2>
 
+
             <p>
-
-                A craft is more than a finished object.
-                Its identity comes from the people, materials,
-                place and techniques behind it.
-
+                {{ craft.artisan.short_bio }}
             </p>
 
         </div>
 
 
-        <div class="impact-grid">
-
-
-            <div class="impact-card">
-
-                <div class="story-label">
-                    ARTISAN
-                </div>
-
-                <h3>
-                    {{ craft.artisan.name }}
-                </h3>
-
-                <p>
-                    The person behind this handmade work.
-                </p>
-
-            </div>
-
-
-            <div class="impact-card">
-
-                <div class="story-label">
-                    ORIGIN
-                </div>
-
-                <h3>
-                    {{ craft.artisan.location }}
-                </h3>
-
-                <p>
-                    The place connected with this craft.
-                </p>
-
-            </div>
-
-
-            <div class="impact-card">
-
-                <div class="story-label">
-                    CATEGORY
-                </div>
-
-                <h3>
-                    {{ craft.category }}
-                </h3>
-
-                <p>
-                    Part of India's diverse craft traditions.
-                </p>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- FINAL CTA -->
-
-    <section class="story">
-
-        <div class="story-label">
-            SUPPORT LIVING TRADITIONS
-        </div>
-
-        <h2>
-
-            When you support the maker,
-            you support the tradition.
-
-        </h2>
-
-        <p>
-
-            KARIGAR aims to make the people and stories
-            behind traditional crafts visible to the world.
-
-        </p>
-
-
-        <a href="/"
-           class="button button-primary">
-
-            Discover More Crafts →
-
+        <a
+            href="{% url 'artisan_detail' craft.artisan.slug %}"
+            class="button button--light"
+        >
+            View profile →
         </a>
 
     </section>
 
 
-</main>
+
+    {% if related_crafts %}
+
+        <section class="discover section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        YOU MAY ALSO LIKE
+                    </span>
 
 
-<!-- FOOTER -->
+                    <h2>
+                        More from this
+                        <br>
+                        <em>practice.</em>
+                    </h2>
 
-<footer class="footer">
-
-    <div class="footer-main">
-
-        <div class="footer-brand">
-
-            <img
-                src="{% static 'marketplace/images/karigar.png' %}"
-                alt="KARIGAR"
-                class="footer-logo"
-            >
-
-            <div>
-
-                <strong>
-                    KARIGAR
-                </strong>
-
-                <span>
-                    Hands · Stories · Heritage · Future
-                </span>
+                </div>
 
             </div>
 
-        </div>
+
+            <div class="craft-gallery">
+
+                {% for craft in related_crafts %}
+
+                    <div class="craft-gallery__item">
+
+                        {% include "marketplace/components/craft_card.html" %}
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        </section>
+
+    {% endif %}
 
 
-        <p>
 
-            Made by people.
-            Rooted in culture.
-            Shared with the world.
+</div>
 
-        </p>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <span>
-            Rooted in heritage. Built by hands. Moving forward.
-        </span>
-
-        <span>
-            KARIGAR · Prototype
-        </span>
-
-    </div>
-
-</footer>
-
-
-</body>
-</html>
+{% endblock %}

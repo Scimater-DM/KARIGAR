@@ -1,0 +1,92 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}
+    Practices & Styles — KARIGAR
+{% endblock %}
+
+
+{% block content %}
+
+<section class="section practices-directory">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                PRACTICES & STYLES
+            </span>
+
+
+            <h1>
+                Explore the
+                <br>
+                <em>living traditions.</em>
+            </h1>
+
+        </div>
+
+
+        <p>
+            An artisan can belong to many practices.
+            No single label has to define their work.
+        </p>
+
+    </div>
+
+
+    <div class="practice-grid">
+
+        {% for practice in practices %}
+
+            <a
+                href="{% url 'practice_detail' practice.slug %}"
+                class="practice-card"
+            >
+
+                <div class="practice-card__image">
+
+                    {% if practice.image %}
+
+                        <img
+                            src="{{ practice.image.url }}"
+                            alt="{{ practice.name }}"
+                        >
+
+                    {% endif %}
+
+                </div>
+
+
+                <div class="practice-card__body">
+
+                    <span>
+                        {{ practice.region }}
+                    </span>
+
+
+                    <h2>
+                        {{ practice.name }}
+                    </h2>
+
+
+                    <p>
+                        {{ practice.short_description }}
+                    </p>
+
+
+                    <strong>
+                        Explore →
+                    </strong>
+
+                </div>
+
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

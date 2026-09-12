@@ -1,0 +1,197 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}
+    {{ practice.name }} — KARIGAR
+{% endblock %}
+
+
+{% block content %}
+
+<section class="practice-hero section">
+
+    <div class="practice-hero__copy">
+
+        <span class="eyebrow">
+            {{ practice.region }}
+        </span>
+
+
+        <h1>
+            {{ practice.name }}
+        </h1>
+
+
+        <p>
+            {{ practice.short_description }}
+        </p>
+
+    </div>
+
+
+    <div class="practice-hero__image">
+
+        {% if practice.image %}
+
+            <img
+                src="{{ practice.image.url }}"
+                alt="{{ practice.name }}"
+            >
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+
+
+<section class="practice-context section">
+
+    <div>
+
+        <span class="eyebrow">
+            CULTURAL CONTEXT
+        </span>
+
+
+        <h2>
+            The story behind
+            <br>
+            <em>the practice.</em>
+        </h2>
+
+    </div>
+
+
+    <div>
+
+        <p>
+            {{ practice.cultural_context }}
+        </p>
+
+    </div>
+
+</section>
+
+
+
+{% if artisans %}
+
+<section class="section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                PRACTITIONERS
+            </span>
+
+
+            <h2>
+                People who
+                <em>practise it.</em>
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="artisan-directory">
+
+        {% for artisan in artisans %}
+
+            <a
+                href="{% url 'artisan_detail' artisan.slug %}"
+                class="artisan-directory-card"
+            >
+
+                <div class="artisan-directory-card__image">
+
+                    {% if artisan.profile_image %}
+
+                        <img
+                            src="{{ artisan.profile_image.url }}"
+                            alt="{{ artisan.name }}"
+                        >
+
+                    {% else %}
+
+                        <span>
+                            {{ artisan.name|first|upper }}
+                        </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <div>
+
+                    <span class="eyebrow">
+                        {{ artisan.location }}
+                    </span>
+
+
+                    <h2>
+                        {{ artisan.name }}
+                    </h2>
+
+                </div>
+
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+
+
+{% if crafts %}
+
+<section class="discover section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                RELATED WORK
+            </span>
+
+
+            <h2>
+                Crafts connected
+                <br>
+                to <em>{{ practice.name }}.</em>
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="craft-gallery">
+
+        {% for craft in crafts %}
+
+            <div class="craft-gallery__item">
+
+                {% include "marketplace/components/craft_card.html" %}
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
+{% endblock %}

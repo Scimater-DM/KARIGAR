@@ -1,0 +1,89 @@
+<article class="craft-card">
+
+    <a
+        href="{% url 'craft_detail' craft.slug %}"
+        class="craft-card__visual"
+        aria-label="Discover {{ craft.name }}"
+    >
+        {% if craft.image %}
+            <img
+                src="{{ craft.image.url }}"
+                alt="{{ craft.name }}"
+                loading="lazy"
+            >
+        {% else %}
+            <div class="craft-card__empty">
+                <span>
+                    Your craft
+                </span>
+                <small>
+                    Image coming soon
+                </small>
+            </div>
+        {% endif %}
+
+        <span class="craft-card__category">
+            {{ craft.category }}
+        </span>
+
+        <span
+            class="craft-card__round-arrow"
+            aria-hidden="true"
+        >
+            ↗
+        </span>
+    </a>
+
+    <div class="craft-card__body">
+
+        <div class="maker-line">
+            {% if craft.artisan.profile_image %}
+                <img
+                    src="{{ craft.artisan.profile_image.url }}"
+                    alt="{{ craft.artisan.name }}"
+                    class="maker-avatar maker-avatar--image"
+                    loading="lazy"
+                >
+            {% else %}
+                <span class="maker-avatar">
+                    {{ craft.artisan.name|first|upper }}
+                </span>
+            {% endif %}
+
+            <div>
+                <span>
+                    Made by
+                </span>
+
+                <strong>
+                    {{ craft.artisan.name }}
+                </strong>
+            </div>
+        </div>
+
+        <h3>
+            {{ craft.name }}
+        </h3>
+
+        <p class="craft-card__place">
+            📍 {{ craft.artisan.location }}
+        </p>
+
+        <div class="craft-card__footer">
+            <strong>
+                ₹{{ craft.price }}
+            </strong>
+
+            <a
+                href="{% url 'craft_detail' craft.slug %}"
+            >
+                Meet the maker
+                <span aria-hidden="true">
+                    ↗
+                </span>
+            </a>
+        </div>
+
+    </div>
+
+</article>

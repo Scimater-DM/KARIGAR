@@ -1,175 +1,56 @@
+{% extends "marketplace/base.html" %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}
+    Craft Added — KARIGAR
+{% endblock %}
 
-<head>
+{% block content %}
 
-    <meta charset="UTF-8">
+<section class="success-page">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>
-        Craft Created | KARIGAR
-    </title>
-
-    <link rel="stylesheet"
-          href="{% static 'marketplace/style.css' %}">
-
-</head>
-
-<body>
-
-
-<nav class="navbar">
-
-    <a href="/" class="brand">
+    <div class="success-card">
 
         <img
             src="{% static 'marketplace/images/karigar.png' %}"
             alt="KARIGAR"
-            class="brand-logo"
+            class="success-card__logo"
         >
 
-        <span class="brand-text">
-
-            <strong>
-                KARIGAR
-            </strong>
-
-            <small>
-                Hands · Stories · Heritage · Future
-            </small>
-
+        <span class="eyebrow">
+            CRAFT ADDED
         </span>
 
-    </a>
-
-
-    <div class="nav-links">
-
-        <a href="/">
-            Discover
-        </a>
-
-        <a href="/artisan/add/"
-           class="nav-artisan">
-
-            Add Another Craft
-
-        </a>
-
-    </div>
-
-</nav>
-
-
-<main class="success-page">
-
-    <div class="success-card">
-
-
-        <div class="success-icon">
-            ✓
-        </div>
-
-
-        <div class="eyebrow">
-            CRAFT CREATED
-        </div>
-
-
         <h1>
-            Your craft is now part of KARIGAR.
+            Your craft now has
+            <em>a place.</em>
         </h1>
 
-
         <p>
-
-            Your craft has been successfully saved.
-
-            Your story can now be discovered by people
-            who value handmade traditions.
-
+            Your work has been added to KARIGAR.
+            This is the beginning of its digital story.
         </p>
-
 
         <div class="success-actions">
 
-            <a href="/"
-               class="button button-primary">
-
-                Discover Crafts →
-
-            </a>
-
-
-            <a href="/artisan/add/"
-               class="back-link">
-
-                Add Another Craft
-
-            </a>
-
-        </div>
-
-
-    </div>
-
-</main>
-
-
-<footer class="footer">
-
-    <div class="footer-main">
-
-        <div class="footer-brand">
-
-            <img
-                src="{% static 'marketplace/images/karigar.png' %}"
-                alt="KARIGAR"
-                class="footer-logo"
+            <a
+                href="{% url 'marketplace' %}"
+                class="button button--dark"
             >
+                Explore KARIGAR →
+            </a>
 
-            <div>
-
-                <strong>
-                    KARIGAR
-                </strong>
-
-                <span>
-                    Hands · Stories · Heritage · Future
-                </span>
-
-            </div>
+            <a
+                href="{% url 'add_craft' %}"
+                class="button button--outline"
+            >
+                Add another craft
+            </a>
 
         </div>
 
-
-        <p>
-            Made by people.
-            Rooted in culture.
-            Shared with the world.
-        </p>
-
     </div>
 
+</section>
 
-    <div class="footer-bottom">
-
-        <span>
-            Rooted in heritage. Built by hands. Moving forward.
-        </span>
-
-        <span>
-            KARIGAR · Prototype
-        </span>
-
-    </div>
-
-</footer>
-
-
-</body>
-</html>
+{% endblock %}
