@@ -6,6 +6,7 @@
 
     --ink: #241B17;
     --ink-2: #123C35;
+    --green: #123C35;
     --ink-3: #315B52;
 
     --terracotta: #B9573F;
@@ -306,10 +307,10 @@ h3 em {
     letter-spacing: .03em;
 
     transition:
-        transform .25s ease,
-        box-shadow .25s ease,
-        background .25s ease,
-        border-color .25s ease;
+    transform .25s ease,
+    box-shadow .25s ease,
+    background .25s ease,
+    border-color .25s ease;
 }
 
 .button:hover {

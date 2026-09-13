@@ -1,29 +1,6 @@
 from django.contrib import admin
 
-from .models import (
-    Artisan,
-    Auction,
-    Craft,
-    Practice,
-)
-
-
-@admin.register(Practice)
-class PracticeAdmin(admin.ModelAdmin):
-    list_display = (
-        "name",
-        "region",
-        "created_at",
-    )
-
-    search_fields = (
-        "name",
-        "region",
-    )
-
-    prepopulated_fields = {
-        "slug": ("name",),
-    }
+from .models import Artisan, Practice, Craft, Auction
 
 
 @admin.register(Artisan)
@@ -32,28 +9,37 @@ class ArtisanAdmin(admin.ModelAdmin):
         "name",
         "location",
         "region",
-        "verified",
         "created_at",
-    )
-
-    list_filter = (
-        "verified",
-        "region",
     )
 
     search_fields = (
         "name",
         "location",
         "region",
+        "story",
     )
 
     prepopulated_fields = {
         "slug": ("name",),
     }
 
-    filter_horizontal = (
-        "practices",
+
+@admin.register(Practice)
+class PracticeAdmin(admin.ModelAdmin):
+    list_display = (
+        "name",
+        "region",
     )
+
+    search_fields = (
+        "name",
+        "region",
+        "description",
+    )
+
+    prepopulated_fields = {
+        "slug": ("name",),
+    }
 
 
 @admin.register(Craft)
@@ -62,24 +48,22 @@ class CraftAdmin(admin.ModelAdmin):
         "name",
         "artisan",
         "category",
+        "selling_method",
         "price",
-        "selling_method",
-        "published",
-        "featured",
+        "minimum_price",
         "created_at",
-    )
-
-    list_filter = (
-        "published",
-        "featured",
-        "selling_method",
-        "category",
     )
 
     search_fields = (
         "name",
         "category",
+        "description",
         "artisan__name",
+    )
+
+    list_filter = (
+        "category",
+        "selling_method",
     )
 
     prepopulated_fields = {
@@ -96,10 +80,15 @@ class AuctionAdmin(admin.ModelAdmin):
     list_display = (
         "craft",
         "starting_price",
-        "current_bid",
-        "end_time",
+        "current_price",
+        "ends_at",
+        "is_active",
     )
 
     search_fields = (
         "craft__name",
+    )
+
+    list_filter = (
+        "is_active",
     )

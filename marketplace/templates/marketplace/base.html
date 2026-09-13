@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#F4EBDD">
+    <meta name="theme-color" content="#F7EBDD">
     <meta
         name="description"
         content="KARIGAR — Discover the people, practices and stories behind India's living crafts."
@@ -43,28 +43,27 @@
         {% block content %}{% endblock %}
     </main>
 
+    <!-- Saathi appears exactly once -->
     <button
-    type="button"
-    class="saathi-float"
-    onclick="openSaathi()"
-    aria-label="Open Saathi"
->
-    <span class="saathi-float__pulse"></span>
+        type="button"
+        class="saathi-float"
+        onclick="openSaathi()"
+        aria-label="Open Saathi"
+    >
+        <span class="saathi-float__pulse"></span>
 
-    <span class="saathi-float__icon" aria-hidden="true">
-        ◌
-    </span>
+        <span class="saathi-float__icon" aria-hidden="true">
+            ◌
+        </span>
 
-    <span class="saathi-float__text">
-        Talk to Saathi
-    </span>
+        <span class="saathi-float__text">
+            Talk to Saathi
+        </span>
 
-    <span class="saathi-float__arrow" aria-hidden="true">
-        ↗
-    </span>
-</button>
-
-{% include "marketplace/components/saathi.html" %}
+        <span class="saathi-float__arrow" aria-hidden="true">
+            ↗
+        </span>
+    </button>
 
     {% include "marketplace/components/saathi.html" %}
 

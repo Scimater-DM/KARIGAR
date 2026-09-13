@@ -3,98 +3,21 @@ from django.urls import reverse
 from django.utils.text import slugify
 
 
-class Practice(models.Model):
-    name = models.CharField(max_length=150, unique=True)
-    slug = models.SlugField(
-        max_length=170,
-        unique=True,
-        blank=True,
-    )
-    short_description = models.CharField(
-        max_length=300,
-        blank=True,
-    )
-    cultural_context = models.TextField(blank=True)
-    region = models.CharField(
-        max_length=150,
-        blank=True,
-    )
-    image = models.ImageField(
-        upload_to="practices/",
-        blank=True,
-        null=True,
-    )
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-    )
-
-    class Meta:
-        ordering = ["name"]
-
-    def __str__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(self.name)
-        super().save(*args, **kwargs)
-
-    def get_absolute_url(self):
-        return reverse(
-            "practice_detail",
-            kwargs={"slug": self.slug},
-        )
-
-
 class Artisan(models.Model):
-    name = models.CharField(max_length=100)
-
-    slug = models.SlugField(
-        max_length=170,
-        unique=True,
-        blank=True,
-    )
-
-    location = models.CharField(
-        max_length=150,
-    )
-
-    region = models.CharField(
-        max_length=100,
-        blank=True,
-    )
-
+    name = models.CharField(max_length=120)
+    location = models.CharField(max_length=120)
+    region = models.CharField(max_length=120, blank=True)
     story = models.TextField(blank=True)
-
     profile_image = models.ImageField(
         upload_to="artisans/",
         blank=True,
         null=True,
     )
-
-    verified = models.BooleanField(
-        default=False,
-    )
-
-    practices = models.ManyToManyField(
-        Practice,
-        blank=True,
-        related_name="artisans",
-    )
-
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-    )
-
-    updated_at = models.DateTimeField(
-        auto_now=True,
-    )
+    slug = models.SlugField(max_length=140, unique=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["name"]
-
-    def __str__(self):
-        return self.name
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -102,17 +25,47 @@ class Artisan(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse(
-            "artisan_detail",
-            kwargs={"slug": self.slug},
-        )
+        return reverse("artisan_detail", kwargs={"slug": self.slug})
+
+    def __str__(self):
+        return self.name
+
+
+class Practice(models.Model):
+    name = models.CharField(max_length=120)
+    region = models.CharField(max_length=120)
+    description = models.TextField(blank=True)
+    image = models.ImageField(
+        upload_to="practices/",
+        blank=True,
+        null=True,
+    )
+    slug = models.SlugField(max_length=140, unique=True, blank=True)
+
+    class Meta:
+        ordering = ["name"]
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.name)
+        super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("practice_detail", kwargs={"slug": self.slug})
+
+    def __str__(self):
+        return self.name
 
 
 class Craft(models.Model):
+    SELLING_FIXED = "fixed"
+    SELLING_OFFERS = "offers"
+    SELLING_AUCTION = "auction"
+
     SELLING_METHODS = [
-        ("fixed", "Fixed Price"),
-        ("offer", "Accept Offers"),
-        ("auction", "Auction"),
+        (SELLING_FIXED, "Fixed Price"),
+        (SELLING_OFFERS, "Accept Offers"),
+        (SELLING_AUCTION, "Auction"),
     ]
 
     artisan = models.ForeignKey(
@@ -121,23 +74,9 @@ class Craft(models.Model):
         related_name="crafts",
     )
 
-    name = models.CharField(
-        max_length=200,
-    )
-
-    slug = models.SlugField(
-        max_length=170,
-        unique=True,
-        blank=True,
-    )
-
-    category = models.CharField(
-        max_length=100,
-    )
-
-    description = models.TextField(
-        blank=True,
-    )
+    name = models.CharField(max_length=160)
+    category = models.CharField(max_length=120)
+    description = models.TextField()
 
     image = models.ImageField(
         upload_to="crafts/",
@@ -145,65 +84,55 @@ class Craft(models.Model):
         null=True,
     )
 
-    process_video = models.URLField(
-        blank=True,
-    )
-
     making_video = models.URLField(
         blank=True,
         null=True,
+        help_text="YouTube or other process video link.",
     )
 
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
+        blank=True,
+        null=True,
+    )
+
+    minimum_price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        blank=True,
+        null=True,
+        help_text="The minimum price the artisan is willing to accept.",
     )
 
     selling_method = models.CharField(
         max_length=20,
         choices=SELLING_METHODS,
-        default="fixed",
+        default=SELLING_FIXED,
     )
 
-    published = models.BooleanField(
-        default=False,
-    )
-
-    featured = models.BooleanField(
-        default=False,
-    )
-
+    slug = models.SlugField(max_length=180, unique=True, blank=True)
     practices = models.ManyToManyField(
         Practice,
         blank=True,
         related_name="crafts",
     )
 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-    )
-
-    updated_at = models.DateTimeField(
-        auto_now=True,
-    )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ["-created_at"]
 
-    def __str__(self):
-        return self.name
-
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.name)
-
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse(
-            "craft_detail",
-            kwargs={"slug": self.slug},
-        )
+        return reverse("craft_detail", kwargs={"slug": self.slug})
+
+    def __str__(self):
+        return self.name
 
 
 class Auction(models.Model):
@@ -218,16 +147,17 @@ class Auction(models.Model):
         decimal_places=2,
     )
 
-    current_bid = models.DecimalField(
+    current_price = models.DecimalField(
         max_digits=10,
         decimal_places=2,
     )
 
-    end_time = models.DateTimeField()
+    ends_at = models.DateTimeField()
 
-    created_at = models.DateTimeField(
-        auto_now_add=True,
-    )
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["ends_at"]
 
     def __str__(self):
         return f"Auction — {self.craft.name}"
