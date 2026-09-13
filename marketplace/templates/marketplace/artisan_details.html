@@ -1,15 +1,15 @@
 {% extends "marketplace/base.html" %}
 
 {% block title %}
-    {{ artisan.name }} — KARIGAR
+{{ artisan.name }} — KARIGAR
 {% endblock %}
 
 
 {% block content %}
 
-<section class="artisan-profile section">
+<section class="profile-hero">
 
-    <div class="artisan-profile__portrait">
+    <div class="profile-portrait">
 
         {% if artisan.profile_image %}
 
@@ -20,118 +20,106 @@
 
         {% else %}
 
-            <span>
-                {{ artisan.name|first|upper }}
-            </span>
-
-        {% endif %}
-
-    </div>
-
-
-    <div class="artisan-profile__intro">
-
-        <span class="eyebrow">
-            KARIGAR MAKER
-        </span>
-
-
-        <h1>
-            {{ artisan.name }}
-        </h1>
-
-
-        <p class="artisan-profile__location">
-            {{ artisan.location }}
-        </p>
-
-
-        {% if artisan.short_bio %}
-
-            <p>
-                {{ artisan.short_bio }}
-            </p>
-
-        {% endif %}
-
-
-        {% if artisan.practices.all %}
-
-            <div class="profile-practices">
-
+            <div class="maker-placeholder">
                 <span>
-                    Practices & styles
+                    {{ artisan.name|first }}
                 </span>
-
-
-                {% for practice in artisan.practices.all %}
-
-                    <a
-                        href="{% url 'practice_detail' practice.slug %}"
-                    >
-                        {{ practice.name }}
-                    </a>
-
-                {% endfor %}
-
             </div>
 
         {% endif %}
 
     </div>
 
-</section>
 
+    <div class="profile-intro">
 
+        <span class="eyebrow">
+            KARIGAR · {{ artisan.location }}
+        </span>
 
-<section class="artisan-story section">
+        <h1>
+            {{ artisan.name }}
+        </h1>
 
-    <span class="eyebrow">
-        THE STORY
-    </span>
-
-
-    <h2>
-        In their own
-        <br>
-        <em>words.</em>
-    </h2>
-
-
-    {% if artisan.story %}
-
-        <p>
-            {{ artisan.story }}
+        <p class="profile-lede">
+            {{ artisan.story|default:"A maker carrying a living craft tradition forward." }}
         </p>
 
-    {% else %}
+        <a
+            href="#crafts"
+            class="button button--primary"
+        >
+            See their crafts ↗
+        </a>
 
-        <p>
-            This artisan's story is still being written.
-        </p>
-
-    {% endif %}
+    </div>
 
 </section>
 
 
+<section class="profile-story">
 
-{% if crafts %}
+    <div>
 
-<section class="discover section">
+        <span class="eyebrow">
+            THE STORY
+        </span>
+
+        <h2>
+            More than an<br>
+            <em>object.</em>
+        </h2>
+
+    </div>
+
+
+    <div class="story-copy">
+
+        <p>
+            {{ artisan.story|default:"This maker's story is part of the living knowledge behind their craft." }}
+        </p>
+
+
+        <div class="profile-meta">
+
+            <span>
+                <small>PLACE</small>
+                {{ artisan.location }}
+            </span>
+
+            <span>
+                <small>REGION</small>
+                {{ artisan.region|default:"India" }}
+            </span>
+
+            <span>
+                <small>CRAFTS</small>
+                {{ artisan.crafts.count }}
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section
+    id="crafts"
+    class="profile-crafts"
+>
 
     <div class="section-heading">
 
         <div>
 
             <span class="eyebrow">
-                THEIR WORK
+                THE WORK
             </span>
 
-
             <h2>
-                Made by
-                <em>{{ artisan.name }}.</em>
+                Crafts by
+                <em>{{ artisan.name }}</em>
             </h2>
 
         </div>
@@ -139,22 +127,74 @@
     </div>
 
 
-    <div class="craft-gallery">
+    <div class="listing-grid">
 
-        {% for craft in crafts %}
+        {% for craft in artisan.crafts.all %}
 
-            <div class="craft-gallery__item">
+            <a
+                href="{{ craft.get_absolute_url }}"
+                class="listing-card"
+            >
 
-                {% include "marketplace/components/craft_card.html" %}
+                <div class="listing-card__image">
 
-            </div>
+                    {% if craft.image %}
+
+                        <img
+                            src="{{ craft.image.url }}"
+                            alt="{{ craft.name }}"
+                            loading="lazy"
+                        >
+
+                    {% else %}
+
+                        <div class="image-empty">
+                            <span>
+                                Craft photograph
+                            </span>
+                        </div>
+
+                    {% endif %}
+
+                    <span>
+                        {{ craft.category }}
+                    </span>
+
+                </div>
+
+
+                <div class="listing-card__body">
+
+                    <div>
+
+                        <h2>
+                            {{ craft.name }}
+                        </h2>
+
+                        <p>
+                            {{ craft.get_selling_method_display }}
+                        </p>
+
+                    </div>
+
+                    <span>
+                        ↗
+                    </span>
+
+                </div>
+
+            </a>
+
+        {% empty %}
+
+            <p class="muted">
+                No crafts published yet.
+            </p>
 
         {% endfor %}
 
     </div>
 
 </section>
-
-{% endif %}
 
 {% endblock %}

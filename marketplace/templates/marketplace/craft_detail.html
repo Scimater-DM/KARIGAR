@@ -1,283 +1,51 @@
 {% extends "marketplace/base.html" %}
 
 {% block title %}
-    {{ craft.name }} — KARIGAR
+{{ craft.name }} — KARIGAR
 {% endblock %}
 
 
 {% block content %}
 
-<div class="detail-page">
+<section class="craft-detail-hero">
 
+    <div class="craft-detail-image">
 
-    <section class="detail-hero">
+        {% if craft.image %}
 
-        <div class="detail-hero__image">
-
-            {% if craft.image %}
-
-                <img
-                    src="{{ craft.image.url }}"
-                    alt="{{ craft.name }}"
-                >
-
-            {% else %}
-
-                <div class="detail-placeholder">
-                    {{ craft.name }}
-                </div>
-
-            {% endif %}
-
-        </div>
-
-
-        <div class="detail-hero__copy">
-
-            <span class="eyebrow">
-                {{ craft.category }}
-            </span>
-
-
-            <h1>
-                {{ craft.name }}
-            </h1>
-
-
-            <a
-                href="{% url 'artisan_detail' craft.artisan.slug %}"
-                class="detail-maker"
+            <img
+                src="{{ craft.image.url }}"
+                alt="{{ craft.name }}"
             >
 
-                {% if craft.artisan.profile_image %}
+        {% else %}
 
-                    <img
-                        src="{{ craft.artisan.profile_image.url }}"
-                        alt="{{ craft.artisan.name }}"
-                    >
-
-                {% else %}
-
-                    <span>
-                        {{ craft.artisan.name|first|upper }}
-                    </span>
-
-                {% endif %}
-
-
+            <div class="image-empty">
                 <span>
-
-                    <small>
-                        Made by
-                    </small>
-
-                    <strong>
-                        {{ craft.artisan.name }}
-                    </strong>
-
+                    Craft photograph
                 </span>
-
-            </a>
-
-
-            <p class="detail-place">
-                {{ craft.artisan.location }}
-            </p>
-
-
-            {% if craft.practices.all %}
-
-                <div class="detail-practice-list">
-
-                    {% for practice in craft.practices.all %}
-
-                        <a
-                            href="{% url 'practice_detail' practice.slug %}"
-                        >
-                            {{ practice.name }}
-                        </a>
-
-                    {% endfor %}
-
-                </div>
-
-            {% endif %}
-
-
-            <div class="detail-price">
-
-                <span>
-                    {{ craft.get_selling_method_display }}
-                </span>
-
-                <strong>
-                    ₹{{ craft.price }}
-                </strong>
-
             </div>
 
+        {% endif %}
 
-            <a
-                href="#story"
-                class="button button--primary"
-            >
-                Discover the story →
-            </a>
-
-        </div>
-
-    </section>
+    </div>
 
 
+    <div class="craft-detail-intro">
 
-    <section
-        id="story"
-        class="detail-story section"
-    >
+        <span class="eyebrow">
+            {{ craft.category }}
+        </span>
 
-        <div>
-
-            <span class="eyebrow">
-                THE STORY
-            </span>
+        <h1>
+            {{ craft.name }}
+        </h1>
 
 
-            <h2>
-                More than an object.
-                <br>
-                <em>A piece of a place.</em>
-            </h2>
-
-
-            <p>
-                {{ craft.description }}
-            </p>
-
-        </div>
-
-
-        <div class="detail-facts">
-
-            <div>
-
-                <span>
-                    MAKER
-                </span>
-
-                <strong>
-                    {{ craft.artisan.name }}
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    PLACE
-                </span>
-
-                <strong>
-                    {{ craft.artisan.location }}
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    CATEGORY
-                </span>
-
-                <strong>
-                    {{ craft.category }}
-                </strong>
-
-            </div>
-
-
-            <div>
-
-                <span>
-                    AVAILABILITY
-                </span>
-
-                <strong>
-                    {{ craft.quantity }}
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-
-    {% if craft.process_video or craft.making_video %}
-
-        <section class="detail-about section">
-
-            <div>
-
-                <span class="eyebrow">
-                    THE MAKING
-                </span>
-
-
-                <h2>
-                    See how the
-                    <br>
-                    <em>work comes alive.</em>
-                </h2>
-
-            </div>
-
-
-            <div class="detail-about__text">
-
-                {% if craft.process_video %}
-
-                    <a
-                        href="{{ craft.process_video }}"
-                        target="_blank"
-                        rel="noopener"
-                        class="button button--primary"
-                    >
-                        Watch process →
-                    </a>
-
-                {% endif %}
-
-
-                {% if craft.making_video %}
-
-                    <a
-                        href="{{ craft.making_video }}"
-                        target="_blank"
-                        rel="noopener"
-                        class="process-link"
-                    >
-                        Watch making video →
-                    </a>
-
-                {% endif %}
-
-            </div>
-
-        </section>
-
-    {% endif %}
-
-
-
-    <section
-        id="maker"
-        class="maker-panel"
-    >
-
-        <div class="maker-panel__portrait">
+        <a
+            href="{{ craft.artisan.get_absolute_url }}"
+            class="maker-inline"
+        >
 
             {% if craft.artisan.profile_image %}
 
@@ -286,89 +54,260 @@
                     alt="{{ craft.artisan.name }}"
                 >
 
+            {% endif %}
+
+            <span>
+
+                Made by
+                <strong>
+                    {{ craft.artisan.name }}
+                </strong>
+
+                <small>
+                    {{ craft.artisan.location }}
+                </small>
+
+            </span>
+
+        </a>
+
+
+        <div class="price-block">
+
+            {% if craft.selling_method == 'auction' and craft.auction %}
+
+                <small>
+                    LIVE AUCTION
+                </small>
+
+                <strong>
+                    ₹{{ craft.auction.current_price }}
+                </strong>
+
+            {% elif craft.price %}
+
+                <small>
+                    {{ craft.get_selling_method_display|upper }}
+                </small>
+
+                <strong>
+                    ₹{{ craft.price }}
+                </strong>
+
             {% else %}
 
-                {{ craft.artisan.name|first|upper }}
+                <small>
+                    PRICE
+                </small>
+
+                <strong>
+                    Ask the maker
+                </strong>
 
             {% endif %}
 
         </div>
 
 
-        <div>
+        <div class="commerce-actions">
 
-            <span class="eyebrow">
-                MEET THE MAKER
-            </span>
+            {% if craft.selling_method == 'offers' %}
+
+                <button
+                    class="button button--primary"
+                    type="button"
+                    onclick="alert('Offer flow is ready for the next build layer.')"
+                >
+                    Make an offer ↗
+                </button>
+
+            {% elif craft.selling_method == 'auction' %}
+
+                <button
+                    class="button button--primary"
+                    type="button"
+                    onclick="alert('Live bidding is a planned commerce layer for the prototype.')"
+                >
+                    View auction ↗
+                </button>
+
+            {% else %}
+
+                <button
+                    class="button button--primary"
+                    type="button"
+                    onclick="alert('Checkout is the next commerce layer. This prototype preserves the selling method.')"
+                >
+                    Enquire to buy ↗
+                </button>
+
+            {% endif %}
 
 
-            <h2>
-                {{ craft.artisan.name }}
-            </h2>
-
-
-            <p>
-                {{ craft.artisan.short_bio }}
-            </p>
+            <button
+                class="button button--quiet"
+                type="button"
+                onclick="openSaathi()"
+            >
+                Talk to Saathi
+            </button>
 
         </div>
 
+    </div>
+
+</section>
+
+
+<section class="craft-story">
+
+    <div class="story-heading">
+
+        <span class="eyebrow">
+            THE STORY
+        </span>
+
+        <h2>
+            More than an<br>
+            object.<br>
+            <em>A piece of a place.</em>
+        </h2>
+
+    </div>
+
+
+    <div class="story-copy">
+
+        <p>
+            {{ craft.description }}
+        </p>
+
+
+        <div class="craft-facts">
+
+            <span>
+                <small>MAKER</small>
+
+                <a href="{{ craft.artisan.get_absolute_url }}">
+                    {{ craft.artisan.name }}
+                </a>
+            </span>
+
+            <span>
+                <small>PLACE</small>
+                {{ craft.artisan.location }}
+            </span>
+
+            <span>
+                <small>CATEGORY</small>
+                {{ craft.category }}
+            </span>
+
+            <span>
+                <small>SELLING</small>
+                {{ craft.get_selling_method_display }}
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% if craft.making_video %}
+
+<section class="process-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                THE MAKING
+            </span>
+
+            <h2>
+                See the
+                <em>process.</em>
+            </h2>
+
+        </div>
 
         <a
-            href="{% url 'artisan_detail' craft.artisan.slug %}"
-            class="button button--light"
+            class="text-link"
+            href="{{ craft.making_video }}"
+            target="_blank"
+            rel="noopener"
         >
-            View profile →
+            Open process video ↗
         </a>
 
-    </section>
+    </div>
 
 
+    <div class="video-card">
 
-    {% if related_crafts %}
+        <div class="video-card__mark">
+            WATCH THE MAKING
+        </div>
 
-        <section class="discover section">
+        <p>
+            The maker's process is part of the story.
+            Open the linked video to see the work being made.
+        </p>
 
-            <div class="section-heading">
+        <a
+            href="{{ craft.making_video }}"
+            target="_blank"
+            rel="noopener"
+            class="button button--primary"
+        >
+            Watch process ↗
+        </a>
 
-                <div>
+    </div>
 
-                    <span class="eyebrow">
-                        YOU MAY ALSO LIKE
-                    </span>
+</section>
 
-
-                    <h2>
-                        More from this
-                        <br>
-                        <em>practice.</em>
-                    </h2>
-
-                </div>
-
-            </div>
+{% endif %}
 
 
-            <div class="craft-gallery">
+<section class="craft-maker-banner">
 
-                {% for craft in related_crafts %}
+    <div>
 
-                    <div class="craft-gallery__item">
+        <span class="eyebrow">
+            MEET THE MAKER
+        </span>
 
-                        {% include "marketplace/components/craft_card.html" %}
+        <h2>
+            {{ craft.artisan.name }}
+        </h2>
 
-                    </div>
+        <p>
+            {{ craft.artisan.story|default:"A maker carrying a living craft tradition forward." }}
+        </p>
 
-                {% endfor %}
+        <a
+            href="{{ craft.artisan.get_absolute_url }}"
+            class="text-link"
+        >
+            View KARIGAR profile ↗
+        </a>
 
-            </div>
+    </div>
 
-        </section>
+
+    {% if craft.artisan.profile_image %}
+
+        <img
+            src="{{ craft.artisan.profile_image.url }}"
+            alt="{{ craft.artisan.name }}"
+        >
 
     {% endif %}
 
-
-
-</div>
+</section>
 
 {% endblock %}

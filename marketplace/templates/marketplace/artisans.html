@@ -1,50 +1,53 @@
 {% extends "marketplace/base.html" %}
 
 {% block title %}
-    Meet the Artisans — KARIGAR
+Meet the Makers — KARIGAR
 {% endblock %}
 
 
 {% block content %}
 
-<section class="section directory-page">
+<section class="listing-hero listing-hero--people">
 
-    <div class="section-heading">
+    <div>
 
-        <div>
+        <span class="eyebrow">
+            THE PEOPLE
+        </span>
 
-            <span class="eyebrow">
-                THE MAKERS
-            </span>
-
-
-            <h1>
-                Meet the people
-                <br>
-                <em>behind the work.</em>
-            </h1>
-
-        </div>
-
+        <h1>
+            Meet the<br>
+            <em>makers.</em>
+        </h1>
 
         <p>
-            Explore artisans through their stories,
-            places, practices and work.
+            Every craft begins with a person,
+            a place and years of knowledge.
         </p>
 
     </div>
 
 
-    <div class="artisan-directory">
+    <div class="hero-side-note">
+        KARIGAR is built around the maker —
+        not just the object.
+    </div>
+
+</section>
+
+
+<section class="people-listing">
+
+    <div class="people-grid">
 
         {% for artisan in artisans %}
 
             <a
-                href="{% url 'artisan_detail' artisan.slug %}"
-                class="artisan-directory-card"
+                href="{{ artisan.get_absolute_url }}"
+                class="people-card"
             >
 
-                <div class="artisan-directory-card__image">
+                <div class="people-card__image">
 
                     {% if artisan.profile_image %}
 
@@ -56,30 +59,40 @@
 
                     {% else %}
 
-                        <span>
-                            {{ artisan.name|first|upper }}
-                        </span>
+                        <div class="maker-placeholder">
+                            <span>
+                                {{ artisan.name|first }}
+                            </span>
+                        </div>
 
                     {% endif %}
 
                 </div>
 
 
-                <div>
+                <div class="people-card__body">
 
                     <span class="eyebrow">
-                        {{ artisan.location }}
+                        KARIGAR
                     </span>
-
 
                     <h2>
                         {{ artisan.name }}
                     </h2>
 
-
                     <p>
-                        {{ artisan.short_bio }}
+                        {{ artisan.location }}
+
+                        {% if artisan.region %}
+                            · {{ artisan.region }}
+                        {% endif %}
                     </p>
+
+                    <span>
+                        {{ artisan.crafts.count }}
+                        craft{{ artisan.crafts.count|pluralize }}
+                        ↗
+                    </span>
 
                 </div>
 
@@ -87,9 +100,17 @@
 
         {% empty %}
 
-            <p>
-                Our maker directory is growing.
-            </p>
+            <div class="empty-state">
+
+                <h3>
+                    The makers are waiting.
+                </h3>
+
+                <p>
+                    Add an artisan through the maker flow.
+                </p>
+
+            </div>
 
         {% endfor %}
 

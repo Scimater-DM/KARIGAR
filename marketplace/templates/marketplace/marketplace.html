@@ -1,77 +1,106 @@
 {% extends "marketplace/base.html" %}
-{% load static %}
 
 {% block title %}
-    KARIGAR — Every hand leaves a story
+KARIGAR — Every hand leaves a story
 {% endblock %}
+
 
 {% block content %}
 
-<div class="home">
+<div class="home-page">
+
 
     <!-- HERO -->
+
     <section class="home-hero">
 
         <div class="home-hero__image">
 
-            {% if featured and featured.image %}
+            {% if hero_craft %}
 
-                <img
-                    src="{{ featured.image.url }}"
-                    alt="{{ featured.name }}"
-                >
-
-            {% elif crafts %}
-
-                {% with craft=crafts.0 %}
+                {% with craft=hero_craft %}
 
                     {% if craft.image %}
+
                         <img
                             src="{{ craft.image.url }}"
                             alt="{{ craft.name }}"
                         >
+
+                    {% else %}
+
+                        <div class="image-empty">
+                            <span>
+                                Craft photograph
+                            </span>
+                        </div>
+
                     {% endif %}
 
+
+                    <div class="image-caption">
+
+                        <span>
+                            FROM THE HANDS OF INDIA
+                        </span>
+
+                        <strong>
+                            {{ craft.name }}
+                        </strong>
+
+                        <small>
+                            {{ craft.artisan.name }}
+                            ·
+                            {{ craft.artisan.location }}
+                        </small>
+
+                    </div>
+
                 {% endwith %}
+
+            {% else %}
+
+                <div class="image-empty">
+                    <span>
+                        Add your first craft photograph
+                    </span>
+                </div>
 
             {% endif %}
 
         </div>
 
-        <div class="home-hero__shade"></div>
 
-        <div class="home-hero__pattern"></div>
+        <div class="home-hero__copy texture-ajrak">
 
-        <div class="home-hero__content">
-
-            <span class="eyebrow eyebrow--light">
+            <span class="eyebrow">
                 INDIA'S LIVING TRADITIONS
             </span>
 
             <h1>
-                Real people.
+                Real people.<br>
                 <em>Extraordinary crafts.</em>
             </h1>
 
             <p>
-                Discover the people, places and practices
-                behind India's living crafts — straight
-                from the source.
+                Meet the people behind India's living crafts.
+                Discover their stories, their practices and
+                the hands that keep them alive.
             </p>
 
             <div class="hero-actions">
 
                 <a
-                    href="{% url 'marketplace' %}"
-                    class="button button--gold"
+                    href="{% url 'crafts' %}"
+                    class="button button--primary"
                 >
                     Explore crafts
-                    <span>→</span>
+                    <span>↗</span>
                 </a>
 
                 <button
                     type="button"
-                    class="button button--ghost-light"
+                    class="button button--quiet"
                     onclick="openSaathi()"
                 >
                     Talk to Saathi
@@ -79,203 +108,119 @@
 
             </div>
 
-        </div>
+            <div class="hero-note">
+                <span></span>
+                Every hand leaves a story.
+            </div>
 
-        <div class="home-hero__maker">
-
-            {% if featured %}
-
-                <span>FEATURED MAKER</span>
-
-                <strong>
-                    {{ featured.artisan.name }}
-                </strong>
-
-                <small>
-                    {{ featured.artisan.location }}
-                </small>
-
-            {% endif %}
-
-        </div>
-
-        <div class="home-hero__scroll">
-            Scroll to discover
-            <span></span>
         </div>
 
     </section>
 
 
-    <!-- FEATURED / DISCOVER -->
-    <section class="home-section home-discover">
 
-        <div class="section-intro">
+    <!-- DISCOVER -->
+
+    <section class="section discovery-section">
+
+        <div class="section-heading">
 
             <div>
+
                 <span class="eyebrow">
-                    HANDPICKED FOR YOU
+                    DISCOVER
                 </span>
 
                 <h2>
-                    Explore our
-                    <em>crafts.</em>
+                    Made by hand.<br>
+                    <em>Made with meaning.</em>
                 </h2>
+
             </div>
 
             <a
-                href="{% url 'marketplace' %}"
+                href="{% url 'crafts' %}"
                 class="text-link"
             >
-                View all crafts →
+                View all crafts ↗
             </a>
 
         </div>
 
-        <div class="discover-layout">
 
-            {% if featured %}
+        <div class="home-craft-grid">
+
+            {% for craft in featured_crafts|slice:":5" %}
 
                 <a
-                    href="{{ featured.get_absolute_url }}"
-                    class="featured-maker-card"
+                    href="{{ craft.get_absolute_url }}"
+                    class="home-craft {% if forloop.first %}home-craft--feature{% endif %}"
                 >
 
-                    {% if featured.artisan.profile_image %}
+                    <div class="home-craft__image">
 
-                        <img
-                            src="{{ featured.artisan.profile_image.url }}"
-                            alt="{{ featured.artisan.name }}"
-                        >
+                        {% if craft.image %}
 
-                    {% elif featured.image %}
+                            <img
+                                src="{{ craft.image.url }}"
+                                alt="{{ craft.name }}"
+                                loading="lazy"
+                            >
 
-                        <img
-                            src="{{ featured.image.url }}"
-                            alt="{{ featured.name }}"
-                        >
+                        {% else %}
 
-                    {% endif %}
+                            <div class="image-empty">
+                                <span>
+                                    Craft photograph
+                                </span>
+                            </div>
 
-                    <div class="featured-maker-card__overlay">
-
-                        <span>
-                            Featured artisan
-                        </span>
-
-                        <strong>
-                            {{ featured.artisan.name }}
-                        </strong>
-
-                        <small>
-                            {{ featured.artisan.location }}
-                        </small>
-
-                        <b>
-                            Meet the maker →
-                        </b>
-
-                    </div>
-
-                </a>
-
-            {% endif %}
-
-
-            <div class="craft-strip">
-
-                {% for craft in crafts|slice:":5" %}
-
-                    <a
-                        href="{{ craft.get_absolute_url }}"
-                        class="mini-craft"
-                    >
-
-                        <div class="mini-craft__image">
-
-                            {% if craft.image %}
-
-                                <img
-                                    src="{{ craft.image.url }}"
-                                    alt="{{ craft.name }}"
-                                    loading="lazy"
-                                >
-
-                            {% endif %}
-
-                        </div>
+                        {% endif %}
 
                         <span>
                             {{ craft.category }}
                         </span>
 
-                        <strong>
-                            {{ craft.name }}
-                        </strong>
+                    </div>
 
-                    </a>
 
-                {% empty %}
+                    <div class="home-craft__info">
+
+                        <div>
+
+                            <h3>
+                                {{ craft.name }}
+                            </h3>
+
+                            <p>
+                                {{ craft.artisan.name }}
+                                ·
+                                {{ craft.artisan.location }}
+                            </p>
+
+                        </div>
+
+                        <b>↗</b>
+
+                    </div>
+
+                </a>
+
+            {% empty %}
+
+                <div class="empty-state">
+
+                    <span>✦</span>
+
+                    <h3>
+                        The first story is waiting.
+                    </h3>
 
                     <p>
-                        The first craft story is waiting.
+                        Add a craft to begin building KARIGAR.
                     </p>
 
-                {% endfor %}
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- CULTURAL MAP / PRACTICES -->
-    <section class="home-region">
-
-        <div class="region-pattern"></div>
-
-        <div class="region-copy">
-
-            <span class="eyebrow eyebrow--light">
-                EXPLORE INDIA'S CRAFT REGIONS
-            </span>
-
-            <h2>
-                A land of
-                <em>many traditions.</em>
-            </h2>
-
-            <p>
-                From regional techniques to family practices,
-                explore the cultural worlds behind the things
-                people make.
-            </p>
-
-            <a
-                href="{% url 'practices' %}"
-                class="button button--outline-light"
-            >
-                Explore the Atlas →
-            </a>
-
-        </div>
-
-        <div class="region-map">
-
-            <div class="india-mark">
-                INDIA
-            </div>
-
-            {% for practice in practices|slice:":6" %}
-
-                <a
-                    href="{{ practice.get_absolute_url }}"
-                    class="region-label"
-                >
-                    <span></span>
-                    {{ practice.name }}
-                </a>
+                </div>
 
             {% endfor %}
 
@@ -284,146 +229,272 @@
     </section>
 
 
-    <!-- THREE EXPERIENCES -->
-    <section class="home-section home-stories">
 
-        <div class="story-grid">
+    <!-- MAKERS -->
+
+    <section class="section makers-section">
+
+        <div class="makers-intro">
+
+            <span class="eyebrow">
+                THE PEOPLE
+            </span>
+
+            <h2>
+                Meet the<br>
+                <em>makers.</em>
+            </h2>
+
+            <p>
+                Behind every object is a person,
+                a place, a skill and a story worth knowing.
+            </p>
 
             <a
                 href="{% url 'artisans' %}"
-                class="story-tile story-tile--large"
+                class="text-link"
             >
+                Meet all artisans ↗
+            </a>
 
-                <div class="story-tile__image">
+        </div>
 
-                    {% if artisans.0.profile_image %}
 
-                        <img
-                            src="{{ artisans.0.profile_image.url }}"
-                            alt="{{ artisans.0.name }}"
-                        >
+        <div class="maker-grid">
 
-                    {% endif %}
+            {% for artisan in featured_artisans|slice:":3" %}
 
-                </div>
+                <a
+                    href="{{ artisan.get_absolute_url }}"
+                    class="maker-card"
+                >
 
-                <div class="story-tile__content">
+                    <div class="maker-card__image">
 
-                    <span>THE PEOPLE</span>
+                        {% if artisan.profile_image %}
+
+                            <img
+                                src="{{ artisan.profile_image.url }}"
+                                alt="{{ artisan.name }}"
+                                loading="lazy"
+                            >
+
+                        {% else %}
+
+                            <div class="maker-placeholder">
+                                <span>
+                                    {{ artisan.name|first }}
+                                </span>
+                            </div>
+
+                        {% endif %}
+
+                    </div>
 
                     <h3>
-                        More than
-                        <em>just crafts.</em>
+                        {{ artisan.name }}
                     </h3>
 
                     <p>
-                        Meet the people, journeys and
-                        traditions behind every piece.
+                        {{ artisan.location }}
                     </p>
 
-                    <b>Read their stories →</b>
+                </a>
 
-                </div>
+            {% empty %}
 
-            </a>
-
-
-            <div class="story-tile story-tile--light">
-
-                <span>THE MAKING</span>
-
-                <h3>
-                    From raw material
-                    <em>to masterpiece.</em>
-                </h3>
-
-                <p>
-                    See the skill, patience and process
-                    behind handmade work.
+                <p class="muted">
+                    Artisan stories will appear here.
                 </p>
 
-                {% if crafts.0.process_video %}
-
-                    <a
-                        href="{{ crafts.0.process_video }}"
-                        target="_blank"
-                        rel="noopener"
-                        class="text-link"
-                    >
-                        Watch the process →
-                    </a>
-
-                {% else %}
-
-                    <span class="coming-note">
-                        Making stories coming soon
-                    </span>
-
-                {% endif %}
-
-            </div>
-
-
-            <div class="story-tile story-tile--dark">
-
-                <div class="saathi-orbit">
-                    <span>◌</span>
-                </div>
-
-                <span>YOUR COMPANION</span>
-
-                <h3>
-                    Meet
-                    <em>Saathi.</em>
-                </h3>
-
-                <p>
-                    Tell your story, understand your craft
-                    and get help without needing to type everything.
-                </p>
-
-                <button
-                    type="button"
-                    onclick="openSaathi()"
-                    class="button button--gold"
-                >
-                    Talk to Saathi →
-                </button>
-
-            </div>
+            {% endfor %}
 
         </div>
 
     </section>
 
 
+
+    <!-- TRADITIONS -->
+
+    <section class="traditions-section texture-thread">
+
+        <div class="traditions-copy">
+
+            <span class="eyebrow eyebrow--light">
+                THE PRACTICE
+            </span>
+
+            <h2>
+                Many places.<br>
+                <em>Many traditions.</em>
+            </h2>
+
+            <p>
+                Explore the techniques, materials and
+                cultural practices that give India's
+                crafts their identity.
+            </p>
+
+            <a
+                href="{% url 'practices' %}"
+                class="button button--outline-light"
+            >
+                Explore traditions ↗
+            </a>
+
+        </div>
+
+
+        <div class="tradition-list">
+
+            {% for practice in practices|slice:":6" %}
+
+                <a
+                    href="{{ practice.get_absolute_url }}"
+                    class="tradition-row"
+                >
+
+                    <span>
+                        0{{ forloop.counter }}
+                    </span>
+
+                    <strong>
+                        {{ practice.name }}
+                    </strong>
+
+                    <small>
+                        {{ practice.region }}
+                    </small>
+
+                    <b>
+                        ↗
+                    </b>
+
+                </a>
+
+            {% empty %}
+
+                <p>
+                    No traditions added yet.
+                </p>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+
+    <!-- SAATHI -->
+
+    <section class="saathi-home-section texture-aipan">
+
+        <div>
+
+            <span class="eyebrow">
+                YOUR COMPANION
+            </span>
+
+            <h2>
+                Meet<br>
+                <em>Saathi.</em>
+            </h2>
+
+            <p>
+                A simple companion for artisans.
+                Tell your story, understand your work,
+                price your craft and reach more buyers.
+            </p>
+
+
+            <div class="saathi-pills">
+
+                <span>
+                    Tell my story
+                </span>
+
+                <span>
+                    Price my work
+                </span>
+
+                <span>
+                    Find buyers
+                </span>
+
+            </div>
+
+
+            <small>
+                AI drafts. You decide.
+            </small>
+
+            <br><br>
+
+            <button
+                type="button"
+                class="button button--primary"
+                onclick="openSaathi()"
+            >
+                Talk to Saathi ↗
+            </button>
+
+        </div>
+
+
+        <div class="saathi-art">
+
+            <div class="saathi-art__circle">
+                साथी
+            </div>
+
+            <div class="saathi-art__line"></div>
+
+        </div>
+
+    </section>
+
+
+
     <!-- ARTISAN CTA -->
-    <section class="home-cta">
 
-        <div class="home-cta__image"></div>
+    <section class="artisan-cta">
 
-        <div class="home-cta__content">
+        <div>
 
             <span class="eyebrow eyebrow--light">
                 FOR THE MAKERS
             </span>
 
             <h2>
-                Every craft has a story.
-                <em>Be part of it.</em>
+                Your craft.<br>
+                <em>Your identity.</em>
             </h2>
 
             <p>
-                Build your digital identity.
-                Share your work. Let the world meet the maker.
+                Build your KARIGAR identity,
+                share your story and let people
+                discover the person behind the craft.
             </p>
 
             <a
-                href="{% url 'add_craft' %}"
-                class="button button--gold"
+                href="{% url 'artisan_home' %}"
+                class="button button--light"
             >
-                Start with KARIGAR →
+                Start your KARIGAR ID ↗
             </a>
+
+        </div>
+
+
+        <div class="artisan-cta__mark">
+
+            KARIGAR
+
+            <span>
+                हर हाथ की अपनी कहानी
+            </span>
 
         </div>
 

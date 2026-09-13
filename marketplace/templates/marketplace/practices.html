@@ -1,91 +1,92 @@
 {% extends "marketplace/base.html" %}
 
 {% block title %}
-    Practices & Styles — KARIGAR
+Traditions — KARIGAR
 {% endblock %}
 
 
 {% block content %}
 
-<section class="section practices-directory">
+<section class="listing-hero listing-hero--traditions">
 
-    <div class="section-heading">
+    <div>
 
-        <div>
+        <span class="eyebrow">
+            THE PRACTICE
+        </span>
 
-            <span class="eyebrow">
-                PRACTICES & STYLES
-            </span>
-
-
-            <h1>
-                Explore the
-                <br>
-                <em>living traditions.</em>
-            </h1>
-
-        </div>
-
+        <h1>
+            Many places.<br>
+            <em>Many traditions.</em>
+        </h1>
 
         <p>
-            An artisan can belong to many practices.
-            No single label has to define their work.
+            Explore the techniques, materials and
+            cultural practices that give India's
+            crafts their identity.
         </p>
 
     </div>
 
-
-    <div class="practice-grid">
-
-        {% for practice in practices %}
-
-            <a
-                href="{% url 'practice_detail' practice.slug %}"
-                class="practice-card"
-            >
-
-                <div class="practice-card__image">
-
-                    {% if practice.image %}
-
-                        <img
-                            src="{{ practice.image.url }}"
-                            alt="{{ practice.name }}"
-                        >
-
-                    {% endif %}
-
-                </div>
+</section>
 
 
-                <div class="practice-card__body">
+<section class="traditions-directory">
 
-                    <span>
-                        {{ practice.region }}
-                    </span>
+    {% for practice in practices %}
 
+        <a
+            href="{{ practice.get_absolute_url }}"
+            class="directory-row"
+        >
+
+            <span>
+                0{{ forloop.counter }}
+            </span>
+
+
+            <div>
+
+                {% if practice.image %}
+
+                    <img
+                        src="{{ practice.image.url }}"
+                        alt="{{ practice.name }}"
+                    >
+
+                {% endif %}
+
+
+                <div>
 
                     <h2>
                         {{ practice.name }}
                     </h2>
 
-
                     <p>
-                        {{ practice.short_description }}
+                        {{ practice.region }}
                     </p>
-
-
-                    <strong>
-                        Explore →
-                    </strong>
 
                 </div>
 
-            </a>
+            </div>
 
-        {% endfor %}
 
-    </div>
+            <span>
+                Explore ↗
+            </span>
+
+        </a>
+
+    {% empty %}
+
+        <div class="empty-state">
+            <h3>
+                Traditions will appear here.
+            </h3>
+        </div>
+
+    {% endfor %}
 
 </section>
 

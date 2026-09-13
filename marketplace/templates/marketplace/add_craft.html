@@ -1,238 +1,205 @@
 {% extends "marketplace/base.html" %}
 
 {% block title %}
-    Share Your Craft — KARIGAR
+Create Your KARIGAR ID — KARIGAR
 {% endblock %}
 
 
 {% block content %}
 
-<div class="form-page">
+<section class="form-hero">
 
-
-    <section class="form-hero">
+    <div>
 
         <span class="eyebrow">
-            FOR ARTISANS
+            START HERE
         </span>
 
-
         <h1>
-            Your hands made it.
-            <br>
-            <em>Let's tell its story.</em>
+            Build your<br>
+            <em>KARIGAR ID.</em>
         </h1>
 
-
         <p>
-            Start with what you know.
-            You don't need the perfect words.
+            Tell us about yourself and the craft
+            you want people to discover.
         </p>
 
-    </section>
+    </div>
 
 
+    <div class="form-progress">
 
-    <section class="artisan-form-section section">
+        <span class="active">
+            01
+        </span>
+
+        <span>
+            02
+        </span>
+
+        <span>
+            03
+        </span>
+
+    </div>
+
+</section>
 
 
-        <div class="form-progress">
+<form
+    method="post"
+    enctype="multipart/form-data"
+    class="maker-form"
+>
 
-            <span class="is-active">
-                01 You
-            </span>
+    {% csrf_token %}
+
+
+    {% if artisan_form.non_field_errors or craft_form.non_field_errors %}
+
+        <div class="form-errors">
+
+            {{ artisan_form.non_field_errors }}
+
+            {{ craft_form.non_field_errors }}
+
+        </div>
+
+    {% endif %}
+
+
+    <section class="form-section">
+
+        <div class="form-section__intro">
 
             <span>
-                02 Your craft
+                01
             </span>
 
-            <span>
-                03 How you sell
-            </span>
+            <h2>
+                About you
+            </h2>
 
-            <span>
-                04 Publish
-            </span>
+            <p>
+                Start with the person behind the work.
+            </p>
 
         </div>
 
 
-        <form
-            method="post"
-            enctype="multipart/form-data"
-            class="artisan-form"
-        >
+        <div class="form-fields">
 
-            {% csrf_token %}
+            {% for field in artisan_form %}
 
+                <label class="field">
 
-            <div class="form-step">
-
-                <div class="form-step__index">
-                    01
-                </div>
-
-
-                <div class="form-step__content">
-
-                    <span class="eyebrow">
-                        THE MAKER
+                    <span>
+                        {{ field.label }}
                     </span>
 
+                    {{ field }}
 
-                    <h2>
-                        Start with <em>you.</em>
-                    </h2>
+                    {% if field.help_text %}
 
+                        <small>
+                            {{ field.help_text }}
+                        </small>
 
-                    <p class="form-step__intro">
-                        This becomes part of your KARIGAR identity.
-                    </p>
+                    {% endif %}
 
+                    {{ field.errors }}
 
-                    {% for field in artisan_form %}
+                </label>
 
-                        <div class="form-field">
+            {% endfor %}
 
-                            {{ field.label_tag }}
-
-                            {{ field }}
-
-                            {% if field.help_text %}
-
-                                <small>
-                                    {{ field.help_text }}
-                                </small>
-
-                            {% endif %}
-
-
-                            {% for error in field.errors %}
-
-                                <small class="field-error">
-                                    {{ error }}
-                                </small>
-
-                            {% endfor %}
-
-                        </div>
-
-                    {% endfor %}
-
-                </div>
-
-            </div>
-
-
-
-            <div class="form-step">
-
-                <div class="form-step__index">
-                    02
-                </div>
-
-
-                <div class="form-step__content">
-
-                    <span class="eyebrow">
-                        YOUR CRAFT
-                    </span>
-
-
-                    <h2>
-                        Now show us
-                        <em>what you made.</em>
-                    </h2>
-
-
-                    <p class="form-step__intro">
-                        A photograph and your own words are enough.
-                    </p>
-
-
-                    {% for field in craft_form %}
-
-                        <div class="form-field">
-
-                            {{ field.label_tag }}
-
-                            {{ field }}
-
-                            {% if field.help_text %}
-
-                                <small>
-                                    {{ field.help_text }}
-                                </small>
-
-                            {% endif %}
-
-
-                            {% for error in field.errors %}
-
-                                <small class="field-error">
-                                    {{ error }}
-                                </small>
-
-                            {% endfor %}
-
-                        </div>
-
-                    {% endfor %}
-
-                </div>
-
-            </div>
-
-
-
-            <div class="form-note">
-
-                <div class="form-note__mark">
-                    🎙
-                </div>
-
-
-                <div>
-
-                    <strong>
-                        Saathi will make this easier.
-                    </strong>
-
-
-                    <p>
-                        In the full artisan app, you can speak about
-                        your work instead of filling out a long form.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-
-            <div class="form-actions">
-
-                <a
-                    href="{% url 'marketplace' %}"
-                    class="button button--outline"
-                >
-                    ← Back
-                </a>
-
-
-                <button
-                    type="submit"
-                    class="button button--primary"
-                >
-                    Put my craft on KARIGAR →
-                </button>
-
-            </div>
-
-        </form>
+        </div>
 
     </section>
 
-</div>
+
+    <section class="form-section">
+
+        <div class="form-section__intro">
+
+            <span>
+                02
+            </span>
+
+            <h2>
+                Your craft
+            </h2>
+
+            <p>
+                Give people a clear first look
+                at what you make.
+            </p>
+
+        </div>
+
+
+        <div class="form-fields">
+
+            {% for field in craft_form %}
+
+                <label class="field">
+
+                    <span>
+                        {{ field.label }}
+                    </span>
+
+                    {{ field }}
+
+                    {% if field.help_text %}
+
+                        <small>
+                            {{ field.help_text }}
+                        </small>
+
+                    {% endif %}
+
+                    {{ field.errors }}
+
+                </label>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+
+    <section class="form-submit">
+
+        <div>
+
+            <span class="eyebrow eyebrow--light">
+                READY?
+            </span>
+
+            <h2>
+                Let your work<br>
+                <em>speak for itself.</em>
+            </h2>
+
+            <p>
+                AI can help later.
+                You remain in control of your story.
+            </p>
+
+        </div>
+
+
+        <button
+            class="button button--primary button--large"
+            type="submit"
+        >
+            Publish my KARIGAR ID ↗
+        </button>
+
+    </section>
+
+</form>
 
 {% endblock %}

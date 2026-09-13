@@ -1,0 +1,156 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}
+For Artisans — KARIGAR
+{% endblock %}
+
+
+{% block content %}
+
+<section class="maker-welcome">
+
+    <div class="maker-welcome__copy">
+
+        <span class="eyebrow">
+            FOR THE MAKERS
+        </span>
+
+        <h1>
+            Your craft.<br>
+            <em>Your identity.</em>
+        </h1>
+
+        <p>
+            KARIGAR helps you tell people who you are,
+            what you make and the story behind it —
+            in one simple place.
+        </p>
+
+        <a
+            href="{% url 'add_craft' %}"
+            class="button button--primary"
+        >
+            Create my KARIGAR ID ↗
+        </a>
+
+    </div>
+
+
+    <div class="maker-welcome__visual texture-aipan">
+
+        <div class="identity-card">
+
+            <span>
+                KARIGAR ID
+            </span>
+
+            <strong>
+                YOUR NAME
+            </strong>
+
+            <small>
+                YOUR PLACE · YOUR CRAFT
+            </small>
+
+            <div>
+                हर हाथ की अपनी कहानी
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="maker-steps">
+
+    <span class="eyebrow">
+        HOW IT WORKS
+    </span>
+
+
+    <div class="maker-step-grid">
+
+        <div>
+
+            <b>01</b>
+
+            <h2>
+                Tell us about you.
+            </h2>
+
+            <p>
+                Your name, place and story.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <b>02</b>
+
+            <h2>
+                Share your craft.
+            </h2>
+
+            <p>
+                Add a photograph, process and
+                selling method.
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <b>03</b>
+
+            <h2>
+                Build your identity.
+            </h2>
+
+            <p>
+                Publish a simple KARIGAR profile
+                people can discover.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="maker-saathi">
+
+    <div>
+
+        <span class="eyebrow">
+            NEED A HAND?
+        </span>
+
+        <h2>
+            Saathi is here.
+        </h2>
+
+        <p>
+            You can speak instead of typing.
+            Ask for help with your story,
+            pricing or next step.
+        </p>
+
+        <button
+            type="button"
+            class="button button--light"
+            onclick="openSaathi()"
+        >
+            Talk to Saathi ↗
+        </button>
+
+    </div>
+
+</section>
+
+{% endblock %}

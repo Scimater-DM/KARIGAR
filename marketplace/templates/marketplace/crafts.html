@@ -1,0 +1,191 @@
+{% extends "marketplace/base.html" %}
+
+{% block title %}
+Discover Crafts — KARIGAR
+{% endblock %}
+
+
+{% block content %}
+
+<section class="listing-hero">
+
+    <div>
+
+        <span class="eyebrow">
+            DISCOVER
+        </span>
+
+        <h1>
+            Our <em>crafts.</em>
+        </h1>
+
+        <p>
+            Explore living Indian craft traditions,
+            the people behind them and the stories
+            carried in every piece.
+        </p>
+
+    </div>
+
+
+    <form
+        class="search-box"
+        method="get"
+    >
+
+        <input
+            type="search"
+            name="q"
+            value="{{ query }}"
+            placeholder="Search crafts, places or makers..."
+        >
+
+        <button type="submit">
+            Search ↗
+        </button>
+
+    </form>
+
+</section>
+
+
+<section class="listing-section texture-ajrak">
+
+    <div class="filter-line">
+
+    <span>
+        {{ crafts|length }} crafts
+    </span>
+
+    <div class="filter-actions">
+
+        <form method="get" class="category-filter">
+
+            {% if query %}
+                <input type="hidden" name="q" value="{{ query }}">
+            {% endif %}
+
+            <select
+                name="category"
+                onchange="this.form.submit()"
+                aria-label="Filter by craft category"
+            >
+                <option value="">All categories</option>
+
+                {% for item in categories %}
+                    <option
+                        value="{{ item }}"
+                        {% if category == item %}selected{% endif %}
+                    >
+                        {{ item }}
+                    </option>
+                {% endfor %}
+            </select>
+
+            <select
+    name="region"
+    onchange="this.form.submit()"
+    aria-label="Filter by region"
+>
+    <option value="">All regions</option>
+
+    {% for item in regions %}
+        <option
+            value="{{ item }}"
+            {% if region == item %}selected{% endif %}
+        >
+            {{ item }}
+        </option>
+    {% endfor %}
+</select>
+            
+
+        </form>
+
+        <a href="{% url 'practices' %}">
+            Browse traditions ↗
+        </a>
+
+    </div>
+
+</div>
+
+    <div class="listing-grid">
+
+        {% for craft in crafts %}
+
+            <a
+                href="{{ craft.get_absolute_url }}"
+                class="listing-card"
+            >
+
+                <div class="listing-card__image">
+
+                    {% if craft.image %}
+
+                        <img
+                            src="{{ craft.image.url }}"
+                            alt="{{ craft.name }}"
+                            loading="lazy"
+                        >
+
+                    {% else %}
+
+                        <div class="image-empty">
+                            <span>Craft photograph</span>
+                        </div>
+
+                    {% endif %}
+
+                    <span>
+                        {{ craft.category }}
+                    </span>
+
+                </div>
+
+
+                <div class="listing-card__body">
+
+                    <div>
+
+                        <h2>
+                            {{ craft.name }}
+                        </h2>
+
+                        <p>
+                            {{ craft.artisan.name }}
+                            ·
+                            {{ craft.artisan.location }}
+                        </p>
+
+                    </div>
+
+                    <span>
+                        ↗
+                    </span>
+
+                </div>
+
+            </a>
+
+        {% empty %}
+
+            <div class="empty-state">
+
+                <h3>
+                    No crafts found.
+                </h3>
+
+                <p>
+                    Try another search or add the first craft.
+                </p>
+
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

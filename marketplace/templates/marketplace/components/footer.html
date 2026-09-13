@@ -1,87 +1,101 @@
 {% load static %}
 
 <footer class="site-footer">
-    <div class="footer-inner">
+
+    <div class="footer-main">
 
         <div class="footer-brand">
-            <a
-                href="{% url 'marketplace' %}"
-                aria-label="KARIGAR home"
+
+            <img
+                src="{% static 'marketplace/images/karigar.png' %}"
+                alt="KARIGAR"
             >
-                <img
-                    src="{% static 'marketplace/images/karigar.png' %}"
-                    alt="KARIGAR"
-                >
-            </a>
 
             <p>
-                A digital companion for the people
-                keeping India's living traditions alive.
+                Discover the people, practices and stories
+                behind India's living crafts.
             </p>
+
+            <div class="footer-motto">
+                HANDS · STORIES · HERITAGE · FUTURE
+            </div>
+
         </div>
 
-        <div class="footer-links">
-            <span>
-                Discover
+
+        <div class="footer-column">
+
+            <span class="footer-label">
+                EXPLORE
             </span>
 
-            <a href="{% url 'marketplace' %}">
-                Crafts
+            <a href="{% url 'crafts' %}">
+                Discover crafts
             </a>
 
             <a href="{% url 'artisans' %}">
-                Makers &amp; stories
+                Meet artisans
             </a>
 
             <a href="{% url 'practices' %}">
-                Practices
+                Traditions
             </a>
 
-            <a href="{% url 'practices' %}">
-                Craft Atlas
-            </a>
         </div>
 
-        <div class="footer-links">
-            <span>
-                For artisans
+
+        <div class="footer-column">
+
+            <span class="footer-label">
+                FOR MAKERS
             </span>
+
+            <a href="{% url 'artisan_home' %}">
+                Create KARIGAR ID
+            </a>
 
             <a href="{% url 'add_craft' %}">
                 Share your craft
             </a>
 
-            <a
-                href="#"
-                onclick="openSaathi(); return false;"
+            <button
+                type="button"
+                onclick="openSaathi()"
             >
                 Talk to Saathi
-            </a>
+            </button>
+
         </div>
 
-        <div class="footer-stamp">
+
+        <div class="footer-manifesto">
+
             <span>
-                ✦
+                हर हाथ की अपनी कहानी
             </span>
 
-            <small>
-                HANDS
-                <br>
-                STORIES
-                <br>
-                FUTURE
-            </small>
+            <strong>
+                Every hand<br>
+                leaves a story.
+            </strong>
+
         </div>
 
     </div>
 
+
     <div class="footer-bottom">
+
         <span>
             © 2026 KARIGAR
         </span>
 
         <span>
-            Made by people · Rooted in culture · Shared with the world
+            Made by people.
+            Rooted in culture.
+            Shared with the world.
         </span>
+
     </div>
+
 </footer>

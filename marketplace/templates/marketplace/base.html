@@ -1,18 +1,26 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#F7EBDD">
+    <meta
+        name="theme-color"
+        content="#F7EBDD"
+    >
+
     <meta
         name="description"
         content="KARIGAR — Discover the people, practices and stories behind India's living crafts."
     >
 
     <title>
-        {% block title %}KARIGAR — Every hand leaves a story{% endblock %}
+        {% block title %}
+            KARIGAR — Every hand leaves a story
+        {% endblock %}
     </title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,45 +39,40 @@
     {% block page_css %}{% endblock %}
 </head>
 
+
 <body>
 
-    <a class="skip-link" href="#main-content">
+    <a
+        href="#main-content"
+        class="skip-link"
+    >
         Skip to content
     </a>
 
+
     {% include "marketplace/components/navbar.html" %}
+
 
     <main id="main-content">
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Saathi appears exactly once -->
-    <button
-        type="button"
-        class="saathi-float"
-        onclick="openSaathi()"
-        aria-label="Open Saathi"
-    >
-        <span class="saathi-float__pulse"></span>
 
-        <span class="saathi-float__icon" aria-hidden="true">
-            ◌
-        </span>
-
-        <span class="saathi-float__text">
-            Talk to Saathi
-        </span>
-
-        <span class="saathi-float__arrow" aria-hidden="true">
-            ↗
-        </span>
-    </button>
-
+    <!-- ONE AND ONLY ONE SAATHI -->
     {% include "marketplace/components/saathi.html" %}
 
+
     {% include "marketplace/components/footer.html" %}
+
+
+    <script
+        src="{% static 'marketplace/app.js' %}"
+        defer
+    ></script>
+
 
     {% block page_js %}{% endblock %}
 
 </body>
+
 </html>

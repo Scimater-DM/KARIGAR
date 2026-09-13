@@ -1,55 +1,53 @@
 {% extends "marketplace/base.html" %}
-{% load static %}
 
 {% block title %}
-    Craft Added — KARIGAR
+KARIGAR ID Created — KARIGAR
 {% endblock %}
+
 
 {% block content %}
 
 <section class="success-page">
 
-    <div class="success-card">
+    <div class="success-check">
+        ✓
+    </div>
 
-        <img
-            src="{% static 'marketplace/images/karigar.png' %}"
-            alt="KARIGAR"
-            class="success-card__logo"
+    <span class="eyebrow">
+        KARIGAR ID
+    </span>
+
+    <h1>
+        Your craft has<br>
+        <em>found its story.</em>
+    </h1>
+
+    <p>
+        Your work is now ready to be discovered.
+        This prototype has created your maker
+        and craft record.
+    </p>
+
+
+    <div class="success-actions">
+
+        <a
+            href="{% url 'marketplace' %}"
+            class="button button--primary"
         >
+            Back to KARIGAR ↗
+        </a>
 
-        <span class="eyebrow">
-            CRAFT ADDED
-        </span>
-
-        <h1>
-            Your craft now has
-            <em>a place.</em>
-        </h1>
-
-        <p>
-            Your work has been added to KARIGAR.
-            This is the beginning of its digital story.
-        </p>
-
-        <div class="success-actions">
-
-            <a
-                href="{% url 'marketplace' %}"
-                class="button button--dark"
-            >
-                Explore KARIGAR →
-            </a>
-
-            <a
-                href="{% url 'add_craft' %}"
-                class="button button--outline"
-            >
-                Add another craft
-            </a>
-
-        </div>
+        <a
+            href="{% url 'artisans' %}"
+            class="button button--quiet"
+        >
+            Meet the makers
+        </a>
 
     </div>
+
+    <div class="success-thread"></div>
 
 </section>
 

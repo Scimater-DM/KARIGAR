@@ -1,62 +1,86 @@
 {% load static %}
 
 <header class="site-header">
-    <div class="site-header__inner">
+    <nav class="site-nav">
 
-        <a
-            href="{% url 'marketplace' %}"
-            class="brand"
-            aria-label="KARIGAR home"
-        >
-            <img
-                src="{% static 'marketplace/images/karigar.png' %}"
-                alt="KARIGAR"
-                class="brand__logo"
-            >
+        <a href="{% url 'marketplace' %}" class="brand" aria-label="KARIGAR home">
+
+            <span class="brand__symbol">
+                <img
+                    src="{% static 'marketplace/images/karigar.png' %}"
+                    alt="KARIGAR"
+                >
+            </span>
+
+            <span class="brand__identity">
+                <span class="brand__name">KARIGAR</span>
+                <span class="brand__tagline">
+                    हर हाथ की अपनी कहानी
+                </span>
+            </span>
+
         </a>
 
-        <nav
-            class="desktop-nav"
-            aria-label="Main navigation"
-        >
-            <a href="{% url 'marketplace' %}">
+        <div class="nav-links">
+
+            <a href="{% url 'crafts' %}" class="nav-link">
+                <span>01</span>
                 Discover
             </a>
 
-            <a href="{% url 'artisans' %}">
+            <a href="{% url 'artisans' %}" class="nav-link">
+                <span>02</span>
                 Stories
             </a>
 
-            <a href="{% url 'practices' %}">
-                Practices
-            </a>
-
-            <a href="{% url 'practices' %}">
-                Atlas
-            </a>
-        </nav>
-
-        <div class="nav-actions">
-
-            <button
-                type="button"
-                class="nav-saathi"
-                onclick="openSaathi()"
-                aria-label="Open Saathi"
-            >
-                <span class="status-dot"></span>
-                Saathi
-            </button>
-
-            <a
-                href="{% url 'add_craft' %}"
-                class="nav-artisan"
-            >
-                I'm an artisan
-                <span aria-hidden="true">↗</span>
+            <a href="{% url 'practices' %}" class="nav-link">
+                <span>03</span>
+                Traditions
             </a>
 
         </div>
 
+        <div class="nav-thread" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <button
+            type="button"
+            class="mobile-menu-button"
+            onclick="toggleMobileMenu()"
+            aria-label="Open navigation"
+            aria-expanded="false"
+        >
+            <span></span>
+            <span></span>
+        </button>
+
+    </nav>
+
+    <div class="mobile-menu" id="mobileMenu">
+
+        <a href="{% url 'crafts' %}">
+            <span>01</span>
+            Discover
+        </a>
+
+        <a href="{% url 'artisans' %}">
+            <span>02</span>
+            Stories
+        </a>
+
+        <a href="{% url 'practices' %}">
+            <span>03</span>
+            Traditions
+        </a>
+
+        <a href="{% url 'artisan_home' %}">
+            <span>04</span>
+            For artisans
+        </a>
+
     </div>
+
 </header>
