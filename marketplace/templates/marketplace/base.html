@@ -7,19 +7,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="theme-color"
-        content="#F7EBDD"
-    >
+    <meta name="theme-color" content="#F7EBDD">
 
-    <meta
-        name="description"
-        content="KARIGAR — Discover the people, practices and stories behind India's living crafts."
-    >
+    <meta name="description"
+        content="KARIGAR — Discover the people, practices and stories behind India's living crafts.">
 
     <title>
         {% block title %}
-            KARIGAR — Every hand leaves a story
+        KARIGAR — Every hand leaves a story
         {% endblock %}
     </title>
 
@@ -28,13 +23,9 @@
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap"
-        rel="stylesheet"
-    >
+        rel="stylesheet">
 
-    <link
-        rel="stylesheet"
-        href="{% static 'marketplace/style.css' %}"
-    >
+    <link rel="stylesheet" href="{% static 'marketplace/style.css' %}">
 
     {% block page_css %}{% endblock %}
 </head>
@@ -42,10 +33,7 @@
 
 <body>
 
-    <a
-        href="#main-content"
-        class="skip-link"
-    >
+    <a href="#main-content" class="skip-link">
         Skip to content
     </a>
 
@@ -65,15 +53,9 @@
     {% include "marketplace/components/footer.html" %}
 
 
-    <script
-        src="{% static 'marketplace/translations.js' %}"
-        defer
-    ></script>
+    <script src="{% static 'marketplace/translations.js' %}" defer></script>
 
-    <script
-        src="{% static 'marketplace/app.js' %}"
-        defer
-    ></script>
+    <script src="{% static 'marketplace/app.js' %}" defer></script>
 
 
     {% block page_js %}{% endblock %}

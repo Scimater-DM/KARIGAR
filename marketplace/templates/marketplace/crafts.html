@@ -28,18 +28,10 @@ Discover Crafts — KARIGAR
     </div>
 
 
-    <form
-        class="search-box"
-        method="get"
-    >
+    <form class="search-box" method="get">
 
-        <input
-            type="search"
-            name="q"
-            value="{{ query }}"
-            data-i18n="filter_search_placeholder"
-            placeholder="Search crafts, places or makers..."
-        >
+        <input type="search" name="q" value="{{ query }}" data-i18n="filter_search_placeholder"
+            placeholder="Search crafts, places or makers...">
 
         <button type="submit" data-i18n="filter_button">
             Search ↗
@@ -54,134 +46,113 @@ Discover Crafts — KARIGAR
 
     <div class="filter-line">
 
-    <span>
-        {{ crafts|length }} crafts
-    </span>
+        <span>
+            {{ crafts|length }} crafts
+        </span>
 
-    <div class="filter-actions">
+        <div class="filter-actions">
 
-        <form method="get" class="category-filter">
+            <form method="get" class="category-filter">
 
-            {% if query %}
+                {% if query %}
                 <input type="hidden" name="q" value="{{ query }}">
-            {% endif %}
+                {% endif %}
 
-            <select
-                name="category"
-                onchange="this.form.submit()"
-                aria-label="Filter by craft category"
-            >
-                <option value="">All categories</option>
+                <select name="category" onchange="this.form.submit()" aria-label="Filter by craft category">
+                    <option value="">All categories</option>
 
-                {% for item in categories %}
-                    <option
-                        value="{{ item }}"
-                        {% if category == item %}selected{% endif %}
-                    >
+                    {% for item in categories %}
+                    <option value="{{ item }}" {% if category==item %}selected{% endif %}>
                         {{ item }}
                     </option>
-                {% endfor %}
-            </select>
+                    {% endfor %}
+                </select>
 
-            <select
-    name="region"
-    onchange="this.form.submit()"
-    aria-label="Filter by region"
->
-    <option value="">All regions</option>
+                <select name="region" onchange="this.form.submit()" aria-label="Filter by region">
+                    <option value="">All regions</option>
 
-    {% for item in regions %}
-        <option
-            value="{{ item }}"
-            {% if region == item %}selected{% endif %}
-        >
-            {{ item }}
-        </option>
-    {% endfor %}
-</select>
-            
+                    {% for item in regions %}
+                    <option value="{{ item }}" {% if region==item %}selected{% endif %}>
+                        {{ item }}
+                    </option>
+                    {% endfor %}
+                </select>
 
-        </form>
 
-        <a href="{% url 'practices' %}">
-            Browse traditions ↗
-        </a>
+            </form>
+
+            <a href="{% url 'practices' %}">
+                Browse traditions ↗
+            </a>
+
+        </div>
 
     </div>
-
-</div>
 
     <div class="listing-grid">
 
         {% for craft in crafts %}
 
-            <a
-                href="{{ craft.get_absolute_url }}"
-                class="listing-card"
-            >
+        <a href="{{ craft.get_absolute_url }}" class="listing-card">
 
-                <div class="listing-card__image">
+            <div class="listing-card__image">
 
-                    {% if craft.image %}
+                {% if craft.image %}
 
-                        <img
-                            src="{{ craft.image.url }}"
-                            alt="{{ craft.name }}"
-                            loading="lazy"
-                        >
+                <img src="{{ craft.image.url }}" alt="{{ craft.name }}" loading="lazy">
 
-                    {% else %}
+                {% else %}
 
-                        <div class="image-empty">
-                            <span>Craft photograph</span>
-                        </div>
+                <div class="image-empty">
+                    <span>Craft photograph</span>
+                </div>
 
-                    {% endif %}
+                {% endif %}
 
-                    <span>
-                        {{ craft.category }}
-                    </span>
+                <span>
+                    {{ craft.category }}
+                </span>
+
+            </div>
+
+
+            <div class="listing-card__body">
+
+                <div>
+
+                    <h2>
+                        {{ craft.name }}
+                    </h2>
+
+                    <p>
+                        {{ craft.artisan.name }}
+                        ·
+                        {{ craft.artisan.location }}
+                    </p>
 
                 </div>
 
+                <span>
+                    ↗
+                </span>
 
-                <div class="listing-card__body">
+            </div>
 
-                    <div>
-
-                        <h2>
-                            {{ craft.name }}
-                        </h2>
-
-                        <p>
-                            {{ craft.artisan.name }}
-                            ·
-                            {{ craft.artisan.location }}
-                        </p>
-
-                    </div>
-
-                    <span>
-                        ↗
-                    </span>
-
-                </div>
-
-            </a>
+        </a>
 
         {% empty %}
 
-            <div class="empty-state">
+        <div class="empty-state">
 
-                <h3>
-                    No crafts found.
-                </h3>
+            <h3>
+                No crafts found.
+            </h3>
 
-                <p>
-                    Try another search or add the first craft.
-                </p>
+            <p>
+                Try another search or add the first craft.
+            </p>
 
-            </div>
+        </div>
 
         {% endfor %}
 

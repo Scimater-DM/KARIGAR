@@ -18,53 +18,50 @@ KARIGAR — Every hand leaves a story
 
             {% if hero_craft %}
 
-                {% with craft=hero_craft %}
+            {% with craft=hero_craft %}
 
-                    {% if craft.image %}
+            {% if craft.image %}
 
-                        <img
-                            src="{{ craft.image.url }}"
-                            alt="{{ craft.name }}"
-                        >
-
-                    {% else %}
-
-                        <div class="image-empty">
-                            <span>
-                                Craft photograph
-                            </span>
-                        </div>
-
-                    {% endif %}
-
-
-                    <div class="image-caption">
-
-                        <span>
-                            FROM THE HANDS OF INDIA
-                        </span>
-
-                        <strong>
-                            {{ craft.name }}
-                        </strong>
-
-                        <small>
-                            {{ craft.artisan.name }}
-                            ·
-                            {{ craft.artisan.location }}
-                        </small>
-
-                    </div>
-
-                {% endwith %}
+            <img src="{{ craft.image.url }}" alt="{{ craft.name }}">
 
             {% else %}
 
-                <div class="image-empty">
-                    <span>
-                        Add your first craft photograph
-                    </span>
-                </div>
+            <div class="image-empty">
+                <span>
+                    Craft photograph
+                </span>
+            </div>
+
+            {% endif %}
+
+
+            <div class="image-caption">
+
+                <span>
+                    FROM THE HANDS OF INDIA
+                </span>
+
+                <strong>
+                    {{ craft.name }}
+                </strong>
+
+                <small>
+                    {{ craft.artisan.name }}
+                    ·
+                    {{ craft.artisan.location }}
+                </small>
+
+            </div>
+
+            {% endwith %}
+
+            {% else %}
+
+            <div class="image-empty">
+                <span>
+                    Add your first craft photograph
+                </span>
+            </div>
 
             {% endif %}
 
@@ -90,19 +87,12 @@ KARIGAR — Every hand leaves a story
 
             <div class="hero-actions">
 
-                <a
-                    href="{% url 'crafts' %}"
-                    class="button button--primary"
-                >
+                <a href="{% url 'crafts' %}" class="button button--primary">
                     <span data-i18n="hero_cta_crafts">Explore crafts</span>
                     <span>↗</span>
                 </a>
 
-                <button
-                    type="button"
-                    class="button button--quiet"
-                    onclick="openSaathi()"
-                >
+                <button type="button" class="button button--quiet" onclick="openSaathi()">
                     <span data-i18n="saathi_voice_title">Talk to Saathi</span>
                 </button>
 
@@ -138,10 +128,7 @@ KARIGAR — Every hand leaves a story
 
             </div>
 
-            <a
-                href="{% url 'crafts' %}"
-                class="text-link"
-            >
+            <a href="{% url 'crafts' %}" class="text-link">
                 View all crafts ↗
             </a>
 
@@ -152,75 +139,69 @@ KARIGAR — Every hand leaves a story
 
             {% for craft in featured_crafts|slice:":5" %}
 
-                <a
-                    href="{{ craft.get_absolute_url }}"
-                    class="home-craft {% if forloop.first %}home-craft--feature{% endif %}"
-                >
+            <a href="{{ craft.get_absolute_url }}"
+                class="home-craft {% if forloop.first %}home-craft--feature{% endif %}">
 
-                    <div class="home-craft__image">
+                <div class="home-craft__image">
 
-                        {% if craft.image %}
+                    {% if craft.image %}
 
-                            <img
-                                src="{{ craft.image.url }}"
-                                alt="{{ craft.name }}"
-                                loading="lazy"
-                            >
+                    <img src="{{ craft.image.url }}" alt="{{ craft.name }}" loading="lazy">
 
-                        {% else %}
+                    {% else %}
 
-                            <div class="image-empty">
-                                <span>
-                                    Craft photograph
-                                </span>
-                            </div>
-
-                        {% endif %}
-
+                    <div class="image-empty">
                         <span>
-                            {{ craft.category }}
+                            Craft photograph
                         </span>
+                    </div>
+
+                    {% endif %}
+
+                    <span>
+                        {{ craft.category }}
+                    </span>
+
+                </div>
+
+
+                <div class="home-craft__info">
+
+                    <div>
+
+                        <h3>
+                            {{ craft.name }}
+                        </h3>
+
+                        <p>
+                            {{ craft.artisan.name }}
+                            ·
+                            {{ craft.artisan.location }}
+                        </p>
 
                     </div>
 
+                    <b>↗</b>
 
-                    <div class="home-craft__info">
+                </div>
 
-                        <div>
-
-                            <h3>
-                                {{ craft.name }}
-                            </h3>
-
-                            <p>
-                                {{ craft.artisan.name }}
-                                ·
-                                {{ craft.artisan.location }}
-                            </p>
-
-                        </div>
-
-                        <b>↗</b>
-
-                    </div>
-
-                </a>
+            </a>
 
             {% empty %}
 
-                <div class="empty-state">
+            <div class="empty-state">
 
-                    <span>✦</span>
+                <span>✦</span>
 
-                    <h3>
-                        The first story is waiting.
-                    </h3>
+                <h3>
+                    The first story is waiting.
+                </h3>
 
-                    <p>
-                        Add a craft to begin building KARIGAR.
-                    </p>
+                <p>
+                    Add a craft to begin building KARIGAR.
+                </p>
 
-                </div>
+            </div>
 
             {% endfor %}
 
@@ -250,10 +231,7 @@ KARIGAR — Every hand leaves a story
                 a place, a skill and a story worth knowing.
             </p>
 
-            <a
-                href="{% url 'artisans' %}"
-                class="text-link"
-            >
+            <a href="{% url 'artisans' %}" class="text-link">
                 Meet all artisans ↗
             </a>
 
@@ -264,48 +242,41 @@ KARIGAR — Every hand leaves a story
 
             {% for artisan in featured_artisans|slice:":3" %}
 
-                <a
-                    href="{{ artisan.get_absolute_url }}"
-                    class="maker-card"
-                >
+            <a href="{{ artisan.get_absolute_url }}" class="maker-card">
 
-                    <div class="maker-card__image">
+                <div class="maker-card__image">
 
-                        {% if artisan.profile_image %}
+                    {% if artisan.profile_image %}
 
-                            <img
-                                src="{{ artisan.profile_image.url }}"
-                                alt="{{ artisan.name }}"
-                                loading="lazy"
-                            >
+                    <img src="{{ artisan.profile_image.url }}" alt="{{ artisan.name }}" loading="lazy">
 
-                        {% else %}
+                    {% else %}
 
-                            <div class="maker-placeholder">
-                                <span>
-                                    {{ artisan.name|first }}
-                                </span>
-                            </div>
-
-                        {% endif %}
-
+                    <div class="maker-placeholder">
+                        <span>
+                            {{ artisan.name|first }}
+                        </span>
                     </div>
 
-                    <h3>
-                        {{ artisan.name }}
-                    </h3>
+                    {% endif %}
 
-                    <p>
-                        {{ artisan.location }}
-                    </p>
+                </div>
 
-                </a>
+                <h3>
+                    {{ artisan.name }}
+                </h3>
+
+                <p>
+                    {{ artisan.location }}
+                </p>
+
+            </a>
 
             {% empty %}
 
-                <p class="muted">
-                    Artisan stories will appear here.
-                </p>
+            <p class="muted">
+                Artisan stories will appear here.
+            </p>
 
             {% endfor %}
 
@@ -336,10 +307,7 @@ KARIGAR — Every hand leaves a story
                 crafts their identity.
             </p>
 
-            <a
-                href="{% url 'practices' %}"
-                class="button button--outline-light"
-            >
+            <a href="{% url 'practices' %}" class="button button--outline-light">
                 Explore traditions ↗
             </a>
 
@@ -350,34 +318,31 @@ KARIGAR — Every hand leaves a story
 
             {% for practice in practices|slice:":6" %}
 
-                <a
-                    href="{{ practice.get_absolute_url }}"
-                    class="tradition-row"
-                >
+            <a href="{{ practice.get_absolute_url }}" class="tradition-row">
 
-                    <span>
-                        0{{ forloop.counter }}
-                    </span>
+                <span>
+                    0{{ forloop.counter }}
+                </span>
 
-                    <strong>
-                        {{ practice.name }}
-                    </strong>
+                <strong>
+                    {{ practice.name }}
+                </strong>
 
-                    <small>
-                        {{ practice.region }}
-                    </small>
+                <small>
+                    {{ practice.region }}
+                </small>
 
-                    <b>
-                        ↗
-                    </b>
+                <b>
+                    ↗
+                </b>
 
-                </a>
+            </a>
 
             {% empty %}
 
-                <p>
-                    No traditions added yet.
-                </p>
+            <p>
+                No traditions added yet.
+            </p>
 
             {% endfor %}
 
@@ -432,11 +397,7 @@ KARIGAR — Every hand leaves a story
 
             <br><br>
 
-            <button
-                type="button"
-                class="button button--primary"
-                onclick="openSaathi()"
-            >
+            <button type="button" class="button button--primary" onclick="openSaathi()">
                 Talk to Saathi ↗
             </button>
 
@@ -478,10 +439,7 @@ KARIGAR — Every hand leaves a story
                 discover the person behind the craft.
             </p>
 
-            <a
-                href="{% url 'artisan_home' %}"
-                class="button button--light"
-            >
+            <a href="{% url 'artisan_home' %}" class="button button--light">
                 Start your KARIGAR ID ↗
             </a>
 
