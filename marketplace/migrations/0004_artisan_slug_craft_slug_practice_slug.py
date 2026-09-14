@@ -49,6 +49,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 null=True,
                 max_length=170,
+                db_index=False,
             ),
         ),
         migrations.AddField(
@@ -58,6 +59,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 null=True,
                 max_length=170,
+                db_index=False,
             ),
         ),
         migrations.AddField(
@@ -67,6 +69,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 null=True,
                 max_length=170,
+                db_index=False,
             ),
         ),
         migrations.RunPython(
@@ -80,6 +83,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 max_length=170,
                 unique=True,
+                db_index=False,
             ),
         ),
         migrations.AlterField(
@@ -89,6 +93,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 max_length=170,
                 unique=True,
+                db_index=False,
             ),
         ),
         migrations.AlterField(
@@ -98,6 +103,7 @@ class Migration(migrations.Migration):
                 blank=True,
                 max_length=170,
                 unique=True,
+                db_index=False,
             ),
         ),
     ]
