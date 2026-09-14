@@ -1,0 +1,224 @@
+[
+{
+  "model": "marketplace.artisan",
+  "pk": 1,
+  "fields": {
+    "name": "Maina Devi",
+    "location": "Kekri, Rajasthan",
+    "region": "",
+    "story": "Maina Devi, who hails from the Raigar community, has defied the limitations imposed by generational oppression in India. The Raigar community is often marginalized as a scheduled caste, yet Maina has embraced art as a means of self-expression and self-sufficiency. Weaving has become her solace and an avenue for preserving her cultural identity. Born in the remote village of Kekri, Maina has honed her weaving skills for over a decade, transcending cultural boundaries and creating textiles that provide her with income, independence, and a strong sense of identity.",
+    "profile_image": "artisans/Screenshot_2026-09-13_220315.png",
+    "slug": "maina-devi",
+    "created_at": "2026-09-12T16:14:53.548Z"
+  }
+},
+{
+  "model": "marketplace.artisan",
+  "pk": 2,
+  "fields": {
+    "name": "Sayeed Ahamed",
+    "location": "Khurja, Uttar Pradesh, India",
+    "region": "",
+    "story": "Sayeed Ahamed is a seventh-generation clay artisan from Khurja, Uttar Pradesh, who preserves a 600-year-old family legacy by practicing the rare, physically demanding kick-wheel technique, leaving his hands free to delicately sculpt Mughal-inspired pottery. Operating from a century-old ancestral home, his traditional craft faces a critical challenge due to the town's green energy shift from coal to cleaner natural gas-fired kilns. Lacking the immense capital and physical land needed to install these modern compliance systems, Ahamed is forced to rely on larger industrial factories to fire his products. This loss of independence has squeezed his profit margins, casting an uncertain future over his generational craft as he struggles to ensure that this historic art form does not vanish.",
+    "profile_image": "artisans/Screenshot_2026-09-12_013102.png",
+    "slug": "sayeed-ahamed",
+    "created_at": "2026-09-12T16:14:53.548Z"
+  }
+},
+{
+  "model": "marketplace.artisan",
+  "pk": 3,
+  "fields": {
+    "name": "Ghamani Bai",
+    "location": "Karnataka, India",
+    "region": "",
+    "story": "Born into a historically transient community, Ghamani Bai learned the complex art of Banjara needlecraft as an oral tradition from her elders, practicing it initially to create clothing for her own family. Her story is defined by resilience and cultural protection; despite severe socio-economic hardships and the pressures of a rapidly modernizing world, she fought to keep the 14 traditional types of Lambani stitches pure and undiluted. Recognizing that commercial markets were oversimplifying her heritage, she strictly preserved the symbolic alignment of cowrie shells, vintage coins, and mirrors—traditionally meant to symbolize prosperity and protect nomads from wild forest animals. Her relentless dedication eventually earned her the prestigious National Award, transforming her from a local tribal guardian into an internationally recognized master artisan who successfully elevated rural Banjara craftsmanship to the global fashion stage.",
+    "profile_image": "artisans/ghamani-bai-traditional-artisan-of-lambani-3.jpg",
+    "slug": "ghamani-bai",
+    "created_at": "2026-09-12T16:14:53.548Z"
+  }
+},
+{
+  "model": "marketplace.artisan",
+  "pk": 4,
+  "fields": {
+    "name": "Shah Rasheed Ahmed Quadri",
+    "location": "Bidar, Karnataka",
+    "region": "",
+    "story": "Shah Rasheed Ahmed Quadri is a third-generation master artisan from Bidar, Karnataka, who dedicated over 50 years to preserving the 600-year-old Persian-origin Bidriware metal inlay craft. Despite his father initially urging him to abandon the profession due to poor financial returns, Quadri's love for chiselling intricate silver into blackened zinc-copper alloys drove him to innovate with modern, self-designed patterns and revive ancient styles. He achieved national prominence when he was conferred the prestigious Padma Shri award. Upon receiving it, he shared a famously candid moment with Prime Minister Narendra Modi, admitting he believed a BJP government would never recognize a Muslim artisan—a perception he happily noted the Prime Minister had \"proved wrong\". While deeply proud to see his handmade Bidri vases presented as official state gifts to global leaders, Quadri remains candidly concerned about the future, warning that high material costs and a lack of proper marketplaces threaten the craft, leaving him hesitant to pass the struggling legacy down to the next generation.",
+    "profile_image": "artisans/Screenshot_2026-09-12_014517.png",
+    "slug": "shah-rasheed-ahmed-quadri",
+    "created_at": "2026-09-12T16:14:53.548Z"
+  }
+},
+{
+  "model": "marketplace.artisan",
+  "pk": 5,
+  "fields": {
+    "name": "Games",
+    "location": "seemapuri",
+    "region": "delhi",
+    "story": "I am the ALL MIGHT",
+    "profile_image": "artisans/Screenshot_2026-01-19_120146.png",
+    "slug": "games",
+    "created_at": "2026-09-14T05:04:46.786Z"
+  }
+},
+{
+  "model": "marketplace.practice",
+  "pk": 1,
+  "fields": {
+    "name": "Ajrakh",
+    "region": "Kutch, Gujarat",
+    "description": "Ajrakh is a long-established textile printing tradition associated with Kutch and the wider Sindh–Kutch cultural region. Its visual language combines repeated geometric forms, careful block printing and layered colour.",
+    "image": "practices/textile.jpg",
+    "slug": "ajrakh"
+  }
+},
+{
+  "model": "marketplace.practice",
+  "pk": 2,
+  "fields": {
+    "name": "Bidriware Metal Craft",
+    "region": "Bidar, Karnataka",
+    "description": "Bidriware is a traditional metalcraft associated with Bidar, Karnataka. Artisans work with a zinc-based metal alloy and create intricate inlay patterns, often using silver, followed by processes that give the surface its characteristic dark appearance and make the inlaid designs stand out.",
+    "image": "practices/Screenshot_2026-09-12_010802.png",
+    "slug": "bidriware-metal-craft"
+  }
+},
+{
+  "model": "marketplace.practice",
+  "pk": 3,
+  "fields": {
+    "name": "Lambani (Banjara) textile jewellery",
+    "region": "Various regions of India",
+    "description": "Banjara jewellery is closely connected with the visual traditions of Banjara communities across parts of India. Jewellery and adornment can incorporate bold colours, metal elements, beads, mirrors, coins and other decorative materials, with designs varying across communities and regions.",
+    "image": "practices/Banjara_Jewellery.jpeg",
+    "slug": "lambani-banjara-textile-jewellery"
+  }
+},
+{
+  "model": "marketplace.practice",
+  "pk": 4,
+  "fields": {
+    "name": "Pattachitra Painting",
+    "region": "West Bengal, India",
+    "description": "West Bengal's Patachitra tradition is practiced particularly in areas such as Medinipur and Birbhum. Traditionally, artists known as Patuas use painted scrolls as a medium for storytelling, often combining visual narratives with song and performance. The tradition encompasses different regional styles and contemporary themes.",
+    "image": "practices/wb_-_artisan.jpg",
+    "slug": "pattachitra-painting"
+  }
+},
+{
+  "model": "marketplace.practice",
+  "pk": 5,
+  "fields": {
+    "name": "Thammampatti Wood Carving",
+    "region": "Thammampatti, Salem, Tamil Nadu, India",
+    "description": "Thammampatti wood carving is a long-established craft of the Salem region, with skills traditionally passed through generations. Artisans create carved figures, mythological scenes, temple doors, panels, vahanas and temple chariots, drawing on architectural and iconographic traditions; the craft is recognized as a Geographical Indication (GI) product of Tamil Nadu.",
+    "image": "practices/Wood_Carving.jpeg",
+    "slug": "thammampatti-wood-carving"
+  }
+},
+{
+  "model": "marketplace.practice",
+  "pk": 6,
+  "fields": {
+    "name": "Khurja Pottery",
+    "region": "Khurja, Bulandshahr, Uttar Pradesh, India",
+    "description": "Khurja, in Bulandshahr district, is a major centre of glazed pottery in Uttar Pradesh. Artisans create both decorative and functional pieces such as vases, plates, crockery and tiles, often combining hand-painted floral motifs with glazing and firing techniques. Khurja Pottery is registered as a Geographical Indication (GI) product.",
+    "image": "practices/Screenshot_2026-09-12_012452.png",
+    "slug": "khurja-pottery"
+  }
+},
+{
+  "model": "marketplace.practice",
+  "pk": 7,
+  "fields": {
+    "name": "Rajesthani Carpet Making",
+    "region": "Rajesthan",
+    "description": "The carpet-making tradition in Rajasthan is a testament to the state's rich cultural heritage and craftsmanship. The art of carpet weaving has been a part of Rajasthan's culture for centuries, with its roots tracing back to the Mughal era. The tradition is centered in cities like Jaipur, Ajmer, and Bikaner, and is also found in smaller towns such as Tonk, Chaksu, Manaharpura, and Barmer.",
+    "image": "practices/Screenshot_2026-09-13_220019.png",
+    "slug": "rajesthani-carpet-making"
+  }
+},
+{
+  "model": "marketplace.craft",
+  "pk": 2,
+  "fields": {
+    "artisan": 2,
+    "name": "Graceful Bidri Art Plates",
+    "category": "Pottery",
+    "description": "This premium Bidri art plate by Md Sayeed Ahmed is uniquely characterized by its masterful fusion of intricate foliage and a bold central geometric mandala, rendered in a striking combination of gold and silver inlay.",
+    "image": "crafts/Screenshot_2026-09-12_015104.png",
+    "making_video": null,
+    "price": "27500.00",
+    "minimum_price": null,
+    "selling_method": "fixed",
+    "slug": "graceful-bidri-art-plates",
+    "created_at": "2026-09-11T20:25:48.359Z",
+    "practices": [
+      2
+    ]
+  }
+},
+{
+  "model": "marketplace.craft",
+  "pk": 3,
+  "fields": {
+    "artisan": 4,
+    "name": "Bidriware Pot",
+    "category": "Metal Crafting",
+    "description": "This photograph captures the intricate process of Bidriware metal inlay, with a close-up of a butterfly design being carved into a dark metal surface alongside a finished ornate vase. The traditional Karnataka craft, known for its fine silver and copper inlay work, is celebrated for its detailed patterns and cultural heritage.",
+    "image": "crafts/R.jpeg",
+    "making_video": null,
+    "price": null,
+    "minimum_price": null,
+    "selling_method": "fixed",
+    "slug": "bidriware-pot",
+    "created_at": "2026-09-13T16:22:36.649Z",
+    "practices": [
+      2
+    ]
+  }
+},
+{
+  "model": "marketplace.craft",
+  "pk": 4,
+  "fields": {
+    "artisan": 1,
+    "name": "Lehrata Khet",
+    "category": "Carpet Making",
+    "description": "What sets Maina Devi's rug apart is the absence of predefined drawings or patterns. With 'Lehrata-Khet,' the artist was able to express herself directly on the loom, infusing the rug with a unique sense of authenticity and personal narrative. The title itself translates to 'a waving farm,' and the abstract portrayal of Maina's village and its surrounding fields incorporates intricate details and motifs such as grains and vegetables. This rug serves as a direct manifestation of her cultural heritage and her intimate connection to the land she calls home.\r\n\r\nMaina Devi's masterpiece is part of the Manchaha project, a remarkable initiative by Jaipur Rugs that combines design and social impact. Through this project, weavers in rural India are empowered to create their own rugs. The project acts as both a platform for self-expression and a sustainable livelihood for weavers and their families. These rugs not only exemplify exceptional craftsmanship but also become vessels for personal stories, cultural elements, and the rich tapestry of the weavers' lives; facilitating a global stage for local art.",
+    "image": "crafts/Screenshot_2026-09-13_220610.png",
+    "making_video": null,
+    "price": null,
+    "minimum_price": null,
+    "selling_method": "fixed",
+    "slug": "lehrata-khet",
+    "created_at": "2026-09-13T16:36:30.779Z",
+    "practices": [
+      7
+    ]
+  }
+},
+{
+  "model": "marketplace.craft",
+  "pk": 5,
+  "fields": {
+    "artisan": 5,
+    "name": "Games",
+    "category": "Art",
+    "description": "adfsdfhjgkhljkdjkdfkj",
+    "image": "crafts/Screenshot_2026-01-19_112747.png",
+    "making_video": null,
+    "price": "19999.87",
+    "minimum_price": "2346890.00",
+    "selling_method": "fixed",
+    "slug": "games",
+    "created_at": "2026-09-14T05:04:46.801Z",
+    "practices": [
+      5
+    ]
+  }
+}
+]

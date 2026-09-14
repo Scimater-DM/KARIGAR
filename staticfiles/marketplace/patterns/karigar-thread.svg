@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 800 120"
+     preserveAspectRatio="none">
+
+    <path
+        d="M0 65
+           C90 0 165 115 260 50
+           S430 15 520 63
+           S680 125 800 42"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-dasharray="7 9"
+    />
+
+</svg>
