@@ -232,8 +232,9 @@ def saathi_chat_api(request):
     query = data.get("query") or data.get("message") or ""
     action = data.get("action", "general")
     context = data.get("context", {})
+    language = data.get("language", "auto")
 
-    result = ask_saathi_agent(query=query, action=action, context=context)
+    result = ask_saathi_agent(query=query, action=action, context=context, language=language)
     return JsonResponse(result)
 
 

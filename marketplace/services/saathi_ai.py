@@ -88,18 +88,30 @@ def call_gemini_llm(prompt: str, system_instruction: str = SAATHI_SYSTEM_PROMPT,
         return {"success": False, "error": str(e)}
 
 
-def ask_saathi_agent(query: str, action: str = "general", context: dict = None) -> dict:
+def ask_saathi_agent(query: str, action: str = "general", context: dict = None, language: str = "auto") -> dict:
     """
     Main dialogue router for Saathi AI Bot.
     Processes user query or action, attempts Gemini API, and falls back gracefully to domain heuristics.
+    Supports multilingual prompt conditioning (English, Hindi, Bengali, Telugu, Tamil).
     """
     query_clean = (query or "").strip()
     action = (action or "general").lower().strip()
     context = context or {}
+    lang_code = (language or "auto").lower().strip()
+
+    lang_instructions = {
+        "hi": "Important: Respond in fluent, warm, and respectful Hindi (हिन्दी) in Devanagari script.",
+        "bn": "Important: Respond in fluent, warm, and respectful Bengali (বাংলা).",
+        "te": "Important: Respond in fluent, warm, and respectful Telugu (తెలుగు).",
+        "ta": "Important: Respond in fluent, warm, and respectful Tamil (தமிழ்).",
+        "en": "Respond in English with cultural warmth and depth.",
+    }
+    lang_prefix = lang_instructions.get(lang_code, "")
 
     # Format specialized prompts according to Saathi's 4 core pillars
     if action in ["tell_story", "tell my story"]:
         prompt = (
+            f"{lang_prefix}\n"
             f"An artisan wants you to draft their personal story and craft biography for KARIGAR.\n"
             f"Details provided: '{query_clean}'.\n"
             f"Please write an evocative, culturally grounded narrative draft (3-4 paragraphs) emphasizing their roots, "
@@ -107,6 +119,7 @@ def ask_saathi_agent(query: str, action: str = "general", context: dict = None) 
         )
     elif action in ["price_work", "price my work"]:
         prompt = (
+            f"{lang_prefix}\n"
             f"An artisan is seeking pricing advice on their work.\n"
             f"Craft information: '{query_clean}'.\n"
             f"Calculate a fair price structure based on:\n"
@@ -117,6 +130,7 @@ def ask_saathi_agent(query: str, action: str = "general", context: dict = None) 
         )
     elif action in ["show_work", "show my work"]:
         prompt = (
+            f"{lang_prefix}\n"
             f"An artisan wants advice on how to showcase and present their craft on KARIGAR.\n"
             f"Craft query: '{query_clean}'.\n"
             f"Give 3-4 actionable tips on photographing textures, highlighting natural handmade tool marks, "
@@ -124,6 +138,7 @@ def ask_saathi_agent(query: str, action: str = "general", context: dict = None) 
         )
     elif action in ["find_buyers", "find buyers"]:
         prompt = (
+            f"{lang_prefix}\n"
             f"An artisan wants guidance on finding buyers and connecting with audiences.\n"
             f"Craft query: '{query_clean}'.\n"
             f"Suggest specific types of collectors (e.g. interior designers, cultural institutions, export buyers, "
@@ -131,12 +146,13 @@ def ask_saathi_agent(query: str, action: str = "general", context: dict = None) 
         )
     elif action == "voice":
         prompt = (
+            f"{lang_prefix}\n"
             f"The following is a spoken audio transcript from an Indian artisan:\n"
             f"Transcript: '{query_clean}'\n"
             f"Acknowledge what they said with warm companionship and offer the immediate next step to assist them."
         )
     else:
-        prompt = f"Artisan / User Query: '{query_clean}'\nAnswer as Saathi, the helpful companion on KARIGAR."
+        prompt = f"{lang_prefix}\nArtisan / User Query: '{query_clean}'\nAnswer as Saathi, the helpful companion on KARIGAR."
 
     # Try Gemini 2.5 Flash
     llm_res = call_gemini_llm(prompt)

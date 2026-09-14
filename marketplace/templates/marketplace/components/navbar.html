@@ -25,19 +25,30 @@
 
             <a href="{% url 'crafts' %}" class="nav-link">
                 <span>01</span>
-                Discover
+                <span data-i18n="nav_discover">Discover</span>
             </a>
 
             <a href="{% url 'artisans' %}" class="nav-link">
                 <span>02</span>
-                Stories
+                <span data-i18n="nav_stories">Stories</span>
             </a>
 
             <a href="{% url 'practices' %}" class="nav-link">
                 <span>03</span>
-                Traditions
+                <span data-i18n="nav_traditions">Traditions</span>
             </a>
 
+        </div>
+
+        <!-- Language Switcher Pill -->
+        <div class="lang-switcher" style="display: flex; align-items: center; gap: 6px; margin-left: 20px; background: rgba(36, 27, 23, 0.05); padding: 4px 10px; border-radius: 20px; border: 1px solid rgba(36, 27, 23, 0.1);">
+            <button type="button" class="lang-btn is-active" data-lang="en" onclick="setLanguage('en')" style="background: none; border: 0; font-size: 11px; font-weight: 600; cursor: pointer; color: #62544c; padding: 2px 4px;">EN</button>
+            <span style="color: rgba(36, 27, 23, 0.2); font-size: 10px;">|</span>
+            <button type="button" class="lang-btn" data-lang="hi" onclick="setLanguage('hi')" style="background: none; border: 0; font-size: 11px; font-weight: 600; cursor: pointer; color: #62544c; padding: 2px 4px;">हिन्दी</button>
+            <span style="color: rgba(36, 27, 23, 0.2); font-size: 10px;">|</span>
+            <button type="button" class="lang-btn" data-lang="bn" onclick="setLanguage('bn')" style="background: none; border: 0; font-size: 11px; font-weight: 600; cursor: pointer; color: #62544c; padding: 2px 4px;">বাংলা</button>
+            <span style="color: rgba(36, 27, 23, 0.2); font-size: 10px;">|</span>
+            <button type="button" class="lang-btn" data-lang="te" onclick="setLanguage('te')" style="background: none; border: 0; font-size: 11px; font-weight: 600; cursor: pointer; color: #62544c; padding: 2px 4px;">తెలుగు</button>
         </div>
 
         <div class="nav-thread" aria-hidden="true">
@@ -63,23 +74,31 @@
 
         <a href="{% url 'crafts' %}">
             <span>01</span>
-            Discover
+            <span data-i18n="nav_discover">Discover</span>
         </a>
 
         <a href="{% url 'artisans' %}">
             <span>02</span>
-            Stories
+            <span data-i18n="nav_stories">Stories</span>
         </a>
 
         <a href="{% url 'practices' %}">
             <span>03</span>
-            Traditions
+            <span data-i18n="nav_traditions">Traditions</span>
         </a>
 
         <a href="{% url 'artisan_home' %}">
             <span>04</span>
-            For artisans
+            <span data-i18n="nav_for_artisans">For artisans</span>
         </a>
+
+        <!-- Mobile Language Selector -->
+        <div style="display: flex; gap: 10px; padding: 15px 0; border-top: 1px solid rgba(36, 27, 23, 0.1); margin-top: 10px;">
+            <button type="button" class="lang-btn is-active" data-lang="en" onclick="setLanguage('en')" style="background: none; border: 0; font-size: 13px; font-weight: 600; cursor: pointer; color: #62544c;">English</button>
+            <button type="button" class="lang-btn" data-lang="hi" onclick="setLanguage('hi')" style="background: none; border: 0; font-size: 13px; font-weight: 600; cursor: pointer; color: #62544c;">हिन्दी</button>
+            <button type="button" class="lang-btn" data-lang="bn" onclick="setLanguage('bn')" style="background: none; border: 0; font-size: 13px; font-weight: 600; cursor: pointer; color: #62544c;">বাংলা</button>
+            <button type="button" class="lang-btn" data-lang="te" onclick="setLanguage('te')" style="background: none; border: 0; font-size: 13px; font-weight: 600; cursor: pointer; color: #62544c;">తెలుగు</button>
+        </div>
 
     </div>
 

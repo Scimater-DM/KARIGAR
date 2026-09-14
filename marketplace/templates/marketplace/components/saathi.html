@@ -42,7 +42,7 @@
                 <path d="M24 60 C40 44 48 76 60 60 C72 44 80 76 96 60" class="khadi-thread" />
                 <circle cx="60" cy="60" r="4" class="khadi-dot" />
             </svg>
-            <span>साथी · AI Companion</span>
+            <span data-i18n="saathi_badge">साथी · AI Companion</span>
         </div>
 
         <button type="button" class="saathi-close" onclick="closeSaathi()" aria-label="Close Saathi">
@@ -52,12 +52,12 @@
 
     <!-- Introduction -->
     <div class="saathi-panel__intro">
-        <span class="eyebrow">YOUR CRAFT COPILOT</span>
+        <span class="eyebrow" data-i18n="saathi_eyebrow">YOUR CRAFT COPILOT</span>
         <h2>
-            Namaste,<br>
-            <em>I'm Saathi.</em>
+            <span data-i18n="saathi_title_prefix">Namaste,</span><br>
+            <em data-i18n="saathi_title_sub">I'm Saathi.</em>
         </h2>
-        <p>
+        <p data-i18n="saathi_desc">
             Powered by Google Gemini. From drafting your artisan story to calculating fair living wages, I am here to
             assist your living heritage.
         </p>
@@ -68,8 +68,8 @@
         <button type="button" onclick="saathiAction('Tell my story')">
             <span class="saathi-action__number">01</span>
             <span>
-                <strong>Tell my story</strong>
-                <small>Turn your oral memory into a profile bio</small>
+                <strong data-i18n="saathi_act1_title">Tell my story</strong>
+                <small data-i18n="saathi_act1_sub">Turn your oral memory into a profile bio</small>
             </span>
             <span class="saathi-action__arrow">↗</span>
         </button>
@@ -77,8 +77,8 @@
         <button type="button" onclick="saathiAction('Price my work')">
             <span class="saathi-action__number">02</span>
             <span>
-                <strong>Price my work</strong>
-                <small>Fair Craft living wage assessment</small>
+                <strong data-i18n="saathi_act2_title">Price my work</strong>
+                <small data-i18n="saathi_act2_sub">Fair Craft living wage assessment</small>
             </span>
             <span class="saathi-action__arrow">↗</span>
         </button>
@@ -86,8 +86,8 @@
         <button type="button" onclick="saathiAction('Show my work')">
             <span class="saathi-action__number">03</span>
             <span>
-                <strong>Show my work</strong>
-                <small>Photography & process video guidance</small>
+                <strong data-i18n="saathi_act3_title">Show my work</strong>
+                <small data-i18n="saathi_act3_sub">Photography & process video guidance</small>
             </span>
             <span class="saathi-action__arrow">↗</span>
         </button>
@@ -95,8 +95,8 @@
         <button type="button" onclick="saathiAction('Find buyers')">
             <span class="saathi-action__number">04</span>
             <span>
-                <strong>Find buyers</strong>
-                <small>Connect with cultural connoisseurs</small>
+                <strong data-i18n="saathi_act4_title">Find buyers</strong>
+                <small data-i18n="saathi_act4_sub">Connect with cultural connoisseurs</small>
             </span>
             <span class="saathi-action__arrow">↗</span>
         </button>
@@ -119,12 +119,12 @@
 
     <!-- Interactive Free-Form Text Chat Bar -->
     <form id="saathiForm" onsubmit="handleSaathiSubmit(event)" style="display: flex; gap: 8px; margin-bottom: 16px;">
-        <input type="text" id="saathiInput" placeholder="Ask anything or describe your piece..."
+        <input type="text" id="saathiInput" data-i18n="saathi_input_ph" placeholder="Ask anything or describe your piece..."
             style="flex: 1; padding: 10px 14px; font-size: 12px; border: 1px solid rgba(36, 27, 23, 0.18); border-radius: 12px; background: #fffdf9; color: #241b17; outline: none;"
             autocomplete="off" />
         <button type="submit" id="saathiSendBtn"
             style="padding: 10px 16px; background: #b85b35; color: #fff; border: 0; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center;">
-            Ask ↗
+            <span data-i18n="saathi_send">Ask ↗</span>
         </button>
     </form>
 
@@ -136,8 +136,8 @@
         <button type="button" id="saathiVoiceBtn" onclick="startSaathiVoice()" class="saathi-voice">
             <span class="saathi-voice__icon">◉</span>
             <span>
-                <strong>Speak to Saathi</strong>
-                <small id="saathiVoiceStatus">Tap to speak · English / Hindi / Hinglish</small>
+                <strong data-i18n="saathi_voice_title">Speak to Saathi</strong>
+                <small id="saathiVoiceStatus" data-i18n="saathi_voice_sub">Tap to speak · English / Hindi / Hinglish</small>
             </span>
             <span class="saathi-voice__arrow">🎙️</span>
         </button>
@@ -145,7 +145,7 @@
 
     <!-- Panel footer -->
     <div class="saathi-panel__footer" style="margin-top: 20px;">
-        <span>AI drafts. You decide.</span>
+        <span data-i18n="saathi_footer_tag">AI drafts. You decide.</span>
         <span>KARIGAR × GEMINI</span>
     </div>
 

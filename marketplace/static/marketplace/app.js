@@ -153,6 +153,7 @@ async function querySaathiAI(query, action = "general") {
             body: JSON.stringify({
                 query: query,
                 action: action,
+                language: window.CURRENT_LANG || localStorage.getItem("karigar_lang") || "en",
             }),
         });
 
@@ -225,7 +226,14 @@ function startSaathiVoice() {
     const voiceBtn = document.getElementById("saathiVoiceBtn");
 
     const recognition = new Recognition();
-    recognition.lang = "en-IN"; // Supports Indian English, Hindi loanwords
+    const langMap = {
+        "en": "en-IN",
+        "hi": "hi-IN",
+        "bn": "bn-IN",
+        "te": "te-IN"
+    };
+    const activeLang = window.CURRENT_LANG || localStorage.getItem("karigar_lang") || "en";
+    recognition.lang = langMap[activeLang] || "en-IN";
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
 
