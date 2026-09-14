@@ -63,4 +63,16 @@ urlpatterns = [
         views.practice_detail,
         name="practice_detail",
     ),
+
+    path(
+        "saathi/api/chat/",
+        views.saathi_chat_api,
+        name="saathi_chat_api",
+    ),
+
+    path(
+        "saathi/api/catalog/",
+        views.saathi_catalog_api,
+        name="saathi_catalog_api",
+    ),
 ]

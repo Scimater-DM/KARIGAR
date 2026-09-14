@@ -4,56 +4,17 @@
      SAATHI — Floating button
      ========================================================= -->
 
-<button
-    type="button"
-    class="saathi-float"
-    id="saathiFloat"
-    onclick="openSaathi()"
-    aria-label="Open Saathi"
-    title="Open Saathi"
->
-    <svg
-        class="saathi-float__symbol"
-        viewBox="0 0 120 120"
-        aria-hidden="true"
-    >
+<button type="button" class="saathi-float" id="saathiFloat" onclick="openSaathi()" aria-label="Open Saathi AI Companion"
+    title="Open Saathi (AI Companion)">
+    <svg class="saathi-float__symbol" viewBox="0 0 120 120" aria-hidden="true">
         <!-- woven outer rings -->
-        <circle
-            cx="60"
-            cy="60"
-            r="45"
-            class="khadi-ring khadi-ring--outer"
-        />
-
-        <circle
-            cx="60"
-            cy="60"
-            r="35"
-            class="khadi-ring khadi-ring--middle"
-        />
-
-        <circle
-            cx="60"
-            cy="60"
-            r="25"
-            class="khadi-ring khadi-ring--inner"
-        />
-
+        <circle cx="60" cy="60" r="45" class="khadi-ring khadi-ring--outer" />
+        <circle cx="60" cy="60" r="35" class="khadi-ring khadi-ring--middle" />
+        <circle cx="60" cy="60" r="25" class="khadi-ring khadi-ring--inner" />
         <!-- woven thread -->
-        <path
-            d="M24 60
-               C40 44 48 76 60 60
-               C72 44 80 76 96 60"
-            class="khadi-thread"
-        />
-
+        <path d="M24 60 C40 44 48 76 60 60 C72 44 80 76 96 60" class="khadi-thread" />
         <!-- centre knot -->
-        <circle
-            cx="60"
-            cy="60"
-            r="4"
-            class="khadi-dot"
-        />
+        <circle cx="60" cy="60" r="4" class="khadi-dot" />
     </svg>
 </button>
 
@@ -62,239 +23,130 @@
      SAATHI — Overlay
      ========================================================= -->
 
-<div
-    class="saathi-overlay"
-    id="saathiOverlay"
-    onclick="closeSaathi()"
-></div>
+<div class="saathi-overlay" id="saathiOverlay" onclick="closeSaathi()"></div>
 
 
 <!-- =========================================================
-     SAATHI — Side panel
+     SAATHI — Side panel (AI Powered via Gemini & Vertex AI)
      ========================================================= -->
 
-<aside
-    class="saathi-panel"
-    id="saathiPanel"
-    aria-hidden="true"
->
+<aside class="saathi-panel" id="saathiPanel" aria-hidden="true">
 
     <!-- Panel header -->
     <div class="saathi-panel__top">
-
         <div class="saathi-khadi-mark">
-
-            <svg
-                viewBox="0 0 120 120"
-                aria-hidden="true"
-            >
-                <circle
-                    cx="60"
-                    cy="60"
-                    r="45"
-                    class="khadi-ring khadi-ring--outer"
-                />
-
-                <circle
-                    cx="60"
-                    cy="60"
-                    r="35"
-                    class="khadi-ring khadi-ring--middle"
-                />
-
-                <circle
-                    cx="60"
-                    cy="60"
-                    r="25"
-                    class="khadi-ring khadi-ring--inner"
-                />
-
-                <path
-                    d="M24 60
-                       C40 44 48 76 60 60
-                       C72 44 80 76 96 60"
-                    class="khadi-thread"
-                />
-
-                <circle
-                    cx="60"
-                    cy="60"
-                    r="4"
-                    class="khadi-dot"
-                />
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+                <circle cx="60" cy="60" r="45" class="khadi-ring khadi-ring--outer" />
+                <circle cx="60" cy="60" r="35" class="khadi-ring khadi-ring--middle" />
+                <circle cx="60" cy="60" r="25" class="khadi-ring khadi-ring--inner" />
+                <path d="M24 60 C40 44 48 76 60 60 C72 44 80 76 96 60" class="khadi-thread" />
+                <circle cx="60" cy="60" r="4" class="khadi-dot" />
             </svg>
-
-            <span>साथी</span>
-
+            <span>साथी · AI Companion</span>
         </div>
 
-
-        <button
-            type="button"
-            class="saathi-close"
-            onclick="closeSaathi()"
-            aria-label="Close Saathi"
-        >
+        <button type="button" class="saathi-close" onclick="closeSaathi()" aria-label="Close Saathi">
             ×
         </button>
-
     </div>
-
 
     <!-- Introduction -->
     <div class="saathi-panel__intro">
-
-        <span class="eyebrow">
-            YOUR COMPANION
-        </span>
-
+        <span class="eyebrow">YOUR CRAFT COPILOT</span>
         <h2>
-            Hello,<br>
+            Namaste,<br>
             <em>I'm Saathi.</em>
         </h2>
-
         <p>
-            You don't have to figure everything out alone.
-            Tell me what you need help with.
+            Powered by Google Gemini. From drafting your artisan story to calculating fair living wages, I am here to
+            assist your living heritage.
         </p>
-
     </div>
 
-
-    <!-- Main actions -->
+    <!-- Main action triggers -->
     <div class="saathi-panel__actions">
-
-        <button
-            type="button"
-            onclick="saathiAction('Tell my story')"
-        >
-            <span class="saathi-action__number">
-                01
-            </span>
-
+        <button type="button" onclick="saathiAction('Tell my story')">
+            <span class="saathi-action__number">01</span>
             <span>
                 <strong>Tell my story</strong>
-                <small>
-                    Turn your story into your profile
-                </small>
+                <small>Turn your oral memory into a profile bio</small>
             </span>
-
-            <span class="saathi-action__arrow">
-                ↗
-            </span>
+            <span class="saathi-action__arrow">↗</span>
         </button>
 
-
-        <button
-            type="button"
-            onclick="saathiAction('Price my work')"
-        >
-            <span class="saathi-action__number">
-                02
-            </span>
-
+        <button type="button" onclick="saathiAction('Price my work')">
+            <span class="saathi-action__number">02</span>
             <span>
                 <strong>Price my work</strong>
-                <small>
-                    Think through a fair price
-                </small>
+                <small>Fair Craft living wage assessment</small>
             </span>
-
-            <span class="saathi-action__arrow">
-                ↗
-            </span>
+            <span class="saathi-action__arrow">↗</span>
         </button>
 
-
-        <button
-            type="button"
-            onclick="saathiAction('Show my work')"
-        >
-            <span class="saathi-action__number">
-                03
-            </span>
-
+        <button type="button" onclick="saathiAction('Show my work')">
+            <span class="saathi-action__number">03</span>
             <span>
                 <strong>Show my work</strong>
-                <small>
-                    Prepare your craft for discovery
-                </small>
+                <small>Photography & process video guidance</small>
             </span>
-
-            <span class="saathi-action__arrow">
-                ↗
-            </span>
+            <span class="saathi-action__arrow">↗</span>
         </button>
 
-
-        <button
-            type="button"
-            onclick="saathiAction('Find buyers')"
-        >
-            <span class="saathi-action__number">
-                04
-            </span>
-
+        <button type="button" onclick="saathiAction('Find buyers')">
+            <span class="saathi-action__number">04</span>
             <span>
                 <strong>Find buyers</strong>
-                <small>
-                    Understand how your work can reach people
-                </small>
+                <small>Connect with cultural connoisseurs</small>
             </span>
-
-            <span class="saathi-action__arrow">
-                ↗
-            </span>
+            <span class="saathi-action__arrow">↗</span>
         </button>
-
     </div>
 
-   <div
-    class="saathi-story-result"
-    id="saathiStoryResult"
-    aria-live="polite"
-></div>
+    <!-- Dynamic AI Conversation Stream -->
+    <div class="saathi-chat-container" style="margin-top: 15px; margin-bottom: 15px;">
+        <div class="saathi-chat-messages" id="saathiChatMessages"
+            style="display: flex; flex-direction: column; gap: 12px; max-height: 280px; overflow-y: auto; padding: 4px 2px;">
+            <!-- Message bubbles rendered via JavaScript -->
+        </div>
 
-    <!-- Voice -->
+        <!-- Thinking Indicator -->
+        <div id="saathiLoading"
+            style="display: none; padding: 10px 14px; margin-top: 6px; font-size: 11px; color: #87766c; background: #fff9f1; border-radius: 12px; border: 1px dashed rgba(184, 91, 53, 0.3);">
+            <span style="display: inline-block; animation: pulse 1.4s infinite;">✨ Saathi is consulting craft
+                heritage...</span>
+        </div>
+    </div>
+
+    <!-- Interactive Free-Form Text Chat Bar -->
+    <form id="saathiForm" onsubmit="handleSaathiSubmit(event)" style="display: flex; gap: 8px; margin-bottom: 16px;">
+        <input type="text" id="saathiInput" placeholder="Ask anything or describe your piece..."
+            style="flex: 1; padding: 10px 14px; font-size: 12px; border: 1px solid rgba(36, 27, 23, 0.18); border-radius: 12px; background: #fffdf9; color: #241b17; outline: none;"
+            autocomplete="off" />
+        <button type="submit" id="saathiSendBtn"
+            style="padding: 10px 16px; background: #b85b35; color: #fff; border: 0; border-radius: 12px; font-size: 12px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+            Ask ↗
+        </button>
+    </form>
+
+    <!-- Legacy Result Placeholder for compatibility -->
+    <div class="saathi-story-result" id="saathiStoryResult" aria-live="polite" style="display: none;"></div>
+
+    <!-- Voice Trigger -->
     <div class="saathi-panel__voice">
-
-        <button
-            type="button"
-            onclick="startSaathiVoice()"
-            class="saathi-voice"
-        >
-
-            <span class="saathi-voice__icon">
-                ◉
-            </span>
-
+        <button type="button" id="saathiVoiceBtn" onclick="startSaathiVoice()" class="saathi-voice">
+            <span class="saathi-voice__icon">◉</span>
             <span>
                 <strong>Speak to Saathi</strong>
-                <small>
-                    Voice interaction · English / Hindi
-                </small>
+                <small id="saathiVoiceStatus">Tap to speak · English / Hindi / Hinglish</small>
             </span>
-
-            <span class="saathi-voice__arrow">
-                ↗
-            </span>
-
+            <span class="saathi-voice__arrow">🎙️</span>
         </button>
-
     </div>
 
-
     <!-- Panel footer -->
-    <div class="saathi-panel__footer">
-
-        <span>
-            AI drafts. You decide.
-        </span>
-
-        <span>
-            KARIGAR
-        </span>
-
+    <div class="saathi-panel__footer" style="margin-top: 20px;">
+        <span>AI drafts. You decide.</span>
+        <span>KARIGAR × GEMINI</span>
     </div>
 
 </aside>

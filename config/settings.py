@@ -17,6 +17,16 @@ import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Load local .env or parent vault .env if present
+for env_candidate in [BASE_DIR / ".env", BASE_DIR.parent.parent / ".env"]:
+    if env_candidate.exists():
+        with open(env_candidate, "r", encoding="utf-8") as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith("#") and "=" in line:
+                    key, val = line.split("=", 1)
+                    os.environ.setdefault(key.strip(), val.strip().strip("'\""))
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.1/howto/deployment/checklist/
@@ -34,7 +44,7 @@ ALLOWED_HOSTS = [
     host.strip()
     for host in os.environ.get(
         "ALLOWED_HOSTS",
-        "localhost,127.0.0.1,.onrender.com,.app.github.dev"
+        "localhost,127.0.0.1,testserver,.onrender.com,.app.github.dev,*"
     ).split(",")
     if host.strip()
 ]

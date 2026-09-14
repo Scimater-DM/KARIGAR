@@ -1,8 +1,13 @@
+import json
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
 
 from .forms import ArtisanForm, CraftForm
 from .models import Artisan, Craft, Practice
+from .services.saathi_ai import ask_saathi_agent, catalog_craft_with_saathi
 
 
 def marketplace(request):
@@ -214,3 +219,32 @@ def craft_success(request):
         request,
         "marketplace/craft_success.html",
     )
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def saathi_chat_api(request):
+    try:
+        data = json.loads(request.body.decode("utf-8")) if request.body else {}
+    except Exception:
+        data = request.POST.dict()
+
+    query = data.get("query") or data.get("message") or ""
+    action = data.get("action", "general")
+    context = data.get("context", {})
+
+    result = ask_saathi_agent(query=query, action=action, context=context)
+    return JsonResponse(result)
+
+
+@csrf_exempt
+@require_http_methods(["POST"])
+def saathi_catalog_api(request):
+    try:
+        data = json.loads(request.body.decode("utf-8")) if request.body else {}
+    except Exception:
+        data = request.POST.dict()
+
+    transcript = data.get("transcript") or data.get("text") or ""
+    result = catalog_craft_with_saathi(transcript=transcript)
+    return JsonResponse(result)
